@@ -1,0 +1,1872 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Algoritmo de optimización Rotosolve &#8212; PT3-Support</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/myfile.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "jamasole/Curso-TalentQ-Book");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"8fd33d8132e047f9929817eb2c9f5db3": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": "0px 0px 10px 0px", "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "cda868d87614495f8d5a74c47f41bb07": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "341a9fe5b95a4ce884d81642e6119dc0": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_8fd33d8132e047f9929817eb2c9f5db3", "placeholder": "\u200b", "style": "IPY_MODEL_cda868d87614495f8d5a74c47f41bb07", "tabbable": null, "tooltip": null, "value": "<p style='font-family: IBM Plex Sans, Arial, Helvetica, sans-serif; font-size: 20px; font-weight: medium;'>Circuit Properties</p>"}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/Part_03_VQE/Chapter_03_02_Optimizadores/Section_031_Rotosolve_Qiskit_myst';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="Algoritmo de optimización Rotosolve" href="Section_031_Rotosolve_Pennylane_myst.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/TalentQ_LogoNegNegro.png" class="logo__image only-light" alt="PT3-Support - Home"/>
+    <script>document.write(`<img src="../../../_static/TalentQ_LogoNegNegro.png" class="logo__image only-dark" alt="PT3-Support - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational Quantum Eigensolver</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_01_01_Introduction_myst.html">Introducción al Algoritmo VQE</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_01_02_Introduction/Section_011_Modelo-Ising_myst.html">El Modelo de Ising con el algoritmo VQE</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_01_02_Introduction/Section_012_Molecula-H2_myst.html">La molécula de <span class="math notranslate nohighlight">\(\text{H}_2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_01_02_Introduction/Section_013_Conclusiones_myst.html">Conclusiones</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_02_01_Ansatze_myst.html">Ansätze</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_02_02_Ansatz/Section_021_k-UpCCGSD_myst.html">Ansatz k-UpCCGSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_02_02_Ansatz/Section_023_ADAPT_myst.html">ADAPT con el Modelo de Lipkin</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Chapter_03_01_Optimizadores_myst.html">Optimizadores</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Section_031_Rotosolve_Pennylane_myst.html">Algoritmo de optimización Rotosolve</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Algoritmo de optimización Rotosolve</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/davidcb98/JupyterBook_plantilla" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/davidcb98/JupyterBook_plantilla/edit/master/Book/docs/Part_03_VQE/Chapter_03_02_Optimizadores/Section_031_Rotosolve_Qiskit_myst.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/davidcb98/JupyterBook_plantilla/issues/new?title=Issue%20on%20page%20%2Fdocs/Part_03_VQE/Chapter_03_02_Optimizadores/Section_031_Rotosolve_Qiskit_myst.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/docs/Part_03_VQE/Chapter_03_02_Optimizadores/Section_031_Rotosolve_Qiskit_myst.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Algoritmo de optimización Rotosolve</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamento-teorico-del-optimizador-rotosolve">Fundamento teórico del optimizador Rotosolve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-ising-1d-con-optimizador-rotosolve">Modelo de Ising 1D con optimizador Rotosolve</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-de-vqe-en-computador-cuantico-real">Ejecución de VQE en computador cuántico real</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-de-vqe-con-rotosolve-simulando-el-ruido-de-un-computador-cuantico-real">Ejecución de VQE con Rotosolve simulando el ruido de un computador cuántico real</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones">Conclusiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <blockquote>
+<div><p>May 06, 2024 | 9 min read</p>
+</div></blockquote>
+<figure class="align-left">
+<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png" src="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png" style="width: 1000px;" /></a>
+</figure>
+<p>Authors:</p>
+<ul class="simple">
+<li><p>Irais Bautista (<a class="reference external" href="http://www.cesga.es">CESGA</a>), Sergio Martínez (<a class="reference external" href="https://bifi.es/es/">BIFi-UNIZAR</a>), Jaime Scharfhausen (<a class="reference external" href="https://www.uam.es/uam/inicio">UAM</a>) y Alejandro Jaramillo (<a class="reference external" href="https://www.csuc.cat/es">CSUC</a>)</p></li>
+</ul>
+<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png" src="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png" style="width: 100px;" /></a>
+<a class="reference internal image-reference" href="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png"><img alt="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png" src="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png"><img alt="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png" src="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png"><img alt="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png" src="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png" style="width: 200px;" /></a>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># General libraries</span>
+<span class="kn">from</span> <span class="nn">utils.hamiltonian_utils</span> <span class="kn">import</span> <span class="n">ising_chain_ham</span>
+<span class="kn">from</span> <span class="nn">utils.rotosolve_optimizer</span> <span class="kn">import</span> <span class="n">Rotosolve</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_filter</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">styles.style</span> <span class="kn">import</span> <span class="n">qspain</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Latex</span>
+<span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Qiskit libraries</span>
+<span class="kn">from</span> <span class="nn">qiskit.utils</span> <span class="kn">import</span> <span class="n">QuantumInstance</span><span class="p">,</span> <span class="n">algorithm_globals</span>
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">Aer</span>
+<span class="kn">from</span> <span class="nn">qiskit.circuit.library</span> <span class="kn">import</span> <span class="n">TwoLocal</span>
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">transpile</span>
+<span class="kn">from</span> <span class="nn">qiskit.algorithms.optimizers</span> <span class="kn">import</span> <span class="n">SPSA</span>
+<span class="kn">from</span> <span class="nn">qiskit_aer.noise</span> <span class="kn">import</span> <span class="n">NoiseModel</span>
+<span class="kn">from</span> <span class="nn">qiskit_ibm_runtime.fake_provider</span> <span class="kn">import</span> <span class="n">FakeLima</span>
+<span class="kn">from</span> <span class="nn">qiskit_aer</span> <span class="kn">import</span> <span class="n">QasmSimulator</span>
+<span class="kn">from</span> <span class="nn">qiskit.primitives</span> <span class="kn">import</span> <span class="n">Estimator</span>
+<span class="kn">from</span> <span class="nn">qiskit.algorithms.minimum_eigensolvers</span> <span class="kn">import</span> <span class="n">VQE</span>
+<span class="kn">from</span> <span class="nn">qiskit.utils.mitigation</span> <span class="kn">import</span> <span class="n">CompleteMeasFitter</span>
+<span class="kn">from</span> <span class="nn">qiskit_ibm_provider</span> <span class="kn">import</span> <span class="n">least_busy</span>
+<span class="kn">from</span> <span class="nn">qiskit_ibm_provider</span> <span class="kn">import</span> <span class="n">IBMProvider</span> <span class="k">as</span> <span class="n">IBMQ</span>
+<span class="kn">import</span> <span class="nn">qiskit.tools.jupyter</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="algoritmo-de-optimizacion-rotosolve">
+<span id="sec-algoritmo-de-optimizacion-rotosolve"></span><h1>Algoritmo de optimización Rotosolve<a class="headerlink" href="#algoritmo-de-optimizacion-rotosolve" title="Permalink to this heading">#</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#fundamento-teorico-del-optimizador-rotosolve" id="id99">Fundamento teórico del optimizador Rotosolve</a></p></li>
+<li><p><a class="reference internal" href="#modelo-de-ising-1d-con-optimizador-rotosolve" id="id100">Modelo de Ising 1D con optimizador Rotosolve</a></p></li>
+<li><p><a class="reference internal" href="#conclusiones" id="id101">Conclusiones</a></p></li>
+<li><p><a class="reference internal" href="#bibliografia" id="id102">Bibliografía</a></p></li>
+</ul>
+</div>
+<section id="fundamento-teorico-del-optimizador-rotosolve">
+<span id="sec-fundamento-teorico-del-optimizador-rotosolve"></span><h2><a class="toc-backref" href="#id99">Fundamento teórico del optimizador Rotosolve</a><a class="headerlink" href="#fundamento-teorico-del-optimizador-rotosolve" title="Permalink to this heading">#</a></h2>
+<p>El algoritmo de optimización <b>Rotosolve</b> es un algoritmo <i>quantum-aware</i>, ya que dicho algoritmo esta optimizado para obtener las mejores resultados sobre hardware de ordenadores cuánticos.</p>
+<p>Este algoritmo de optimización es uno más de los posibles algoritmos que se pueden usar en circuitos variacionales (parametrizados) cuánticos. En esencia, el optimizador Rotosolve minimiza una función objetivo con respecto a los parámetros de un circuito cuántico sin necesidad de calcular el gradiente de la función. El algoritmo realiza iteraciones en los que actualiza los parámetros del circuito <span class="math notranslate nohighlight">\(\theta = \theta_1, \dots, \theta_D\)</span> con la función de coste hasta completar el número máximo de iteraciones.</p>
+<p>Este algoritmo de optimización hace descender el valor inicial de manera drástica, alcanzando el valor mínimo en pocas iteraciones.</p>
+<p>El código del algoritmo Rotosolve se encuentra en el archivo <a href="./utils/rotosolve_optimizer.py">rotosolve_optimizer.py</a>.</p>
+<div class="cell tag_scroll-ouput docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vista del archivo rotosolve_optimizer.py</span>
+<span class="n">display</span><span class="o">.</span><span class="n">Code</span><span class="p">(</span><span class="s2">&quot;./utils/rotosolve_optimizer.py&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.output_html .hll { background-color: #ffffcc }
+.output_html { background: #f8f8f8; }
+.output_html .c { color: #3D7B7B; font-style: italic } /* Comment */
+.output_html .err { border: 1px solid #FF0000 } /* Error */
+.output_html .k { color: #008000; font-weight: bold } /* Keyword */
+.output_html .o { color: #666666 } /* Operator */
+.output_html .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.output_html .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.output_html .cp { color: #9C6500 } /* Comment.Preproc */
+.output_html .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.output_html .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.output_html .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.output_html .gd { color: #A00000 } /* Generic.Deleted */
+.output_html .ge { font-style: italic } /* Generic.Emph */
+.output_html .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.output_html .gr { color: #E40000 } /* Generic.Error */
+.output_html .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.output_html .gi { color: #008400 } /* Generic.Inserted */
+.output_html .go { color: #717171 } /* Generic.Output */
+.output_html .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.output_html .gs { font-weight: bold } /* Generic.Strong */
+.output_html .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.output_html .gt { color: #0044DD } /* Generic.Traceback */
+.output_html .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.output_html .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.output_html .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.output_html .kp { color: #008000 } /* Keyword.Pseudo */
+.output_html .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.output_html .kt { color: #B00040 } /* Keyword.Type */
+.output_html .m { color: #666666 } /* Literal.Number */
+.output_html .s { color: #BA2121 } /* Literal.String */
+.output_html .na { color: #687822 } /* Name.Attribute */
+.output_html .nb { color: #008000 } /* Name.Builtin */
+.output_html .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.output_html .no { color: #880000 } /* Name.Constant */
+.output_html .nd { color: #AA22FF } /* Name.Decorator */
+.output_html .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.output_html .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.output_html .nf { color: #0000FF } /* Name.Function */
+.output_html .nl { color: #767600 } /* Name.Label */
+.output_html .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.output_html .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.output_html .nv { color: #19177C } /* Name.Variable */
+.output_html .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.output_html .w { color: #bbbbbb } /* Text.Whitespace */
+.output_html .mb { color: #666666 } /* Literal.Number.Bin */
+.output_html .mf { color: #666666 } /* Literal.Number.Float */
+.output_html .mh { color: #666666 } /* Literal.Number.Hex */
+.output_html .mi { color: #666666 } /* Literal.Number.Integer */
+.output_html .mo { color: #666666 } /* Literal.Number.Oct */
+.output_html .sa { color: #BA2121 } /* Literal.String.Affix */
+.output_html .sb { color: #BA2121 } /* Literal.String.Backtick */
+.output_html .sc { color: #BA2121 } /* Literal.String.Char */
+.output_html .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.output_html .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.output_html .s2 { color: #BA2121 } /* Literal.String.Double */
+.output_html .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.output_html .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.output_html .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.output_html .sx { color: #008000 } /* Literal.String.Other */
+.output_html .sr { color: #A45A77 } /* Literal.String.Regex */
+.output_html .s1 { color: #BA2121 } /* Literal.String.Single */
+.output_html .ss { color: #19177C } /* Literal.String.Symbol */
+.output_html .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.output_html .fm { color: #0000FF } /* Name.Function.Magic */
+.output_html .vc { color: #19177C } /* Name.Variable.Class */
+.output_html .vg { color: #19177C } /* Name.Variable.Global */
+.output_html .vi { color: #19177C } /* Name.Variable.Instance */
+.output_html .vm { color: #19177C } /* Name.Variable.Magic */
+.output_html .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created by: QuantumSpain (https://quantumspain-project.es/)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">qiskit.algorithms.optimizers.optimizer</span> <span class="kn">import</span> <span class="n">Optimizer</span><span class="p">,</span> <span class="n">OptimizerSupportLevel</span><span class="p">,</span> <span class="n">OptimizerResult</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="k">class</span> <span class="nc">Rotosolve</span><span class="p">(</span><span class="n">Optimizer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create an instance of the Rotosolve optimizer.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    max_steps : int</span>
+<span class="sd">        Maximum number of steps to take in the optimizer. This is the number</span>
+<span class="sd">        of times to loop through all the parameters in the objective function.</span>
+<span class="sd">    alt_convention : bool</span>
+<span class="sd">        The Rotosolve paper uses the convention that there is a `1/2`</span>
+<span class="sd">        in the exponent. This convention corresponds to `alt_convention=False`.</span>
+<span class="sd">        In other algorithms this factor is</span>
+<span class="sd">        not present, in which case, use `alt_convention=True`.</span>
+<span class="sd">    step_size : int</span>
+<span class="sd">        The step count in the value optimization loop.</span>
+<span class="sd">    See: https://arxiv.org/abs/1905.09692</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CONFIGURATION</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;RotoSolve&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;RotoSolve Optimizer&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;input_schema&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;$schema&#39;</span><span class="p">:</span> <span class="s1">&#39;http://json-schema.org/schema#&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;GP_schema&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;object&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;properties&#39;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s1">&#39;additionalProperties&#39;</span><span class="p">:</span> <span class="kc">False</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;support_level&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;gradient&#39;</span><span class="p">:</span> <span class="n">OptimizerSupportLevel</span><span class="o">.</span><span class="n">ignored</span><span class="p">,</span>
+            <span class="s1">&#39;bounds&#39;</span><span class="p">:</span> <span class="n">OptimizerSupportLevel</span><span class="o">.</span><span class="n">ignored</span><span class="p">,</span>
+            <span class="s1">&#39;initial_point&#39;</span><span class="p">:</span> <span class="n">OptimizerSupportLevel</span><span class="o">.</span><span class="n">supported</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;options&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;optimizer&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;maxiter&#39;</span><span class="p">:</span> <span class="mi">1024</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_steps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">step_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">alt_convention</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+        
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_max_steps</span> <span class="o">=</span> <span class="n">max_steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_step_size</span> <span class="o">=</span> <span class="n">step_size</span>
+        
+        <span class="c1"># alt_convention == False:</span>
+        <span class="c1"># e^{-i H theta}</span>
+        <span class="c1"># alt_convention == True</span>
+        <span class="c1"># e^{-i H theta/2}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_alt_convention</span> <span class="o">=</span> <span class="n">alt_convention</span>
+
+    <span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_vars</span><span class="p">,</span> <span class="n">obj_function</span><span class="p">,</span> <span class="n">gradient_function</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">variable_bounds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">initial_point</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;See `qiskit.algorithms.optimizers.optimizer.Optimizer` documentation.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">num_vars</span><span class="p">,</span> <span class="n">obj_function</span><span class="p">,</span> <span class="n">gradient_function</span><span class="p">,</span> <span class="n">variable_bounds</span><span class="p">,</span> <span class="n">initial_point</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">initial_point</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">initial_point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">num_vars</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">fun</span> <span class="o">=</span> <span class="n">obj_function</span><span class="p">,</span> <span class="n">x0</span> <span class="o">=</span> <span class="n">initial_point</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">minimize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">bounds</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">jac</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    
+        <span class="n">factor</span> <span class="o">=</span> <span class="mi">2</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alt_convention</span> <span class="k">else</span> <span class="mi">1</span>
+
+        <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">fun</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">factor</span><span class="p">)</span>
+        
+        <span class="n">theta_min</span><span class="p">,</span> <span class="n">f_min</span><span class="p">,</span> <span class="n">f_evals</span><span class="p">,</span> <span class="n">f_values</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">_rotosolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_steps</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step_size</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">energy_values</span> <span class="o">=</span> <span class="n">f_values</span>
+        
+        <span class="n">result</span> <span class="o">=</span> <span class="n">OptimizerResult</span><span class="p">()</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">theta_min</span> <span class="c1"># optimal parameters</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">fun</span> <span class="o">=</span> <span class="n">f_min</span> <span class="c1"># optimal function value</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">nfev</span> <span class="o">=</span> <span class="n">f_evals</span>
+
+        <span class="k">return</span> <span class="n">result</span>
+    
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_rotosolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">initial_point</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">max_steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">step_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        
+        <span class="n">D</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">initial_point</span><span class="p">)</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">initial_point</span>
+        <span class="n">f_evals</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">def</span> <span class="nf">f_counter</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">f_current</span> <span class="o">=</span> <span class="n">f_counter</span><span class="p">(</span><span class="n">initial_point</span><span class="p">)</span>
+        <span class="n">f_evals</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="n">converged</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">steps</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">theta_values</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">f_values</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rotosolve algorithm for optimizing a given value&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;================================================&quot;</span><span class="p">)</span>
+        
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">converged</span><span class="p">:</span>
+            
+            <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">D</span><span class="p">):</span>
+                
+                <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+                <span class="n">theta_d</span> <span class="o">=</span> <span class="n">phi</span>
+                <span class="n">theta</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta_d</span>
+                <span class="n">m_vals</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;phi+0&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                    <span class="s1">&#39;phi+pi/2&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                    <span class="s1">&#39;phi-pi/2&#39;</span><span class="p">:</span> <span class="mi">0</span>
+                <span class="p">}</span>
+
+                <span class="n">m_vals</span><span class="p">[</span><span class="s1">&#39;phi+0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f_counter</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+                <span class="n">f_evals</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">theta</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
+                
+                <span class="n">m_vals</span><span class="p">[</span><span class="s1">&#39;phi+pi/2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f_counter</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+                <span class="n">f_evals</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">theta</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+                
+                <span class="n">m_vals</span><span class="p">[</span><span class="s1">&#39;phi-pi/2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f_counter</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+                <span class="n">f_evals</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">theta</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">phi</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span>
+                    <span class="mi">2</span><span class="o">*</span><span class="n">m_vals</span><span class="p">[</span><span class="s1">&#39;phi+0&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">m_vals</span><span class="p">[</span><span class="s1">&#39;phi+pi/2&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">m_vals</span><span class="p">[</span><span class="s1">&#39;phi-pi/2&#39;</span><span class="p">],</span> 
+                    <span class="n">m_vals</span><span class="p">[</span><span class="s1">&#39;phi+pi/2&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">m_vals</span><span class="p">[</span><span class="s1">&#39;phi-pi/2&#39;</span><span class="p">]</span>
+                <span class="p">)</span>
+
+                <span class="n">phi</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">theta_d</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="n">theta_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+
+            <span class="n">expectation_value</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+            <span class="n">f_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">expectation_value</span><span class="p">)</span>
+            
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Step </span><span class="si">{step}</span><span class="s1">. Current expectation value: </span><span class="si">{ev: .8f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">step</span> <span class="o">=</span> <span class="n">steps</span><span class="p">,</span> <span class="n">ev</span> <span class="o">=</span> <span class="n">expectation_value</span><span class="p">))</span>
+            
+            <span class="n">steps</span> <span class="o">+=</span> <span class="n">step_size</span>
+            
+            <span class="k">if</span> <span class="n">steps</span> <span class="o">&gt;=</span> <span class="n">max_steps</span><span class="p">:</span>
+                <span class="n">converged</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="n">f_current</span> <span class="o">=</span> <span class="n">f_counter</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+        <span class="n">f_evals</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">min_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">f_values</span><span class="p">)</span>
+        <span class="n">f_min</span> <span class="o">=</span> <span class="n">f_values</span><span class="p">[</span><span class="n">min_index</span><span class="p">]</span>
+        <span class="n">theta_min</span> <span class="o">=</span> <span class="n">theta_values</span><span class="p">[</span><span class="n">min_index</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">theta_min</span><span class="p">,</span> <span class="n">f_min</span><span class="p">,</span> <span class="n">f_evals</span><span class="p">,</span> <span class="n">f_values</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">settings</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="n">conf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONFIGURATION</span>
+        <span class="k">return</span> <span class="n">conf</span>
+
+    <span class="k">def</span> <span class="nf">estimate_stddev</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Estimate the standard deviation.&quot;&quot;&quot;</span>
+        <span class="n">ar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">energy_values</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ar</span> <span class="o">-</span> <span class="n">ar</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">ar</span><span class="p">))</span>
+    
+        <span class="k">return</span> <span class="n">std</span>
+
+    <span class="k">def</span> <span class="nf">get_support_level</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the support level dictionary.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONFIGURATION</span><span class="p">[</span><span class="s1">&#39;support_level&#39;</span><span class="p">]</span>
+</pre></div>
+</div></div>
+</div>
+<p>El algoritmo <b>Rotosolve</b><span id="id1">[<a class="reference internal" href="#id43" title="Jules Tilly, Hongxiang Chen, Shuxiang Cao, Dario Picozzi, Kanav Setia, Ying Li, Edward Grant, Leonard Wossnig, Ivan Rungger, George H. Booth, and Jonathan Tennyson. The variational quantum eigensolver: a review of methods and best practices. Physics Reports, 986:1–128, November 2022. doi:10.1016/j.physrep.2022.08.003.">2</a>]</span>,<span id="id2">[<a class="reference internal" href="#id44" title="Mateusz Ostaszewski, Edward Grant, and Marcello Benedetti. Structure optimization for parameterized quantum circuits. Quantum, 5:391, January 2021. doi:10.22331/q-2021-01-28-391.">1</a>]</span>,<span id="id3">[<a class="reference internal" href="#id46" title="Javier Gil Vidal and Dirk Oliver Theis. Calculus on parameterized quantum circuits. arXiv preprint arXiv:1812.06323, 2018. arXiv:1812.06323.">3</a>]</span>,<span id="id4">[<a class="reference internal" href="#id45" title="David Wierichs, Josh Izaac, Cody Wang, and Cedric Yen-Yu Lin. General parameter-shift rules for quantum gradients. Quantum, 6:677, March 2022. doi:10.22331/q-2022-03-30-677.">4</a>]</span> actúa de la siguiente forma, toma una puerta parametrizada de nuestro circuito de función de onda (<i>ansatz</i>) y ajusta su ángulo y dirección de rotación para obtener el valor de mínima energía. Este proceso se realiza iterativamente con cada una de las puertas parametrizadas, una vez el algoritmo de optimización ajusta la última puerta parametrizada repite el proceso hasta converger al valor mínimo.</p>
+<p>Consideremos un problema de optimización donde la función objetivo es un operador hermítico <span class="math notranslate nohighlight">\(M\)</span> y la solución candidata se codifica en un circuito cuántico parametrizado <span class="math notranslate nohighlight">\(U = U_D \dots U_1\)</span> que actúa sobre un estado inicial <span class="math notranslate nohighlight">\(\rho\)</span> de n-qubits.</p>
+<p>Cada puerta del circuito esta parametrizada de la forma <span class="math notranslate nohighlight">\(\text{exp}(-i\frac{\theta_d}{2}H_d)\)</span>, donde el ángulo de rotación <span class="math notranslate nohighlight">\(\theta \in (-\pi, \pi]\)</span> y donde <span class="math notranslate nohighlight">\(H_d\)</span> son matrices <b>unitarias</b> y <b>hermíticas</b>. Con todo ello, y sin pérdida de generalidad, minimizaremos la función objetivo a la que simplemente nos referiremos a ella como <i>la energía</i>. Matemáticamente, podemos plantear el problema como:</p>
+<div class="math notranslate nohighlight">
+\[
+(\theta^{\ast}, H^{\ast}) = \argmin_{\theta, H}\ {\langle{H}\rangle}_{\theta, H},\ \text{donde}\ {\langle{H}\rangle}_{\theta, H} = tr(MU\rho U^\dagger)
+\]</div>
+<p>Disponemos de dos formas de solucionar el planteamiento matemático, una primera forma en la que optimizamos los ángulos de las puertas parametrizadas dejando invariante al circuito y una segunda forma en la que optimizamos simultaneamente el circuito y los ángulos de las puertas parametrizadas, esta última solución se denomina <b>Rotoselect</b>.</p>
+<p>Rotoselect hace uso del algoritmo Rotosolve para obtener el valor óptimo del ángulo de cada una de las puertas parametrizadas.</p>
+<p>Seleccionaremos la primera opción expuesta por ser la solución usada en el algoritmo <b>Rotosolve</b>.</p>
+<p>En la primera solución (Rotosolve), tomamos el ángulo de la primera puerta para su optimización dejando las demás puertas fijas, de tal manera que este proceso se repite de forma secuencial pasando por todas las puertas parametrizadas. Esto es bastante simple de realizar ya que en cada paso secuencial la energía tiene una forma sinusoidal con un periodo de <span class="math notranslate nohighlight">\(2\pi\)</span>. Por ejemplo, para la puerta <span class="math notranslate nohighlight">\(U_d\)</span> el ángulo óptimo se calcula de la siguiente forma:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+\theta_{d}^* &amp;= \argmin_{\theta_d} {\langle{M}\rangle}_{\theta_d} = \phi - \tfrac{\pi}{2} - \text{arctan2}\big(2{\langle{M}\rangle}_{\phi} - {\langle{M}\rangle}_{\phi+\frac{\pi}{2}} - {\langle{M}\rangle}_{\phi-\frac{\pi}{2}} , ~ {\langle{M}\rangle}_{\phi+\frac{\pi}{2}} - {\langle{M}\rangle}_{\phi-\frac{\pi}{2}} \big) + 2\pi k
+\end{align*}
+\]</div>
+<p>Esta expresión se cumple para cualquier número real <span class="math notranslate nohighlight">\(\phi\)</span> y cualquier número entero <span class="math notranslate nohighlight">\(k\)</span>. En la práctica seleccionamos un valor de <span class="math notranslate nohighlight">\(k\)</span> tal que <span class="math notranslate nohighlight">\(\theta_d^* \in (-\pi, \pi]\)</span>.</p>
+<p>El ángulo óptimo se puede encontrar para todo <span class="math notranslate nohighlight">\(d = 1, \dots D\)</span> hasta completar el ciclo de puertas parametrizadas. Una vez todos los ángulos se han actualizado, se inicia un nuevo ciclo de optimización a menos que se cumpla un cierto criterio de parada.</p>
+</section>
+<section id="modelo-de-ising-1d-con-optimizador-rotosolve">
+<span id="sec-modelo-de-ising-1d-con-optimizador-rotosolve"></span><h2><a class="toc-backref" href="#id100">Modelo de Ising 1D con optimizador Rotosolve</a><a class="headerlink" href="#modelo-de-ising-1d-con-optimizador-rotosolve" title="Permalink to this heading">#</a></h2>
+<p>Para ejemplificar el algoritmo de optimización Rotosolve, tomaremos el mismo Hamiltoniano del Modelo de Ising 1D descrito en el <i>notebook</i> de <a href="../Chapter_01_Introduction.ipynb#sec_El_Modelo_de_Ising_con_el_algoritmo_VQE">Introducción al algoritmo VQE</a>, usaremos el mismo número de espínes (<span class="math notranslate nohighlight">\(n = 4\)</span>) y el mismo valor de <span class="math notranslate nohighlight">\(\gamma = 0.3\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{H} = X_1X_2I_3I_4 + I_1X_2X_3I_4 + I_1I_2X_3X_4 + X_1I_2I_3X_4 + \gamma (Z_1I_2I_3I_4 + I_1Z_2I_3I_4 + I_1I_2Z_3I_4 + I_1I_2I_3Z_4)
+\]</div>
+<p>En este caso usaremos el algoritmo de optimización <b>Rotosolve</b> y compararemos los resultados con el valor obtenido con anterioridad en el <i>notebook</i> de <a href="../Chapter_01_Introduction.ipynb#sec_El_Modelo_de_Ising_con_el_algoritmo_VQE">Introducción al algoritmo VQE</a>.</p>
+<p>Codificamos el hamiltoniano en Qiskit como un operador y preparamos un ansatz TwoLocal ya implementado en esta librería.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Definimos el Hamiltoniano</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">4</span> 
+<span class="n">gam</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+<span class="n">op_H</span> <span class="o">=</span> <span class="n">ising_chain_ham</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">gam</span><span class="p">)</span> <span class="c1"># Creamos el Hamiltoniano descrito</span>
+
+<span class="n">ansatz</span> <span class="o">=</span> <span class="n">TwoLocal</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">rotation_blocks</span><span class="o">=</span><span class="s1">&#39;ry&#39;</span><span class="p">,</span> <span class="n">entanglement_blocks</span><span class="o">=</span><span class="s1">&#39;cx&#39;</span><span class="p">)</span>
+<span class="n">ansatz</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;iqx&#39;</span><span class="p">)</span>
+
+<span class="n">ansatz</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;iqx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<img alt="../../../_images/5f82151309cf5f49e2bdc716aa6ed1d796301dcde4b9388941425a780694bbfb.png" src="../../../_images/5f82151309cf5f49e2bdc716aa6ed1d796301dcde4b9388941425a780694bbfb.png" />
+</div>
+</div>
+<p>El siguiente paso es hacer una llamada al solucionador VQE pasándole el hamiltoniano, el ansatz y un optimizador. En este caso hemos implementado el operador Rotosolve<span>[<a class="reference internal" href="#id44" title="Mateusz Ostaszewski, Edward Grant, and Marcello Benedetti. Structure optimization for parameterized quantum circuits. Quantum, 5:391, January 2021. doi:10.22331/q-2021-01-28-391.">1</a>]</span> para Qiskit</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">63</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span> <span class="c1"># seed for reproducibility</span>
+<span class="n">algorithm_globals</span><span class="o">.</span><span class="n">random_seed</span> <span class="o">=</span> <span class="n">seed</span>
+
+<span class="c1"># Instanciamos la clase Rotosolve con 200 iteraciones como máximo y un paso de 3</span>
+<span class="c1"># en total serán 200/3 = 66 iteraciones</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">Rotosolve</span><span class="p">(</span><span class="n">max_steps</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="n">step_size</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">initial_point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">ansatz</span><span class="o">.</span><span class="n">num_parameters</span><span class="p">)</span> <span class="c1"># valor inicial</span>
+
+<span class="n">intermediate_info</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;nfev&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="c1">#&#39;stddev&#39;: []</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">nfev</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">stddev</span><span class="p">):</span>
+    <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;nfev&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nfev</span><span class="p">)</span>
+    <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+    <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span>
+    <span class="c1">#intermediate_info[&#39;stddev&#39;].append(stddev)</span>
+
+<span class="n">backend</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;aer_simulator&#39;</span><span class="p">)</span>
+
+<span class="n">qi</span> <span class="o">=</span> <span class="n">QuantumInstance</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">seed_simulator</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span> <span class="n">seed_transpiler</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+
+<span class="n">vqe_min</span> <span class="o">=</span> <span class="n">VQE</span><span class="p">(</span><span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(),</span>
+           <span class="n">ansatz</span><span class="o">=</span><span class="n">ansatz</span><span class="p">,</span>
+           <span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span>
+           <span class="n">initial_point</span><span class="o">=</span><span class="n">initial_point</span><span class="p">,</span>
+           <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">)</span>
+
+<span class="n">vqe_min</span><span class="o">.</span><span class="n">quantum_instance</span> <span class="o">=</span> <span class="n">qi</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">vqe_min</span><span class="o">.</span><span class="n">compute_minimum_eigenvalue</span><span class="p">(</span><span class="n">op_H</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Eigenvalue:&#39;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">eigenvalue</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Eigenvalue real part:&#39;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">eigenvalue</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;E_G =&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">optimal_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rotosolve algorithm for optimizing a given value
+================================================
+Step 0. Current expectation value: -3.86172400
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 3. Current expectation value: -4.06494515
+Step 6. Current expectation value: -4.08179742
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 9. Current expectation value: -4.08555553
+Step 12. Current expectation value: -4.08710498
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 15. Current expectation value: -4.08812628
+Step 18. Current expectation value: -4.08886023
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 21. Current expectation value: -4.08937372
+Step 24. Current expectation value: -4.08972181
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 27. Current expectation value: -4.08995283
+Step 30. Current expectation value: -4.09010424
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 33. Current expectation value: -4.09020279
+Step 36. Current expectation value: -4.09026674
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 39. Current expectation value: -4.09030819
+Step 42. Current expectation value: -4.09033508
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 45. Current expectation value: -4.09035256
+Step 48. Current expectation value: -4.09036394
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 51. Current expectation value: -4.09037137
+Step 54. Current expectation value: -4.09037623
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 57. Current expectation value: -4.09037943
+Step 60. Current expectation value: -4.09038153
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 63. Current expectation value: -4.09038292
+Step 66. Current expectation value: -4.09038385
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 69. Current expectation value: -4.09038446
+Step 72. Current expectation value: -4.09038487
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 75. Current expectation value: -4.09038514
+Step 78. Current expectation value: -4.09038532
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 81. Current expectation value: -4.09038544
+Step 84. Current expectation value: -4.09038552
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 87. Current expectation value: -4.09038558
+Step 90. Current expectation value: -4.09038562
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 93. Current expectation value: -4.09038564
+Step 96. Current expectation value: -4.09038566
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 99. Current expectation value: -4.09038567
+Step 102. Current expectation value: -4.09038568
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 105. Current expectation value: -4.09038568
+Step 108. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 111. Current expectation value: -4.09038569
+Step 114. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 117. Current expectation value: -4.09038569
+Step 120. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 123. Current expectation value: -4.09038569
+Step 126. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 129. Current expectation value: -4.09038569
+Step 132. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 135. Current expectation value: -4.09038569
+Step 138. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 141. Current expectation value: -4.09038569
+Step 144. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 147. Current expectation value: -4.09038569
+Step 150. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 153. Current expectation value: -4.09038569
+Step 156. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 159. Current expectation value: -4.09038569
+Step 162. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 165. Current expectation value: -4.09038569
+Step 168. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 171. Current expectation value: -4.09038569
+Step 174. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 177. Current expectation value: -4.09038569
+Step 180. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 183. Current expectation value: -4.09038569
+Step 186. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 189. Current expectation value: -4.09038569
+Step 192. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 195. Current expectation value: -4.09038569
+Step 198. Current expectation value: -4.09038569
+
+Eigenvalue: -4.090385692923965
+Eigenvalue real part: -4.090385692923965
+{   &#39;aux_operators_evaluated&#39;: None,
+    &#39;cost_function_evals&#39;: 3218,
+    &#39;eigenvalue&#39;: -4.090385692923965,
+    &#39;optimal_circuit&#39;: &lt;qiskit.circuit.library.n_local.two_local.TwoLocal object at 0x7f1b370d2090&gt;,
+    &#39;optimal_parameters&#39;: {   ParameterVectorElement(θ[15]): 0.15027838129524168,
+                              ParameterVectorElement(θ[14]): 0.8071925311464565,
+                              ParameterVectorElement(θ[13]): 0.13749721982322427,
+                              ParameterVectorElement(θ[12]): 0.8729448109274336,
+                              ParameterVectorElement(θ[11]): 0.007423521393656471,
+                              ParameterVectorElement(θ[10]): -6.064214646764594,
+                              ParameterVectorElement(θ[9]): 0.5112702796620026,
+                              ParameterVectorElement(θ[8]): 0.5462705000806938,
+                              ParameterVectorElement(θ[7]): 0.0018442098574964483,
+                              ParameterVectorElement(θ[6]): 0.12365576784278365,
+                              ParameterVectorElement(θ[5]): -1.282626084904102,
+                              ParameterVectorElement(θ[4]): 0.0012340330691393842,
+                              ParameterVectorElement(θ[3]): -4.728833029066754,
+                              ParameterVectorElement(θ[2]): -0.6732870965495588,
+                              ParameterVectorElement(θ[0]): 3.1363336731589193,
+                              ParameterVectorElement(θ[1]): -0.8550947114884395},
+    &#39;optimal_point&#39;: array([ 3.13633367e+00, -8.55094711e-01, -6.73287097e-01, -4.72883303e+00,
+        1.23403307e-03, -1.28262608e+00,  1.23655768e-01,  1.84420986e-03,
+        5.46270500e-01,  5.11270280e-01, -6.06421465e+00,  7.42352139e-03,
+        8.72944811e-01,  1.37497220e-01,  8.07192531e-01,  1.50278381e-01]),
+    &#39;optimal_value&#39;: -4.090385692923965,
+    &#39;optimizer_evals&#39;: None,
+    &#39;optimizer_result&#39;: &lt;qiskit.algorithms.optimizers.optimizer.OptimizerResult object at 0x7f1b36fdb410&gt;,
+    &#39;optimizer_time&#39;: 8.536896705627441} 
+
+E_G = -4.090385692923965
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos mostrar la evolución de la convergencia del operador en una gráfica:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">sim_values</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">energy_values</span>
+<span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sim_values</span><span class="p">)),</span> <span class="n">sim_values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Energy value&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Steps&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Energy&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Energy convergence for Rotosolve optimizer&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<img alt="../../../_images/a84c7247654a45e2dcd84e3e4aba713b1c56ffc618fbdaf41132b4c6947267f5.png" src="../../../_images/a84c7247654a45e2dcd84e3e4aba713b1c56ffc618fbdaf41132b4c6947267f5.png" />
+</div>
+</div>
+<p>En la gráfica podemos ver que el valor mínimo se alcanza con pocas iteraciones, la aproximación es bastante buena pero no mejora el valor obtenido con el algoritmo de optimización <b>SPSA</b> usado en el <i>notebook</i> de <a href="../Chapter_01_Introduction.ipynb#sec_El_Modelo_de_Ising_con_el_algoritmo_VQE">Introducción al algoritmo VQE</a>.</p>
+<table style='margin: 0 auto; font-size:11pt'>
+  <tr>
+      <th></th>
+      <th style="text-align:center">Energía mínima <br/>(autovalor)</th>
+  </tr>
+  <tr>
+    <td style="text-align:center"><b>SPSA</b></td>
+    <td style="text-align:center">-4.092961599426855</td>
+  </tr>
+  <tr>
+    <td style="text-align:center"><b>Rotosolve ideal</b></td>
+    <td style="text-align:center">-4.090385692923965</td>
+  </tr>
+</table> 
+<p>La selección del algoritmo de optimización es una decisión difícil de tomar, en algunas ocasiones se necesita un valor más exacto y en otras ocasiones con una aproximación es suficiente, además el tiempo de cómputo también influye en la selección del algoritmo de optimización lo cual también viene relacionado con la cantidad de recursos <i>hardware</i> que se dispongan.</p>
+<section id="ejecucion-de-vqe-en-computador-cuantico-real">
+<span id="sec-ejecucion-de-vqe-en-computador-cuantico-real"></span><h3>Ejecución de VQE en computador cuántico real<a class="headerlink" href="#ejecucion-de-vqe-en-computador-cuantico-real" title="Permalink to this heading">#</a></h3>
+<p>Creamos la configuración inicial para ejecutar nuestro código en un ordenador real de IBM. Para que los cálculos sean más rápidos usamos un backend falso llamado <strong>ibmq_lima</strong>, además haremos uso de los datos de una ejecución anterior para que el proceso no tarde en ejecutarse indefinidamente.</p>
+<p>Los ordenadores cuánticos de IBM estan abiertos a todos los usuarios, por ello hay una cola de ejecución que puede demorar la obtención de los resultados.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Incluye aquí el token personal de ibmq --&gt; https://quantum-computing.ibm.com/</span>
+<span class="n">QISKIT_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> 
+
+<span class="c1"># Configuración de ejecución</span>
+<span class="n">CONFIGURATION</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;USE_REAL_BACKEND_NOISE&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="c1"># Usa o no el backend real de ibmq_lima para obtener el ruido del dispositivo para la simulacion VQE</span>
+    <span class="s1">&#39;JSON_RESULT&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="c1"># Usa los resultados obtenidos de una ejecución previa del algoritmo VQE en el dispositivo real ibmq_lima, desactivar esta opción puede hacer que la ejecución de VQE tarde horas</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>Nos conectamos al ordenador cuántico real o no en función de la configuración seleccionada:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">CONFIGURATION</span><span class="p">[</span><span class="s1">&#39;USE_REAL_BACKEND_NOISE&#39;</span><span class="p">]:</span>
+    
+    <span class="c1"># Use FakeLima device (fake device)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using fake ibmq_lima device...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+    <span class="n">device_backend</span> <span class="o">=</span> <span class="n">FakeLima</span><span class="p">()</span>
+    <span class="n">backend</span> <span class="o">=</span> <span class="n">QasmSimulator</span><span class="o">.</span><span class="n">from_backend</span><span class="p">(</span><span class="n">device_backend</span><span class="p">)</span>
+    
+<span class="k">else</span><span class="p">:</span>
+
+    <span class="k">if</span> <span class="n">QISKIT_TOKEN</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="n">IBMQ</span><span class="o">.</span><span class="n">save_account</span><span class="p">(</span><span class="n">QISKIT_TOKEN</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Token IBMQ guardado!&quot;</span><span class="p">)</span>
+    <span class="c1">#else:</span>
+    <span class="c1">#    pass # Skip token check</span>
+    <span class="c1">#    raise(&quot;Token no encontrado. Regístrate en https://quantum-computing.ibm.com/ para obtener el token y usar un backend real&quot;)</span>
+        
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Token activo!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="n">provider</span> <span class="o">=</span> <span class="n">IBMQ</span><span class="p">()</span>
+
+    <span class="n">provider</span><span class="o">.</span><span class="n">backends</span><span class="p">(</span><span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Provider seleccionado: &quot;</span><span class="p">,</span> <span class="n">provider</span><span class="o">.</span><span class="n">active_account</span><span class="p">()[</span><span class="s1">&#39;instance&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Seleccionamos el backend que este disponible acorde a nuestra configuración</span>
+    <span class="c1">#backend = least_busy(provider.backends(filters = lambda b: b.configuration().n_qubits &gt;= n and </span>
+    <span class="c1">#                                             b.status().operational and not b.configuration().simulator))</span>
+
+    <span class="c1"># Obtenemos el backend ibmq_lima</span>
+    <span class="n">backend</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;ibm_osaka&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Use ibmq_lima real device</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Usando el backend &#39;</span><span class="si">%s</span><span class="s2">&#39;...&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">configuration</span><span class="p">()</span><span class="o">.</span><span class="n">backend_name</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using fake ibmq_lima device...
+</pre></div>
+</div>
+</div>
+</div>
+<p>Obtenemos los datos de una ejecución previa de nuestro circuito cuántico y obtenemos la energía de convergencia:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># El proceso de procesado de VQE en un computador cuántico real es my costoso (puede durar horas) y tiene timeout en el servidor</span>
+<span class="c1"># podemos cargar los resultados de una ejecución previa de VQE preparado en un JSON</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">CONFIGURATION</span><span class="p">[</span><span class="s1">&#39;JSON_RESULT&#39;</span><span class="p">]:</span>
+
+    <span class="n">intermediate_info</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;nfev&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;energy&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="c1">#&#39;stddev&#39;: []</span>
+    <span class="p">}</span>
+    
+    <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">nfev</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">stddev</span><span class="p">):</span>
+        <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;nfev&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nfev</span><span class="p">)</span>
+        <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+        <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span>
+        <span class="c1">#intermediate_info[&#39;stddev&#39;].append(stddev)</span>
+    
+    <span class="n">basis_gates</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">configuration</span><span class="p">()</span><span class="o">.</span><span class="n">basis_gates</span>
+    
+    <span class="c1"># Transpilación del circuito ansatz para su representación en función de las puertas base del backend</span>
+    <span class="n">trans_ansatz</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span><span class="n">ansatz</span><span class="p">,</span> <span class="n">basis_gates</span> <span class="o">=</span> <span class="n">basis_gates</span><span class="p">,</span> <span class="n">optimization_level</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># No podemos enviar el algoritmo rotosolve a un ordenador real porque qiskit no lo tiene implementado</span>
+    <span class="c1"># si enviamos el programa de VQE con rotosolve nos devolverá un error </span>
+    <span class="n">optimizer_real</span> <span class="o">=</span> <span class="n">SPSA</span><span class="p">(</span><span class="n">maxiter</span> <span class="o">=</span> <span class="mi">300</span><span class="p">)</span>
+    
+    <span class="n">vqe_min_real</span> <span class="o">=</span> <span class="n">VQE</span><span class="p">(</span><span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(),</span>
+                       <span class="n">ansatz</span> <span class="o">=</span> <span class="n">trans_ansatz</span><span class="p">,</span>
+                       <span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizer_real</span><span class="p">,</span> 
+                       <span class="n">initial_point</span> <span class="o">=</span> <span class="n">initial_point</span><span class="p">,</span>
+                       <span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span><span class="p">)</span>
+    
+    <span class="n">vqe_min_real</span><span class="o">.</span><span class="n">quantum_instance</span> <span class="o">=</span> <span class="n">QuantumInstance</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">seed_transpiler</span><span class="o">=</span><span class="mi">63</span><span class="p">,</span> <span class="n">seed_simulator</span><span class="o">=</span><span class="mi">63</span><span class="p">)</span>
+    
+    <span class="n">result</span> <span class="o">=</span> <span class="n">vqe_min_real</span><span class="o">.</span><span class="n">compute_minimum_eigenvalue</span><span class="p">(</span><span class="n">op_H</span><span class="p">)</span>
+    <span class="n">eigenvalue</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">eigenvalue</span>
+    <span class="n">optimal_value</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">optimal_value</span>
+    
+<span class="k">else</span><span class="p">:</span>
+
+    <span class="c1"># Ejecución previa de VQE con SPSA y 300 iteraciones en el backend ibmq_osaka</span>
+    <span class="c1"># Recuperamos la ejecución, job id: cf5f7poi10jrivgn92ag</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./utils/results/cf5f7poi10jrivgn92ag-result.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">user_file</span><span class="p">:</span>
+        <span class="n">json_dict</span> <span class="o">=</span> <span class="n">user_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_dict</span><span class="p">)</span>
+    
+    <span class="n">eigenvalue</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;eigenvalue&#39;</span><span class="p">][</span><span class="s1">&#39;__value__&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;eigenvalue&#39;</span><span class="p">][</span><span class="s1">&#39;__value__&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">optimal_value</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;optimal_value&#39;</span><span class="p">]</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Eigenvalue:&#39;</span><span class="p">,</span> <span class="n">eigenvalue</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Eigenvalue real part:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">eigenvalue</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;E_G =&quot;</span><span class="p">,</span> <span class="n">optimal_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Eigenvalue: (-0.8261718749999999+0j)
+Eigenvalue real part: -0.8261718749999999
+E_G = -0.8261718749999999
+</pre></div>
+</div>
+</div>
+</div>
+<p>Obtenemos una gráfica los resultados:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">plot_values</span> <span class="o">=</span> <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">CONFIGURATION</span><span class="p">[</span><span class="s1">&#39;JSON_RESULT&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;optimizer_history&#39;</span><span class="p">][</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span>
+<span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plot_values</span><span class="p">)),</span> <span class="n">plot_values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Energy value real&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Steps&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Energy&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Energy convergence for SPSA optimizer&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<img alt="../../../_images/152c253a892646adb67499f230e0830ec518e89eecca2dfe3d156398349946cb.png" src="../../../_images/152c253a892646adb67499f230e0830ec518e89eecca2dfe3d156398349946cb.png" />
+</div>
+</div>
+<p>Los resultados obtenidos con el computador cuántico no son muy fiables puesto que tiene ciertas limitaciones en la ejecución del algoritmo de optimización como el número de iteraciones, esta limitación impacta en el tiempo máximo de ejecución que se ha dispuesto para cada trabajo que se envía de tal manera que si se sobrepasa ese límite de tiempo la ejecución se para y nos devuelve el resultado en ese preciso instante, es por ello que los resultados no se acercan a los esperados.</p>
+<p>Además el algoritmo <strong>Rotosolve</strong> no esta disponible en el servidor remoto por lo que debemos seleccionar otro algoritmo de optimización disponible como el <strong>SPSA</strong>.</p>
+<p>Como solución a estas limitaciones impuestas, vamos a obtener las condiciones del ordenador cuántico real y las vamos a aplicar al simulador local, ésto es, nos descargaremos el ruido del ordenador cuántico remoto, obtendremos sus puertas básicas para traducir nuestro circuito a ese tipo de puertas básicas y obtendremos el mapa de conexiones entre las puertas, con todo esto aplicado al simulador local no tendremos problemas de tiempo de ejecución ni restricciones en la selección del algoritmo de optimización.</p>
+<p>Usaremos el mismo <i>backend</i> que hemos usado hasta ahora pero en dos vertientes: el computador cuántico real (<b>ibmq_lima</b>) y su versión simulada (<b>fake_lima</b>), ambos tienen los parámetros que deseamos obtener para el simulador local.</p>
+<p>Debemos tener presente el concepto de <b>transpilación de un circuito cuántico</b>. Los computadores cuánticos, en general, no tienen implementadas todas las puertas cuánticas disponibles, es un esfuerzo bastante grande obtener puertas con una fiabilidad alta y por ello la implementación de las puertas cuánticas en un dispositivo real puede ser my costosa. Por eso, debemos traducir nuestro circuito complejo al conjunto de puertas disponibles del computador cuántico remoto.</p>
+</section>
+<section id="ejecucion-de-vqe-con-rotosolve-simulando-el-ruido-de-un-computador-cuantico-real">
+<span id="sec-ejecucion-de-vqe-con-rotosolve-simulando-el-ruido-de-un-computador-cuantico-real"></span><h3>Ejecución de VQE con Rotosolve simulando el ruido de un computador cuántico real<a class="headerlink" href="#ejecucion-de-vqe-con-rotosolve-simulando-el-ruido-de-un-computador-cuantico-real" title="Permalink to this heading">#</a></h3>
+<p>No es necesario enviar el circuito cuántico a un ordenador real, podemos simular este escenario añadiendo el ruido que se produce en ese entorno, con ello obtenemos unos resultados inmediatos y más fiables.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">noise_model</span> <span class="o">=</span> <span class="n">NoiseModel</span><span class="o">.</span><span class="n">from_backend</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span> <span class="c1"># modelo de ruido</span>
+<span class="n">coupling_map</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">configuration</span><span class="p">()</span><span class="o">.</span><span class="n">coupling_map</span> <span class="c1"># configuración de conexiones de puertas cuánticas</span>
+<span class="n">basis_gates</span> <span class="o">=</span> <span class="n">noise_model</span><span class="o">.</span><span class="n">basis_gates</span> <span class="c1"># puertas básicas</span>
+
+<span class="c1">#print(noise_model)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Coupling map: &quot;</span><span class="p">,</span> <span class="n">coupling_map</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Basis gates: &quot;</span><span class="p">,</span> <span class="n">basis_gates</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coupling map:  [[0, 1], [1, 0], [1, 2], [1, 3], [2, 1], [3, 1], [3, 4], [4, 3]]
+
+Basis gates:  [&#39;cx&#39;, &#39;id&#39;, &#39;kraus&#39;, &#39;measure&#39;, &#39;qerror_loc&#39;, &#39;quantum_channel&#39;, &#39;reset&#39;, &#39;roerror&#39;, &#39;rz&#39;, &#39;save_amplitudes&#39;, &#39;save_amplitudes_sq&#39;, &#39;save_density_matrix&#39;, &#39;save_expval&#39;, &#39;save_expval_var&#39;, &#39;save_probabilities&#39;, &#39;save_probabilities_dict&#39;, &#39;save_stabilizer&#39;, &#39;save_state&#39;, &#39;save_statevector&#39;, &#39;save_statevector_dict&#39;, &#39;set_density_matrix&#39;, &#39;set_stabilizer&#39;, &#39;set_statevector&#39;, &#39;sx&#39;, &#39;x&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos obtener información detalla del ordenador cuántico sobre el que deseamos ejecutar nuestro Hamiltoniano:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Backend name: &quot;</span><span class="p">,</span> <span class="n">backend</span><span class="o">.</span><span class="n">configuration</span><span class="p">()</span><span class="o">.</span><span class="n">backend_name</span><span class="p">)</span>
+<span class="c1"># print(backend.configuration().hamiltonian[&#39;description&#39;])</span>
+<span class="n">display</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">Latex</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">configuration</span><span class="p">()</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">[</span><span class="s2">&quot;h_latex&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Backend name:  qasm_simulator(fake_lima)
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{align} \mathcal{H}/\hbar = &amp; \sum_{i=0}^{4}\left(\frac{\omega_{q,i}}{2}(\mathbb{I}-\sigma_i^{z})+\frac{\Delta_{i}}{2}(O_i^2-O_i)+\Omega_{d,i}D_i(t)\sigma_i^{X}\right) \\ &amp; + J_{0,1}(\sigma_{0}^{+}\sigma_{1}^{-}+\sigma_{0}^{-}\sigma_{1}^{+}) + J_{1,3}(\sigma_{1}^{+}\sigma_{3}^{-}+\sigma_{1}^{-}\sigma_{3}^{+}) + J_{3,4}(\sigma_{3}^{+}\sigma_{4}^{-}+\sigma_{3}^{-}\sigma_{4}^{+}) + J_{1,2}(\sigma_{1}^{+}\sigma_{2}^{-}+\sigma_{1}^{-}\sigma_{2}^{+}) \\ &amp; + \Omega_{d,0}(U_{0}^{(0,1)}(t))\sigma_{0}^{X} + \Omega_{d,1}(U_{1}^{(1,0)}(t)+U_{3}^{(1,3)}(t)+U_{2}^{(1,2)}(t))\sigma_{1}^{X} \\ &amp; + \Omega_{d,2}(U_{4}^{(2,1)}(t))\sigma_{2}^{X} + \Omega_{d,3}(U_{5}^{(3,1)}(t)+U_{6}^{(3,4)}(t))\sigma_{3}^{X} \\ &amp; + \Omega_{d,4}(U_{7}^{(4,3)}(t))\sigma_{4}^{X} \\ \end{align}\end{split}\]</div>
+</div>
+</div>
+<p>Qubits are modeled as Duffing oscillators. In this case, the system includes higher energy states, i.e. not just <span class="math notranslate nohighlight">\(\ket{0}\)</span> and <span class="math notranslate nohighlight">\(\ket{1}\)</span>. The Pauli operators are generalized via the following set of transformations: <span class="math notranslate nohighlight">\((\mathbb{I}-\sigma_{i}^z)/2 \rightarrow O_i \equiv b^\dagger_{i} b_{i}\)</span>,
+<span class="math notranslate nohighlight">\(\sigma_{+} \rightarrow b^\dagger\)</span>, <span class="math notranslate nohighlight">\(\sigma_{-} \rightarrow b\)</span>, <span class="math notranslate nohighlight">\(\sigma_{i}^X \rightarrow b^\dagger_{i} + b_{i}\)</span>. Qubits are coupled through resonator buses. The provided Hamiltonian has been projected into the zero excitation subspace of the resonator buses leading to an effective qubit-qubit flip-flop interaction. The qubit resonance frequencies in the Hamiltonian are the cavity dressed frequencies and not exactly what is returned by the backend defaults, which also includes the dressing due to the qubit-qubit interactions. Quantities are returned in angular frequencies, with units 2*<span class="math notranslate nohighlight">\(\pi\)</span>*GHz. WARNING: Currently not all system Hamiltonian information is available to the public, missing values have been replaced with 0.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-9" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">intermediate_info_noise</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;nfev&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="c1">#&#39;stddev&#39;: []</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">callback_noisy</span><span class="p">(</span><span class="n">nfev</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">stddev</span><span class="p">):</span>
+    <span class="n">intermediate_info_noise</span><span class="p">[</span><span class="s1">&#39;nfev&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nfev</span><span class="p">)</span>
+    <span class="n">intermediate_info_noise</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+    <span class="n">intermediate_info_noise</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span>
+    <span class="c1">#intermediate_info_noise[&#39;stddev&#39;].append(stddev)</span>
+
+<span class="n">optimizer_noise</span> <span class="o">=</span> <span class="n">Rotosolve</span><span class="p">(</span><span class="n">max_steps</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="n">step_size</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">sim_backend</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;aer_simulator&#39;</span><span class="p">)</span>
+
+<span class="n">qi</span> <span class="o">=</span> <span class="n">QuantumInstance</span><span class="p">(</span><span class="n">backend</span> <span class="o">=</span> <span class="n">sim_backend</span><span class="p">,</span> 
+                     <span class="n">shots</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span>
+                     <span class="n">seed_simulator</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span> 
+                     <span class="n">seed_transpiler</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span> 
+                     <span class="n">coupling_map</span> <span class="o">=</span> <span class="n">coupling_map</span><span class="p">,</span> 
+                     <span class="c1">#measurement_error_mitigation_cls = CompleteMeasFitter, # Mitigación de errores</span>
+                     <span class="c1">#cals_matrix_refresh_period = 30, # Mitigación de errores</span>
+                     <span class="n">noise_model</span> <span class="o">=</span> <span class="n">noise_model</span><span class="p">)</span>
+
+<span class="c1"># Transpilación del circuito ansatz para su representación en función de las puertas base del backend</span>
+<span class="c1"># y selección del nivel de optimización (0 --&gt; sin optimización, 3 --&gt; optimización máxima)</span>
+<span class="n">optimization_level</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># sin optimización</span>
+<span class="c1">#optimization_level = 3 # con optimización máxima</span>
+<span class="n">trans_ansatz</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span><span class="n">ansatz</span><span class="p">,</span> <span class="n">basis_gates</span> <span class="o">=</span> <span class="n">basis_gates</span><span class="p">,</span> <span class="n">optimization_level</span> <span class="o">=</span> <span class="n">optimization_level</span><span class="p">)</span> 
+
+<span class="n">vqe_min_energy</span> <span class="o">=</span> <span class="n">VQE</span><span class="p">(</span><span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(),</span>
+                     <span class="n">ansatz</span> <span class="o">=</span> <span class="n">trans_ansatz</span><span class="p">,</span>
+                     <span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizer_noise</span><span class="p">,</span> 
+                     <span class="n">initial_point</span> <span class="o">=</span> <span class="n">initial_point</span><span class="p">,</span>
+                     <span class="n">callback</span> <span class="o">=</span> <span class="n">callback_noisy</span><span class="p">)</span>
+
+<span class="n">vqe_min_energy</span><span class="o">.</span><span class="n">quantum_instance</span> <span class="o">=</span> <span class="n">qi</span>
+
+<span class="n">result_sim</span> <span class="o">=</span> <span class="n">vqe_min_energy</span><span class="o">.</span><span class="n">compute_minimum_eigenvalue</span><span class="p">(</span><span class="n">op_H</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;==============================================&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Eigenvalue:&#39;</span><span class="p">,</span> <span class="n">result_sim</span><span class="o">.</span><span class="n">eigenvalue</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Eigenvalue real part:&#39;</span><span class="p">,</span> <span class="n">result_sim</span><span class="o">.</span><span class="n">eigenvalue</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;E_G =&quot;</span><span class="p">,</span> <span class="n">result_sim</span><span class="o">.</span><span class="n">optimal_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rotosolve algorithm for optimizing a given value
+================================================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 0. Current expectation value: -4.09038569
+Step 3. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 6. Current expectation value: -4.09038569
+Step 9. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 12. Current expectation value: -4.09038569
+Step 15. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 18. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 21. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 24. Current expectation value: -4.09038569
+Step 27. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 30. Current expectation value: -4.09038569
+Step 33. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 36. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 39. Current expectation value: -4.09038569
+Step 42. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 45. Current expectation value: -4.09038569
+Step 48. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 51. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 54. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 57. Current expectation value: -4.09038569
+Step 60. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 63. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 66. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 69. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 72. Current expectation value: -4.09038569
+Step 75. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 78. Current expectation value: -4.09038569
+Step 81. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 84. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 87. Current expectation value: -4.09038569
+Step 90. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 93. Current expectation value: -4.09038569
+Step 96. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 99. Current expectation value: -4.09038569
+Step 102. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 105. Current expectation value: -4.09038569
+Step 108. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 111. Current expectation value: -4.09038569
+Step 114. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 117. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 120. Current expectation value: -4.09038569
+Step 123. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 126. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 129. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 132. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 135. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 138. Current expectation value: -4.09038569
+Step 141. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 144. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 147. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 150. Current expectation value: -4.09038569
+Step 153. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 156. Current expectation value: -4.09038569
+Step 159. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 162. Current expectation value: -4.09038569
+Step 165. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 168. Current expectation value: -4.09038569
+Step 171. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 174. Current expectation value: -4.09038569
+Step 177. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 180. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 183. Current expectation value: -4.09038569
+Step 186. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 189. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 192. Current expectation value: -4.09038569
+Step 195. Current expectation value: -4.09038569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step 198. Current expectation value: -4.09038569
+==============================================
+
+Eigenvalue: -4.090385693670181
+Eigenvalue real part: -4.090385693670181
+E_G = -4.090385693670181
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lel resultado de la energía es bastante bueno y converge muy rápido, el algoritmo de optimización Rotosolve ha hecho que el proceso de convergencia dure unas pocas iteraciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vqe_min_energy</span><span class="o">.</span><span class="n">ansatz</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span> <span class="n">initial_state</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">qspain</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/3d637cc468f80913c660345c4bd69d60522d5cf8979db25edebd5428f84c17e7.png" src="../../../_images/3d637cc468f80913c660345c4bd69d60522d5cf8979db25edebd5428f84c17e7.png" />
+</div>
+</div>
+<p>Con la siguiente gráfica, podemos ver que la convergencia ya es final en las primeras iteraciones y para a optimizar el décimo dígito decimal.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-10" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-10">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">sim_noisy_values</span> <span class="o">=</span> <span class="n">optimizer_noise</span><span class="o">.</span><span class="n">energy_values</span>
+<span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sim_noisy_values</span><span class="p">)),</span> <span class="n">sim_noisy_values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Energy value&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Steps&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Energy&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="c1">#plt.ylim([np.min(sim_noisy_values), np.max(sim_noisy_values)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Energy convergence for Rotosolve optimizer with noise (Zoom in)&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<img alt="../../../_images/fe7463285fe1a4a78ee8bc62845ae6bb191fca70fc568cdf0a7e8186a0180686.png" src="../../../_images/fe7463285fe1a4a78ee8bc62845ae6bb191fca70fc568cdf0a7e8186a0180686.png" />
+</div>
+</div>
+<p>En la siguiente gráfica vemos como la energía ya ha llegado al mínimo en las primeras iteraciones y se mantiene estable en las iteraciones siguientes:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-11" name="sd-tab-set-11" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-11">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">sim_noisy_values</span> <span class="o">=</span> <span class="n">optimizer_noise</span><span class="o">.</span><span class="n">energy_values</span>
+<span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sim_noisy_values</span><span class="p">)),</span> <span class="n">sim_noisy_values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Energy value&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Steps&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Energy&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+
+<span class="n">eig_val</span> <span class="o">=</span> <span class="n">result_sim</span><span class="o">.</span><span class="n">eigenvalue</span><span class="o">.</span><span class="n">real</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="n">eig_val</span> <span class="o">-</span> <span class="mf">1e-4</span><span class="p">,</span> <span class="n">eig_val</span> <span class="o">+</span> <span class="mf">1e-4</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Energy convergence for Rotosolve optimizer with noise (Zoom out)&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<img alt="../../../_images/b7e3fdc39c4eb2cca39a99d25cb143827e31accd6156f7ca28668b785dc5bb9d.png" src="../../../_images/b7e3fdc39c4eb2cca39a99d25cb143827e31accd6156f7ca28668b785dc5bb9d.png" />
+</div>
+</div>
+<table style='margin: 0 auto; font-size:11pt'>
+  <tr>
+      <th style="text-align:center">Algoritmo<br/>optimización</th>
+      <th style="text-align:center">Dispositivo</th>
+      <th style="text-align:center">Ruido<br/>incorporado</th>
+      <th style="text-align:center">Optimizacion<br/>activada</th>
+      <th style="text-align:center">Num.<br/>Iteraciones</th>
+      <th style="text-align:center">Energía mínima <br/>(autovalor)</th>
+  </tr>
+  <tr>
+    <td style="text-align:center"><b>SPSA</b></td>
+    <td style="text-align:center">Aer Simulator</td>
+    <td style="text-align:center"><i class='fa fa-close' aria-hidden="true" style='color: #ff392e'></i></td>
+    <td style="text-align:center"><i class='fa fa-close' aria-hidden="true" style='color: #ff392e'></i></td>
+    <td style="text-align:center">300</td>
+    <td style="text-align:center">-4.092961599426855</td>
+  </tr>
+  <tr>
+    <td style="text-align:center"><b>Rotosolve</b></td>
+    <td style="text-align:center">Aer Simulator</td>
+    <td style="text-align:center"><i class='fa fa-close' aria-hidden="true" style='color: #ff392e'></i></td>
+    <td style="text-align:center"><i class='fa fa-close' aria-hidden="true" style='color: #ff392e'></i></td>
+    <td style="text-align:center">66</td>
+    <td style="text-align:center">-4.090385692923965</td>
+  </tr>
+  <tr>
+    <td style="text-align:center"><b>Rotosolve</b></td>
+    <td style="text-align:center">Aer Simulator + ibmq_lima</td>
+    <td style="text-align:center"><i class="fa fa-check" aria-hidden="true" style='color: #4ed34e'></i></td>
+    <td style="text-align:center"><i class='fa fa-close' aria-hidden="true" style='color: #ff392e'></i></td>
+    <td style="text-align:center">66</td>
+    <td style="text-align:center"><b>-4.090385694416840</b></td>
+  </tr>
+  <tr>
+    <td style="text-align:center"><b>Rotosolve</b></td>
+    <td style="text-align:center">Aer Simulator + ibmq_lima</td>
+    <td style="text-align:center"><i class="fa fa-check" aria-hidden="true" style='color: #4ed34e'></i></td>
+    <td style="text-align:center"><i class="fa fa-check" aria-hidden="true" style='color: #4ed34e'></i></td>
+    <td style="text-align:center">66</td>
+    <td style="text-align:center">-4.090385693670182</td>
+  </tr>
+  <tr>
+    <td style="text-align:center"><b>Rotosolve</b></td>
+    <td style="text-align:center">Aer Simulator + FakeLima</td>
+    <td style="text-align:center"><i class="fa fa-check" aria-hidden="true" style='color: #4ed34e'></i></td>
+    <td style="text-align:center"><i class='fa fa-close' aria-hidden="true" style='color: #ff392e'></i></td>
+    <td style="text-align:center">66</td>
+    <td style="text-align:center">-4.090385693670182</td>
+  </tr>
+  <tr>
+    <td style="text-align:center"><b>Rotosolve</b></td>
+    <td style="text-align:center">Aer Simulator + FakeLima</td>
+    <td style="text-align:center"><i class="fa fa-check" aria-hidden="true" style='color: #4ed34e'></i></td>
+    <td style="text-align:center"><i class="fa fa-check" aria-hidden="true" style='color: #4ed34e'></i></td>
+    <td style="text-align:center">66</td>
+    <td style="text-align:center">-4.090385693670182</td>
+  </tr>
+</table><p>Tras una serie de pruebas, la combinación del simulador local con los parámetros del computador cuántico real (<b>Aer Simulator + ibmq_lima</b>) dan los mejores resultados, es un hecho inesperado porque podemos llegar a pensar que los parámetros del computador cuántico simulado pueden estar más afinados. Por otra parte, resulta curioso el hecho de haber desactivado la optimización para obtener mejores resultados, esto nos dice que el proceso de optimización genera algún tipo de ruido adicional que penaliza el valor de la energía.</p>
+<p>De igual manera, se ha obtenido una optimización muy fuerte desde la primera iteración del algoritmo Rotosolve, es decir, desde el inicio se ha obtenido el valor mínimo de la energía que buscábamos, haciendo que en las siguientes iteraciones se refine su décimo decimal, es una gran sorpresa la rápida convergencia del algoritmo Rotosolve a su valor mínimo.</p>
+<p>En la primera gráfica, ya se observa que el descenso de la energía aparece desde el décimo dígito decimal cayendo en picado. En la segunda gráfica se muestra una imagen general de la curva de optimización y vemos que la gráfica es plana porque ya se encuentra en su valor mínimo desde la primera iteración.</p>
+<ul class="simple">
+<li><p>El valor de la energía mínima es: <b>-4.090385694416840</b></p></li>
+</ul>
+</section>
+</section>
+<section id="conclusiones">
+<span id="sec-conclusiones-optimizadores"></span><h2><a class="toc-backref" href="#id101">Conclusiones</a><a class="headerlink" href="#conclusiones" title="Permalink to this heading">#</a></h2>
+<p>Hemos visto cómo los optimizadores puede hacer que llegemos a una solución con pocas iteraciones, independientemente del framework de que usemos ya sea Qiskit o Pennylane.
+<br/>
+<br/>
+Usar un optimizador un circuito no es nada trivial, es podible que un optimizador funcione mejor o peor con un ansatz, por ello hay que buscar un consenso entre un buen ansatz que se adapte al problema y un optimizador que sea capaz de obtener el resultado esperado en pocas iteraciones.</p>
+</section>
+<hr class="docutils" />
+<section id="bibliografia">
+<h2><a class="toc-backref" href="#id102">Bibliografía</a><a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
+<div class="docutils container" id="id5">
+<dl class="citation">
+<dt class="label" id="id44"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>Mateusz Ostaszewski, Edward Grant, and Marcello Benedetti. Structure optimization for parameterized quantum circuits. <em>Quantum</em>, 5:391, January 2021. <a class="reference external" href="https://doi.org/10.22331/q-2021-01-28-391">doi:10.22331/q-2021-01-28-391</a>.</p>
+</dd>
+<dt class="label" id="id43"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
+<dd><p>Jules Tilly, Hongxiang Chen, Shuxiang Cao, Dario Picozzi, Kanav Setia, Ying Li, Edward Grant, Leonard Wossnig, Ivan Rungger, George H. Booth, and Jonathan Tennyson. The variational quantum eigensolver: a review of methods and best practices. <em>Physics Reports</em>, 986:1–128, November 2022. <a class="reference external" href="https://doi.org/10.1016/j.physrep.2022.08.003">doi:10.1016/j.physrep.2022.08.003</a>.</p>
+</dd>
+<dt class="label" id="id46"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Javier Gil Vidal and Dirk Oliver Theis. Calculus on parameterized quantum circuits. <em>arXiv preprint arXiv:1812.06323</em>, 2018. <a class="reference external" href="https://arxiv.org/abs/1812.06323">arXiv:1812.06323</a>.</p>
+</dd>
+<dt class="label" id="id45"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p>David Wierichs, Josh Izaac, Cody Wang, and Cedric Yen-Yu Lin. General parameter-shift rules for quantum gradients. <em>Quantum</em>, 6:677, March 2022. <a class="reference external" href="https://doi.org/10.22331/q-2022-03-30-677">doi:10.22331/q-2022-03-30-677</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">qiskit.tools.jupyter</span>
+<span class="o">%</span><span class="k">qiskit_version_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><h3>Version Information</h3><table><tr><th>Software</th><th>Version</th></tr><tr><td><code>qiskit</code></td><td>0.45.2</td></tr><tr><td><code>qiskit_aer</code></td><td>0.13.2</td></tr><tr><td><code>qiskit_ibm_runtime</code></td><td>0.20.0</td></tr><tr><td><code>qiskit_ibm_provider</code></td><td>0.8.0</td></tr><tr><th colspan='2'>System information</th></tr><tr><td>Python version</td><td>3.11.7</td></tr><tr><td>Python compiler</td><td>GCC 11.2.0</td></tr><tr><td>Python build</td><td>main, Dec 15 2023 18:12:31</td></tr><tr><td>OS</td><td>Linux</td></tr><tr><td>CPUs</td><td>12</td></tr><tr><td>Memory (Gb)</td><td>62.61071014404297</td></tr><tr><td colspan='2'>Wed May 22 13:15:33 2024 CEST</td></tr></table></div></div>
+</div>
+<hr class="docutils" />
+<center>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+<img aling="left" alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+</center>
+<p>License: <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</a>.</p>
+<p>This work has been financially supported by the Ministry for Digital Transformation and of Civil Service of the Spanish Government through the QUANTUM ENIA project call - Quantum Spain project, and by the European Union through the Recovery, Transformation and Resilience Plan - NextGenerationEU within the framework of the Digital Spain 2026 Agenda.</p>
+<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png" class="align-left" src="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png" style="width: 1000px;" /></a>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs/Part_03_VQE/Chapter_03_02_Optimizadores"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Section_031_Rotosolve_Pennylane_myst.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Algoritmo de optimización Rotosolve</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamento-teorico-del-optimizador-rotosolve">Fundamento teórico del optimizador Rotosolve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-ising-1d-con-optimizador-rotosolve">Modelo de Ising 1D con optimizador Rotosolve</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-de-vqe-en-computador-cuantico-real">Ejecución de VQE en computador cuántico real</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-de-vqe-con-rotosolve-simulando-el-ruido-de-un-computador-cuantico-real">Ejecución de VQE con Rotosolve simulando el ruido de un computador cuántico real</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones">Conclusiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By QuantumSpain & TalentQ
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

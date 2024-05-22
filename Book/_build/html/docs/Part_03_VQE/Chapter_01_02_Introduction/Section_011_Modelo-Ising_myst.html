@@ -229,7 +229,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_03_01_Optimizadores_myst.html">Optimizadores</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Optimizadores/Section_031_Rotosolve_myst.html">Algoritmo de optimización Rotosolve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Optimizadores/Section_031_Rotosolve_Pennylane_myst.html">Algoritmo de optimización Rotosolve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Optimizadores/Section_031_Rotosolve_Qiskit_myst.html">Algoritmo de optimización Rotosolve</a></li>
 </ul>
 </li>
 </ul>
@@ -702,7 +703,7 @@ Qiskit</label><div class="sd-tab-content docutils">
 </div>
 <div class="cell tag_remove_input docutils container">
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Qibo 0.1.12.dev0|WARNING|2024-05-22 12:59:29]: Calculating the dense form of a symbolic Hamiltonian. This operation is memory inefficient.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Qibo 0.1.12.dev0|WARNING|2024-05-22 13:14:38]: Calculating the dense form of a symbolic Hamiltonian. This operation is memory inefficient.
 </pre></div>
 </div>
 </div>
@@ -860,9 +861,9 @@ Qiskit</label><div class="sd-tab-content docutils">
 <div class="cell tag_remove_input docutils container">
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: -4.092961
+         Current function value: -4.089306
          Iterations: 3
-         Function evaluations: 1892
+         Function evaluations: 1871
 </pre></div>
 </div>
 </div>
@@ -875,7 +876,7 @@ Qiskit</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E_G = -4.092960684193663
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E_G = -4.089305581262189
 </pre></div>
 </div>
 </div>
@@ -899,7 +900,7 @@ Qiskit</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/d1b29f9c3bf65ed3fffdbdd653fe7f081bceb3e91f0c9aacd2545b615caabf48.png" src="../../../_images/d1b29f9c3bf65ed3fffdbdd653fe7f081bceb3e91f0c9aacd2545b615caabf48.png" />
+<img alt="../../../_images/3ee900b8782302c63f94a88493d8615e9820ea57da2c264f9a9ee50be3a712c0.png" src="../../../_images/3ee900b8782302c63f94a88493d8615e9820ea57da2c264f9a9ee50be3a712c0.png" />
 </div>
 </div>
 <p>También comparamos con el valor que obtenemos simplemente de diagonalizar la matriz, ya que, al ser “pequeña” (<span class="math notranslate nohighlight">\(16 \times 16\)</span>), <code class="docutils literal notranslate"><span class="pre">scipy</span></code> no tiene problema en hacerlo.</p>
@@ -915,7 +916,7 @@ Qiskit</label><div class="sd-tab-content docutils">
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E_G = -4.092961599426855
-Error relativo = 2.2361147770957046e-05 %
+Error relativo = 0.08932451663308086 %
 </pre></div>
 </div>
 </div>
