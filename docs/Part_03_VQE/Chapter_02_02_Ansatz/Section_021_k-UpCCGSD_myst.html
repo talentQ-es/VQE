@@ -1,0 +1,986 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Ansatz k-UpCCGSD &#8212; PT3-Support</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/myfile.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "jamasole/Curso-TalentQ-Book");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/Part_03_VQE/Chapter_02_02_Ansatz/Section_021_k-UpCCGSD_myst';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ADAPT con el Modelo de Lipkin" href="Section_023_ADAPT_myst.html" />
+    <link rel="prev" title="Ansätze" href="../Chapter_02_01_Ansatze_myst.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/TalentQ_LogoNegNegro.png" class="logo__image only-light" alt="PT3-Support - Home"/>
+    <script>document.write(`<img src="../../../_static/TalentQ_LogoNegNegro.png" class="logo__image only-dark" alt="PT3-Support - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational Quantum Eigensolver</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_01_01_Introduction_myst.html">Introducción al Algoritmo VQE</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_01_02_Introduction/Section_011_Modelo-Ising_myst.html">El Modelo de Ising con el algoritmo VQE</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_01_02_Introduction/Section_012_Molecula-H2_myst.html">La molécula de <span class="math notranslate nohighlight">\(\text{H}_2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_01_02_Introduction/Section_013_Conclusiones_myst.html">Conclusiones</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Chapter_02_01_Ansatze_myst.html">Ansätze</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Ansatz k-UpCCGSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Section_023_ADAPT_myst.html">ADAPT con el Modelo de Lipkin</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_03_01_Optimizadores_myst.html">Optimizadores</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Optimizadores/Section_031_Rotosolve_myst.html">Algoritmo de optimización Rotosolve</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/davidcb98/JupyterBook_plantilla" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/davidcb98/JupyterBook_plantilla/edit/master/Book/docs/Part_03_VQE/Chapter_02_02_Ansatz/Section_021_k-UpCCGSD_myst.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/davidcb98/JupyterBook_plantilla/issues/new?title=Issue%20on%20page%20%2Fdocs/Part_03_VQE/Chapter_02_02_Ansatz/Section_021_k-UpCCGSD_myst.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/docs/Part_03_VQE/Chapter_02_02_Ansatz/Section_021_k-UpCCGSD_myst.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Ansatz k-UpCCGSD</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teoria-de-coupled-cluster">Teoría de Coupled Cluster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizar-k-upccgsd">Utilizar k-UpCCGSD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <blockquote>
+<div><p>May 06, 2024 | 4 min read</p>
+</div></blockquote>
+<figure class="align-left">
+<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png" src="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png" style="width: 1000px;" /></a>
+</figure>
+<p>Authors:</p>
+<ul class="simple">
+<li><p>Irais Bautista (<a class="reference external" href="http://www.cesga.es">CESGA</a>), Sergio Martínez (<a class="reference external" href="https://bifi.es/es/">BIFi-UNIZAR</a>), Jaime Scharfhausen (<a class="reference external" href="https://www.uam.es/uam/inicio">UAM</a>) y Alejandro Jaramillo (<a class="reference external" href="https://www.csuc.cat/es">CSUC</a>)</p></li>
+</ul>
+<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png" src="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png" style="width: 100px;" /></a>
+<a class="reference internal image-reference" href="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png"><img alt="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png" src="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png"><img alt="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png" src="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png"><img alt="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png" src="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png" style="width: 200px;" /></a>
+<p><a id = 'sec_Ansatz_k-UpCCGSD'></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="ansatz-k-upccgsd">
+<h1>Ansatz k-UpCCGSD<a class="headerlink" href="#ansatz-k-upccgsd" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_remove-output tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">qiskit</span>
+<span class="c1"># from qiskit_ibm_provider import IBMProvider</span>
+<span class="c1"># from qiskit import IBMQ</span>
+<span class="c1"># import qiskit.tools.jupyter</span>
+<span class="kn">from</span> <span class="nn">qiskit.tools.parallel</span> <span class="kn">import</span> <span class="n">parallel_map</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">styles.style</span> <span class="kn">import</span> <span class="n">qspain</span>
+
+<span class="kn">from</span> <span class="nn">qiskit.algorithms.minimum_eigensolvers</span> <span class="kn">import</span> <span class="n">VQE</span>
+<span class="kn">from</span> <span class="nn">qiskit.algorithms.optimizers</span> <span class="kn">import</span> <span class="n">COBYLA</span><span class="p">,</span> <span class="n">SPSA</span><span class="p">,</span> <span class="n">POWELL</span>
+<span class="kn">from</span> <span class="nn">qiskit.primitives</span> <span class="kn">import</span> <span class="n">Estimator</span>
+
+<span class="kn">from</span> <span class="nn">qiskit_nature.second_q.circuit.library</span> <span class="kn">import</span> <span class="n">UCC</span><span class="p">,</span> <span class="n">PUCCD</span><span class="p">,</span> <span class="n">HartreeFock</span>
+<span class="kn">from</span> <span class="nn">qiskit_nature.second_q.mappers</span> <span class="kn">import</span> <span class="n">QubitMapper</span><span class="p">,</span> <span class="n">JordanWignerMapper</span>
+<span class="kn">from</span> <span class="nn">qiskit_nature.second_q.drivers</span> <span class="kn">import</span> <span class="n">PySCFDriver</span>
+<span class="kn">from</span> <span class="nn">qiskit_nature.units</span> <span class="kn">import</span> <span class="n">DistanceUnit</span>
+<span class="kn">from</span> <span class="nn">qiskit_nature.second_q.algorithms</span> <span class="kn">import</span> <span class="n">GroundStateEigensolver</span>
+
+<span class="kn">import</span> <span class="nn">pennylane</span> <span class="k">as</span> <span class="nn">qml</span>
+<span class="kn">from</span> <span class="nn">pennylane</span> <span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="c1">#IBMQ.load_account()</span>
+
+<span class="c1">#%qiskit_backend_overview</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#teoria-de-coupled-cluster" id="id102">Teoría de Coupled Cluster</a></p></li>
+<li><p><a class="reference internal" href="#utilizar-k-upccgsd" id="id103">Utilizar k-UpCCGSD</a></p></li>
+<li><p><a class="reference internal" href="#bibliografia" id="id104">Bibliografía</a></p></li>
+</ul>
+</div>
+<section id="teoria-de-coupled-cluster">
+<span id="sec-teoria-de-coupled-cluster"></span><h2><a class="toc-backref" href="#id102">Teoría de Coupled Cluster</a><a class="headerlink" href="#teoria-de-coupled-cluster" title="Permalink to this heading">#</a></h2>
+<p>Para obtener el estado fundamental de una molécula, dado que son sistemas relativamente complejos en los que los diferentes electrones pueden ocupar muchas posiciones en los diferentes orbitales, es prácticamente imposible obtener un resultado exacto. En su lugar, se utilizan métodos aproximados.</p>
+<p>El más famoso de estos métodos, así como el punto de partida para empezar a aplicar el resto, es el método de Hartree-Fock. Con él se pueden aproximar las funciones de onda de los electrones del sistema atendiendo a la configuración de los orbitales atómicos o moleculares.</p>
+<p>Sin embargo, este método está bastante limitado por varios motivos: no considera la correlación electrónica, hace uso de la aproximación de Born-Oppenheimer para los núcleos, no tiene en cuenta posibles efectos relativistas… Es por todo esto que, tras obtener una primera aproximación del estado fundamental, se utilizan otros métodos para terminar de “pulir” este resultado como <em>Configuration Interaction</em> (CI) o <em>Møller–Plesset perturbation theory</em> (MP) <span id="id1">[<a class="reference internal" href="#id60" title="Juan Andrés Bort and Joan Bertran Rusca. Theoretical and computational chemistry: foundations, methods and techniques. Publicacions de la Universitat Jaume I, Castelló de la Plana, 2007. ISBN 978-84-8021-615-9. OCLC: 804115743.">2</a>]</span>.</p>
+<p>Es dentro de estos métodos post-Hartree-Fock donde encontramos los métodos de <em>Coupled Cluster</em> <span id="id2">[<a class="reference internal" href="#id59" title="J Cizek and J Paldus. Coupled Cluster Approach. Physica Scripta, 21(3-4):251–254, January 1980. URL: https://iopscience.iop.org/article/10.1088/0031-8949/21/3-4/006 (visited on 2023-02-10), doi:10.1088/0031-8949/21/3-4/006.">3</a>]</span>, <span id="id3">[<a class="reference internal" href="#id57" title="Jarrod R McClean, Jonathan Romero, Ryan Babbush, and Alán Aspuru-Guzik. The theory of variational hybrid quantum-classical algorithms. New Journal of Physics, 18(2):023023, February 2016. URL: https://iopscience.iop.org/article/10.1088/1367-2630/18/2/023023 (visited on 2023-03-10), doi:10.1088/1367-2630/18/2/023023.">7</a>]</span>, <span id="id4">[<a class="reference internal" href="#id58" title="Abhinav Anand, Philipp Schleich, Sumner Alperin-Lea, Phillip W. K. Jensen, Sukin Sim, Manuel Díaz-Tinoco, Jakob S. Kottmann, Matthias Degroote, Artur F. Izmaylov, and Alán Aspuru-Guzik. A quantum computing view on unitary coupled cluster theory. Chemical Society Reviews, 51(5):1659–1684, 2022. URL: http://xlink.rsc.org/?DOI=D1CS00932J (visited on 2023-03-08), doi:10.1039/D1CS00932J.">1</a>]</span>. La base del CC es, en resumidas cuentas, considerar de forma ponderada cómo contribuyen los estados con electrones a la energía del estado fundamental molecular. Para ello se añaden términos a la función de onda considerando las excitaciones de un electron de los orbitales libres a los orbitales ocupados (<em>Single excitation</em>), después de dos electrones con todas las combinaciones posibles (<em>Double</em>) y así sucesivamente.</p>
+<p>Los métodos CC se usan para crear sistemas correlacionados utilizando un <strong>operador de cluster</strong> <span class="math notranslate nohighlight">\(\hat{T}\)</span>, de forma que el estado fabricado se genera a partir de otro de referencia haciendo</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{\psi} = e^{\hat{T}} \ket{\phi_0}
+\]</div>
+<p>siendo <span class="math notranslate nohighlight">\(\ket{\phi_0}\)</span> el estado de referencia en cuestión, típicamente el de Hartree-Fock.</p>
+<p>Dentro de estos métodos encontramos los CCSD (<em><strong>Single and Double excitations</strong></em> <em>Coupled Cluster</em>), es decir, métodos que se limitan a considerar excitaciones simples o dobles de los orbitales. Cuando trabajamos con CCSD, el operador de cluster toma la forma</p>
+<div class="math notranslate nohighlight">
+\[ 
+\hat{T} =  \hat{T}_1 + \hat{T}_2 
+\]</div>
+<p>siendo</p>
+<div class="math notranslate nohighlight">
+\[ 
+\hat{T}_1 = \sum_{i,a} t_i^a \hat{a}^\dagger_a \hat{a}_i 
+\]</div>
+<p>y</p>
+<div class="math notranslate nohighlight">
+\[  
+\hat{T}_2 = \frac{1}{4} \sum_{i,j ; a,b} t^{ab}_{ij} \hat{a}^\dagger_{a} \hat{a}^\dagger_{b} \hat{a}_j \hat{a}_i 
+\]</div>
+<p>Los índices <span class="math notranslate nohighlight">\(i,j\)</span> denotan orbitales ocupados, mientras que los índices <span class="math notranslate nohighlight">\(a,b\)</span> denotan orbitales libres. Los parámetros a optimizar por tanto por el algoritmo VQE son precisamente estos <span class="math notranslate nohighlight">\(t^a_i, t^{ab}_{ij}\)</span>.</p>
+<p>Los operadores CC presentan un problema a la hora de implementarlos como parte de un algoritmo VQE, ya que la forma de proyectar el Hamiltoniano del sistema sobre los estados fabricados para calcular la energía no es compatible con el método variacional, que es la columna vertebral del VQE. Para solventar este problema tenemos un caso particular de los métodos CC: los métodos UCC (<em><strong>Unitary</strong></em> <em>Coupled Cluster</em>).</p>
+<p>La solución al problema variacional es muy simple: la forma de fabricar el <em>ansatz</em> pasa a ser</p>
+<div class="math notranslate nohighlight">
+\[ 
+\ket{\psi} = e^{\hat{T} - \hat{T}^\dagger} \ket{\phi_0} 
+\]</div>
+<p>Al igual que con los CC, podemos definir métodos UCCSD, con excitaciones simples y dobles, tomando de nuevo <span class="math notranslate nohighlight">\( \hat{T} =  \hat{T}_1 + \hat{T}_2 \)</span>. Un ordenador cuántico puede implementar eficientemente estos métodos UCCSD utilizando una <strong>trotterización</strong> del operador de cluster exponenciado.</p>
+<p>Después de esto, podemos buscar otro caso de UCC, el llamado UCCG (<em>Unitary Coupled Cluster <strong>with Generalized wave functions</strong></em>), el cual no distingue entre orbitales ocupados y libres. Es por ello que, en el caso UCCGSD, el operador de cluster vuelve a estar definido como <span class="math notranslate nohighlight">\( \hat{T} = \hat{T}_1 + \hat{T}_2 \)</span>, pero esta vez</p>
+<div class="math notranslate nohighlight">
+\[ 
+\hat{T}_1 = \frac{1}{2} \sum_{p,q} t^q_p \hat{a}^\dagger_q \hat{a}_p 
+\]</div>
+<p>y</p>
+<div class="math notranslate nohighlight">
+\[ 
+\hat{T}_2 = \frac{1}{4} \sum_{p,q,r,s} t^{rs}_{pq} \hat{a}^\dagger_r \hat{a}^\dagger_s \hat{a}_q \hat{a}_p 
+\]</div>
+<p>denotando los cuatro índices <span class="math notranslate nohighlight">\(p,q,r,s\)</span> cualquier tipo de orbital sin ocupar su ocupación.</p>
+<p>Estos últimos <em>ansätze</em> se pueden implementar en qiskit utilizando <code class="docutils literal notranslate"><span class="pre">qiskit_nature</span></code>.</p>
+<p>De aquí podemos sacar una clase un poco más restringida, la clase UpCCGSD (<em>Unitary <strong>Pair</strong> Coupled Cluster with Generalized Singles and Doubles product wave functions</em>), que limita las amplitudes de las excitaciones dobles considerando únicamente las que mueven <strong>un par de electrones</strong> de un orbital espacial a otro. Esto provoca un cambio en el operador <span class="math notranslate nohighlight">\(\hat{T}_2\)</span>, que se convierte en</p>
+<div class="math notranslate nohighlight">
+\[ 
+\hat{T}_2 = \sum_{p,q} t^{q_\alpha q_\beta}_{p_\alpha p_\beta} \hat{a}^\dagger_{q_\alpha} \hat{a}^\dagger_{q_\beta} \hat{a}_{p_\beta} \hat{a}_{p_\alpha}
+\]</div>
+<p>Y de aquí por fin llegamos a la clase que queremos estudiar, k-UpCCGSD <span id="id5">[<a class="reference internal" href="#id67" title="Joonho Lee, William J. Huggins, Martin Head-Gordon, and K. Birgitta Whaley. Generalized Unitary Coupled Cluster Wave functions for Quantum Computation. Journal of Chemical Theory and Computation, 15(1):311–324, January 2019. URL: https://pubs.acs.org/doi/10.1021/acs.jctc.8b01004 (visited on 2022-12-19), doi:10.1021/acs.jctc.8b01004.">5</a>]</span>, <span id="id6">[<a class="reference internal" href="#id64" title="Gabriel Greene-Diniz and David Muñoz Ramo. Generalized unitary coupled cluster excitations for multireference molecular states optimized by the variational quantum eigensolver. International Journal of Quantum Chemistry, 121(4):e26352, 2021. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/qua.26352. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/qua.26352 (visited on 2023-01-10), doi:10.1002/qua.26352.">4</a>]</span>, <span id="id7">[<a class="reference internal" href="#id63" title="Hocheol Lim, Hyeon-Nae Jeon, June-Koo Rhee, Byungdu Oh, and Kyoung Tai No. Quantum computational study of chloride attack on chloromethane for chemical accuracy and quantum noise effects with UCCSD and k-UpCCGSD ansatzes. Scientific Reports, 12(1):7495, May 2022. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/s41598-022-11537-6 (visited on 2023-01-10), doi:10.1038/s41598-022-11537-6.">6</a>]</span>, con <span class="math notranslate nohighlight">\(k \in \mathbb{Z}\)</span>. Con este entero <span class="math notranslate nohighlight">\(k\)</span> definimos nuestra función de prueba <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> como</p>
+<div class="math notranslate nohighlight">
+\[ 
+\ket{\psi} = \left( \prod_{\mu = 1}^k e^{\hat{T}^{(\mu)} - \hat{T}^{(\mu) \dagger}} \right) \ket{\phi_0} 
+\]</div>
+<p>haciendo que cada <span class="math notranslate nohighlight">\( \hat{T}^{(\mu)} \)</span> tenga su propio conjunto de parámetros <span class="math notranslate nohighlight">\(t^q_p, t^{q_\alpha q_\beta}_{p_\alpha p_\beta}\)</span>.</p>
+</section>
+<section id="utilizar-k-upccgsd">
+<span id="sec-utilizar-k-upccgsd"></span><h2><a class="toc-backref" href="#id103">Utilizar k-UpCCGSD</a><a class="headerlink" href="#utilizar-k-upccgsd" title="Permalink to this heading">#</a></h2>
+<p>Las mejores alternativas para implementar el ansatz k-UpCCGSD son <code class="docutils literal notranslate"><span class="pre">qiskit</span></code>, librería con la que ya estamos, familiarizados, y <code class="docutils literal notranslate"><span class="pre">pennylane</span></code> otra librería enfocada a la Computación Cuántica y, más concretamente, a Quantum Machine Learning.</p>
+<p>Como ejemplo prototípico para problemas moleculares, vamos a resolver la molécula de hidrógeno <span class="math notranslate nohighlight">\(H_2\)</span>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Pennylane</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Construimos la molécula de Hidrógeno H2</span>
+<span class="n">symbols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">]</span>
+<span class="n">coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.400</span><span class="p">])</span>
+<span class="n">H</span><span class="p">,</span> <span class="n">qubits</span> <span class="o">=</span> <span class="n">qml</span><span class="o">.</span><span class="n">qchem</span><span class="o">.</span><span class="n">molecular_hamiltonian</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">)</span>
+
+<span class="c1"># Obtenemos el estado de referencia de Hartree-Fock</span>
+<span class="n">electrons</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">ref_state</span> <span class="o">=</span> <span class="n">qml</span><span class="o">.</span><span class="n">qchem</span><span class="o">.</span><span class="n">hf_state</span><span class="p">(</span><span class="n">electrons</span><span class="p">,</span> <span class="n">qubits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Construimos la molécula de Hidrógeno H2</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">PySCFDriver</span><span class="p">(</span>
+    <span class="n">atom</span><span class="o">=</span><span class="s2">&quot;H 0 0 0; H 0 0 0.741&quot;</span><span class="p">,</span>
+    <span class="n">basis</span><span class="o">=</span><span class="s2">&quot;sto3g&quot;</span><span class="p">,</span>
+    <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">spin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">unit</span><span class="o">=</span><span class="n">DistanceUnit</span><span class="o">.</span><span class="n">ANGSTROM</span><span class="p">,</span>
+    <span class="c1"># El método de aproximación por defecto es Hartree-Fock: method=MethodType.RHF</span>
+<span class="p">)</span>
+
+<span class="n">es_problem</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="c1"># Utilizamos el mapping de Jordan-Wigner</span>
+<span class="n">mapper</span> <span class="o">=</span> <span class="n">JordanWignerMapper</span><span class="p">()</span>
+
+<span class="c1"># Obtenemos el estado de referencia de Hartree-Fock</span>
+<span class="n">ref_state</span> <span class="o">=</span> <span class="n">HartreeFock</span><span class="p">(</span><span class="n">es_problem</span><span class="o">.</span><span class="n">num_spatial_orbitals</span><span class="p">,</span> <span class="n">es_problem</span><span class="o">.</span><span class="n">num_particles</span><span class="p">,</span> <span class="n">mapper</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>Un detalle importante a tener en cuenta a la hora de trabajar con estas librerías es que, mientras que en <code class="docutils literal notranslate"><span class="pre">qiskit</span></code> podemos decidir con qué unidades trabajamos, en <code class="docutils literal notranslate"><span class="pre">pennylane</span></code> trabajamos con unidades atómicas.En estas unidades, la distancia de enlace entre los átomos de hidrógeno de la molécula es <span class="math notranslate nohighlight">\( 0.741 \cdot 10^{-10} \text{m} =1.40 a_0\)</span></p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+Pennylane</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># En pennylane tenemos que definir el circuito sobre el que trabajará el ansatz</span>
+<span class="n">dev</span> <span class="o">=</span> <span class="n">qml</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;default.qubit&#39;</span><span class="p">,</span> <span class="n">wires</span><span class="o">=</span><span class="n">qubits</span><span class="p">)</span>
+
+<span class="c1"># Definimos el ansatz k-UpCCGSD</span>
+<span class="c1"># weights son los parámetros t^q_p, t^{q_\alpha q_\beta}_{p_\alpha p_\beta}</span>
+<span class="c1"># wires son los qubits (o en general los sistemas) sobre los que se define el ansatz.</span>
+<span class="c1"># delta_sz especifica las reglas de selección para la proyección del espín en dirección z </span>
+<span class="c1">#     en los orbitales de las excitaciones simples.</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="nd">@qml</span><span class="o">.</span><span class="n">qnode</span><span class="p">(</span><span class="n">dev</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">ansatz</span><span class="p">(</span><span class="n">weights</span><span class="p">):</span>
+    <span class="n">qml</span><span class="o">.</span><span class="n">kUpCCGSD</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">wires</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+                    <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">delta_sz</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">init_state</span><span class="o">=</span><span class="n">ref_state</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">qml</span><span class="o">.</span><span class="n">expval</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+
+<span class="n">shape</span> <span class="o">=</span> <span class="n">qml</span><span class="o">.</span><span class="n">kUpCCGSD</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span>
+                    <span class="n">n_wires</span><span class="o">=</span><span class="n">qubits</span><span class="p">,</span> <span class="n">delta_sz</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Preparamos el ansatz k-UpCCGSD</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="c1"># Para preparar este ansatz partimos de una función que ejecuta un ansatz UpCCD</span>
+<span class="c1"># Podemos añadirle las k repeticiones con la opción reps</span>
+<span class="c1"># Podemos añadirle las excitaciones S con la opción include_singles</span>
+<span class="c1"># Podemos añadirle las excitaciones generalizadas con la opción generalized</span>
+
+<span class="n">ansatz</span> <span class="o">=</span> <span class="n">PUCCD</span><span class="p">(</span>
+    <span class="n">num_spatial_orbitals</span><span class="o">=</span><span class="n">es_problem</span><span class="o">.</span><span class="n">num_spatial_orbitals</span><span class="p">,</span> 
+    <span class="n">num_particles</span><span class="o">=</span><span class="n">es_problem</span><span class="o">.</span><span class="n">num_particles</span><span class="p">,</span> 
+    <span class="n">qubit_mapper</span><span class="o">=</span><span class="n">mapper</span><span class="p">,</span> 
+    <span class="n">include_singles</span><span class="o">=</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="kc">True</span><span class="p">),</span> 
+    <span class="n">generalized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+    <span class="n">reps</span><span class="o">=</span><span class="n">k</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>Lo siguiente que tenemos que hacer es escoger el optimizador clásico.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
+Pennylane</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Escogemos un optimizador</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">qml</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">stepsize</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="c1"># opt = qml.GradientDescentOptimizer(stepsize=0.04)</span>
+<span class="c1"># opt = qml.QNGOptimizer(stepsize=0.01)</span>
+<span class="c1"># opt = qml.RMSPropOptimizer(stepsize=0.01)</span>
+<span class="c1"># opt = qml.AdamOptimizer(stepsize=0.01)</span>
+<span class="c1"># opt = qml.AdagradOptimizer(stepsize=0.01)</span>
+<span class="c1"># opt = qml.SPSAOptimizer(maxiter=250) </span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Escogemos un optimizador</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">COBYLA</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="c1"># opt = POWELL()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>Y ya podemos resolver el problema VQE</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
+Pennylane</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Inicializamos los primeros parámetros</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">energy</span> <span class="o">=</span> <span class="p">[</span><span class="n">ansatz</span><span class="p">(</span><span class="n">weights</span><span class="p">)]</span>
+
+<span class="c1"># E iniciamos el proceso iterativo</span>
+<span class="n">angle</span> <span class="o">=</span> <span class="p">[</span><span class="n">weights</span><span class="p">]</span>
+<span class="n">max_iterations</span> <span class="o">=</span> <span class="mi">250</span>
+<span class="n">conv_tol</span> <span class="o">=</span> <span class="mf">1e-08</span> <span class="c1"># Escogemos una tolerancia en la que queremos que se detenga el algoritmo</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iterations</span><span class="p">):</span>
+    <span class="n">weights</span><span class="p">,</span> <span class="n">prev_energy</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">step_and_cost</span><span class="p">(</span><span class="n">ansatz</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+    <span class="n">energy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ansatz</span><span class="p">(</span><span class="n">weights</span><span class="p">))</span>
+    <span class="n">angle</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+    <span class="n">conv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">energy</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">prev_energy</span><span class="p">)</span>
+    <span class="c1"># if n % 4 == 0:</span>
+        <span class="c1"># print(f&quot;Iteración: {n},  Energía = {energy[-1]:.8f} Ha&quot;)</span>
+    <span class="k">if</span> <span class="n">conv</span> <span class="o">&lt;=</span> <span class="n">conv_tol</span><span class="p">:</span>
+        <span class="k">break</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="sa">f</span><span class="s2">&quot;Energía del estado fundamental (obtenida) = </span><span class="si">{</span><span class="n">energy</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2"> Ha&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="sa">f</span><span class="s2">&quot;Valores óptimos del circuito = </span><span class="si">{</span><span class="n">angle</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Ejecutamos el algoritmo</span>
+<span class="n">vqe_solver</span> <span class="o">=</span> <span class="n">VQE</span><span class="p">(</span><span class="n">Estimator</span><span class="p">(),</span> <span class="n">ansatz</span><span class="p">,</span> <span class="n">opt</span><span class="p">)</span>
+
+<span class="n">calc</span> <span class="o">=</span> <span class="n">GroundStateEigensolver</span><span class="p">(</span><span class="n">mapper</span><span class="p">,</span> <span class="n">vqe_solver</span><span class="p">)</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">es_problem</span><span class="p">)</span>
+<span class="n">best</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">total_energies</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;E_G =&#39;</span><span class="p">,</span><span class="n">best</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Energía del estado fundamental (obtenida) = -1.13727592 Ha
+
+Valores óptimos del circuito = [[0.47277375 0.763124   0.65265082 0.80044558 0.63689578 0.2509901 ]
+ [0.41734635 0.41822243 0.85411198 0.21763306 0.31178434 0.49424296]
+ [0.88739316 0.52998541 0.2680871  0.68472122 0.53887998 0.5154465 ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Mostramos aquí algunas tablas del valor al que converge la energía utilizando diferentes optimizadores y valores de <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>k</p></th>
+<th class="head"><p>E (Ha) GradDesc</p></th>
+<th class="head"><p>E (Ha) SPSA</p></th>
+<th class="head"><p>E (Ha) ADAM</p></th>
+<th class="head"><p>E (Ha) RMSProp</p></th>
+<th class="head"><p>E (Ha) Adargrad</p></th>
+<th class="head"><p>E (Ha) QNG</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>-1.13727592</p></td>
+<td><p>-1.13575585</p></td>
+<td><p>-1.13727562</p></td>
+<td><p>-1.13628251</p></td>
+<td><p>-1.1372758</p></td>
+<td><p>-1.13727591</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>-1.13727592</p></td>
+<td><p>-1.1355345</p></td>
+<td><p>-1.13727573</p></td>
+<td><p>-1.13727594</p></td>
+<td><p>-1.13727586</p></td>
+<td><p>-1.13727586</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>-1.13727585</p></td>
+<td><p>-1.13606927</p></td>
+<td><p>-1.13726938</p></td>
+<td><p>-1.13465174</p></td>
+<td><p>-1.1372759</p></td>
+<td><p>-1.13727585</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>-1.13726475</p></td>
+<td><p>-1.13358301</p></td>
+<td><p>-1.13727593</p></td>
+<td><p>-1.13727594</p></td>
+<td><p>-1.1372757</p></td>
+<td><p>-1.13727587</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>-1.13727592</p></td>
+<td><p>-1.13560152</p></td>
+<td><p>-1.13727591</p></td>
+<td><p>-1.13339437</p></td>
+<td><p>-1.13727577</p></td>
+<td><p>-1.1372759</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="bibliografia">
+<h2><a class="toc-backref" href="#id104">Bibliografía</a><a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
+<div class="docutils container" id="id8">
+<dl class="citation">
+<dt class="label" id="id58"><span class="brackets"><a class="fn-backref" href="#id4">1</a></span></dt>
+<dd><p>Abhinav Anand, Philipp Schleich, Sumner Alperin-Lea, Phillip W. K. Jensen, Sukin Sim, Manuel Díaz-Tinoco, Jakob S. Kottmann, Matthias Degroote, Artur F. Izmaylov, and Alán Aspuru-Guzik. A quantum computing view on unitary coupled cluster theory. <em>Chemical Society Reviews</em>, 51(5):1659–1684, 2022. URL: <a class="reference external" href="http://xlink.rsc.org/?DOI=D1CS00932J">http://xlink.rsc.org/?DOI=D1CS00932J</a> (visited on 2023-03-08), <a class="reference external" href="https://doi.org/10.1039/D1CS00932J">doi:10.1039/D1CS00932J</a>.</p>
+</dd>
+<dt class="label" id="id60"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
+<dd><p>Juan Andrés Bort and Joan Bertran Rusca. <em>Theoretical and computational chemistry: foundations, methods and techniques</em>. Publicacions de la Universitat Jaume I, Castelló de la Plana, 2007. ISBN 978-84-8021-615-9. OCLC: 804115743.</p>
+</dd>
+<dt class="label" id="id59"><span class="brackets"><a class="fn-backref" href="#id2">3</a></span></dt>
+<dd><p>J Cizek and J Paldus. Coupled Cluster Approach. <em>Physica Scripta</em>, 21(3-4):251–254, January 1980. URL: <a class="reference external" href="https://iopscience.iop.org/article/10.1088/0031-8949/21/3-4/006">https://iopscience.iop.org/article/10.1088/0031-8949/21/3-4/006</a> (visited on 2023-02-10), <a class="reference external" href="https://doi.org/10.1088/0031-8949/21/3-4/006">doi:10.1088/0031-8949/21/3-4/006</a>.</p>
+</dd>
+<dt class="label" id="id64"><span class="brackets"><a class="fn-backref" href="#id6">4</a></span></dt>
+<dd><p>Gabriel Greene-Diniz and David Muñoz Ramo. Generalized unitary coupled cluster excitations for multireference molecular states optimized by the variational quantum eigensolver. <em>International Journal of Quantum Chemistry</em>, 121(4):e26352, 2021. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/qua.26352. URL: <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/qua.26352">https://onlinelibrary.wiley.com/doi/abs/10.1002/qua.26352</a> (visited on 2023-01-10), <a class="reference external" href="https://doi.org/10.1002/qua.26352">doi:10.1002/qua.26352</a>.</p>
+</dd>
+<dt class="label" id="id67"><span class="brackets"><a class="fn-backref" href="#id5">5</a></span></dt>
+<dd><p>Joonho Lee, William J. Huggins, Martin Head-Gordon, and K. Birgitta Whaley. Generalized Unitary Coupled Cluster Wave functions for Quantum Computation. <em>Journal of Chemical Theory and Computation</em>, 15(1):311–324, January 2019. URL: <a class="reference external" href="https://pubs.acs.org/doi/10.1021/acs.jctc.8b01004">https://pubs.acs.org/doi/10.1021/acs.jctc.8b01004</a> (visited on 2022-12-19), <a class="reference external" href="https://doi.org/10.1021/acs.jctc.8b01004">doi:10.1021/acs.jctc.8b01004</a>.</p>
+</dd>
+<dt class="label" id="id63"><span class="brackets"><a class="fn-backref" href="#id7">6</a></span></dt>
+<dd><p>Hocheol Lim, Hyeon-Nae Jeon, June-Koo Rhee, Byungdu Oh, and Kyoung Tai No. Quantum computational study of chloride attack on chloromethane for chemical accuracy and quantum noise effects with UCCSD and k-UpCCGSD ansatzes. <em>Scientific Reports</em>, 12(1):7495, May 2022. Number: 1 Publisher: Nature Publishing Group. URL: <a class="reference external" href="https://www.nature.com/articles/s41598-022-11537-6">https://www.nature.com/articles/s41598-022-11537-6</a> (visited on 2023-01-10), <a class="reference external" href="https://doi.org/10.1038/s41598-022-11537-6">doi:10.1038/s41598-022-11537-6</a>.</p>
+</dd>
+<dt class="label" id="id57"><span class="brackets"><a class="fn-backref" href="#id3">7</a></span></dt>
+<dd><p>Jarrod R McClean, Jonathan Romero, Ryan Babbush, and Alán Aspuru-Guzik. The theory of variational hybrid quantum-classical algorithms. <em>New Journal of Physics</em>, 18(2):023023, February 2016. URL: <a class="reference external" href="https://iopscience.iop.org/article/10.1088/1367-2630/18/2/023023">https://iopscience.iop.org/article/10.1088/1367-2630/18/2/023023</a> (visited on 2023-03-10), <a class="reference external" href="https://doi.org/10.1088/1367-2630/18/2/023023">doi:10.1088/1367-2630/18/2/023023</a>.</p>
+</dd>
+</dl>
+</div>
+<hr class="docutils" />
+<center>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+<img aling="left" alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+</center>
+<p>License: <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</a>.</p>
+<p>This work has been financially supported by the Ministry for Digital Transformation and of Civil Service of the Spanish Government through the QUANTUM ENIA project call - Quantum Spain project, and by the European Union through the Recovery, Transformation and Resilience Plan - NextGenerationEU within the framework of the Digital Spain 2026 Agenda.</p>
+<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png" class="align-left" src="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png" style="width: 1000px;" /></a>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs/Part_03_VQE/Chapter_02_02_Ansatz"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Chapter_02_01_Ansatze_myst.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Ansätze</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Section_023_ADAPT_myst.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ADAPT con el Modelo de Lipkin</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teoria-de-coupled-cluster">Teoría de Coupled Cluster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizar-k-upccgsd">Utilizar k-UpCCGSD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By QuantumSpain & TalentQ
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

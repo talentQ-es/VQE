@@ -1,0 +1,1621 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Introducción al Algoritmo VQE &#8212; PT3-Support</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/myfile.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "jamasole/Curso-TalentQ-Book");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/Part_03_VQE/Chapter_01_01_Introduction_myst';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="El Modelo de Ising con el algoritmo VQE" href="Chapter_01_02_Introduction/Section_011_Modelo-Ising_myst.html" />
+    <link rel="prev" title="PT3-Support" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/TalentQ_LogoNegNegro.png" class="logo__image only-light" alt="PT3-Support - Home"/>
+    <script>document.write(`<img src="../../_static/TalentQ_LogoNegNegro.png" class="logo__image only-dark" alt="PT3-Support - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational Quantum Eigensolver</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Introducción al Algoritmo VQE</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Chapter_01_02_Introduction/Section_011_Modelo-Ising_myst.html">El Modelo de Ising con el algoritmo VQE</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Chapter_01_02_Introduction/Section_012_Molecula-H2_myst.html">La molécula de <span class="math notranslate nohighlight">\(\text{H}_2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Chapter_01_02_Introduction/Section_013_Conclusiones_myst.html">Conclusiones</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Chapter_02_01_Ansatze_myst.html">Ansätze</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Chapter_02_02_Ansatz/Section_021_k-UpCCGSD_myst.html">Ansatz k-UpCCGSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Chapter_02_02_Ansatz/Section_023_ADAPT_myst.html">ADAPT con el Modelo de Lipkin</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Chapter_03_01_Optimizadores_myst.html">Optimizadores</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Chapter_03_02_Optimizadores/Section_031_Rotosolve_myst.html">Algoritmo de optimización Rotosolve</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/davidcb98/JupyterBook_plantilla" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/davidcb98/JupyterBook_plantilla/edit/master/Book/docs/Part_03_VQE/Chapter_01_01_Introduction_myst.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/davidcb98/JupyterBook_plantilla/issues/new?title=Issue%20on%20page%20%2Fdocs/Part_03_VQE/Chapter_01_01_Introduction_myst.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/Part_03_VQE/Chapter_01_01_Introduction_myst.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introducción al Algoritmo VQE</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primeros-pasos">Primeros pasos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programando-el-algoritmo-vqe">Programando el Algoritmo VQE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <blockquote>
+<div><p>May 06, 2024 | 5 min read</p>
+</div></blockquote>
+<figure class="align-left">
+<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png" src="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png" style="width: 1000px;" /></a>
+</figure>
+<p>Authors:</p>
+<ul class="simple">
+<li><p>Irais Bautista (<a class="reference external" href="http://www.cesga.es">CESGA</a>), Sergio Martínez (<a class="reference external" href="https://bifi.es/es/">BIFi-UNIZAR</a>), Jaime Scharfhausen (<a class="reference external" href="https://www.uam.es/uam/inicio">UAM</a>) y Alejandro Jaramillo (<a class="reference external" href="https://www.csuc.cat/es">CSUC</a>)</p></li>
+</ul>
+<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png" src="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png" style="width: 100px;" /></a>
+<a class="reference internal image-reference" href="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png"><img alt="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png" src="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png"><img alt="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png" src="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png"><img alt="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png" src="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png" style="width: 200px;" /></a>
+<section class="tex2jax_ignore mathjax_ignore" id="introduccion-al-algoritmo-vqe">
+<span id="sec-introduccion-al-algoritmo-vqe"></span><h1>Introducción al Algoritmo VQE<a class="headerlink" href="#introduccion-al-algoritmo-vqe" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_hide-input tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Librerías generales</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Librerías Qibo</span>
+<span class="kn">import</span> <span class="nn">qibo</span>
+<span class="kn">from</span> <span class="nn">qibo</span> <span class="kn">import</span> <span class="n">models</span><span class="p">,</span> <span class="n">gates</span><span class="p">,</span> <span class="n">hamiltonians</span>
+<span class="kn">from</span> <span class="nn">qibo</span> <span class="kn">import</span> <span class="n">matrices</span> <span class="k">as</span> <span class="n">m</span>
+
+<span class="c1"># Librerías Qiskit</span>
+<span class="kn">import</span> <span class="nn">qiskit</span>
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">IBMQ</span><span class="p">,</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">QuantumRegister</span><span class="p">,</span> <span class="n">ClassicalRegister</span><span class="p">,</span> <span class="n">Aer</span><span class="p">,</span> <span class="n">execute</span><span class="p">,</span> <span class="n">transpile</span>
+<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_bloch_multivector</span>
+<span class="kn">from</span> <span class="nn">qiskit.algorithms.optimizers</span> <span class="kn">import</span> <span class="n">COBYLA</span><span class="p">,</span> <span class="n">SPSA</span><span class="p">,</span> <span class="n">POWELL</span>
+<span class="kn">from</span> <span class="nn">qiskit.primitives</span> <span class="kn">import</span> <span class="n">Estimator</span>
+<span class="kn">from</span> <span class="nn">qiskit.algorithms.minimum_eigensolvers</span> <span class="kn">import</span> <span class="n">VQE</span>
+<span class="kn">from</span> <span class="nn">qiskit.utils</span> <span class="kn">import</span> <span class="n">QuantumInstance</span><span class="p">,</span> <span class="n">algorithm_globals</span>
+<span class="kn">from</span> <span class="nn">qiskit.opflow</span> <span class="kn">import</span> <span class="n">X</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">Y</span>
+<span class="kn">from</span> <span class="nn">qiskit.circuit.library</span> <span class="kn">import</span> <span class="n">TwoLocal</span>
+<span class="kn">from</span> <span class="nn">qiskit.tools.parallel</span> <span class="kn">import</span> <span class="n">parallel_map</span>
+
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">()</span>
+
+<span class="n">qibo</span><span class="o">.</span><span class="n">set_backend</span><span class="p">(</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#primeros-pasos" id="id99">Primeros pasos</a></p></li>
+<li><p><a class="reference internal" href="#bibliografia" id="id100">Bibliografía</a></p></li>
+</ul>
+</div>
+<p>A lo largo de este documento vamos a explicar y ejemplificar el funcionamiento del algoritmo VQE. Para ello haremos uso de la librería de software libre <strong><a class="reference external" href="https://qibo.science/">Qibo</a></strong>. Puede encontrar más información sobre el proceso de instalación <a class="reference external" href="https://qibo.science/docs/qibo/stable">aquí</a>. Así mismo, en la sección <a class="reference internal" href="Chapter_01_02_Introduction/Section_012_Molecula-H2_myst.html#sec-la-molecula-de-h2"><span class="std std-ref">La molécula de \text{H}_2</span></a> de este documento hacemos uso de la librería <strong><a class="reference external" href="https://quantumai.google/openfermion">OpenFermion</a></strong>, desarrollada por Google. Puede encontrar <a class="reference external" href="https://quantumai.google/openfermion/install">aquí</a> instrucciones para su instalación. También en esta sección hacemos uso de la librería de química computacional <strong><a class="reference external" href="https://pyscf.org/">PySCF</a></strong>. Puede consultar las instrucciones de instalación <a class="reference external" href="https://pyscf.org/install.html">aquí</a>.</p>
+<section id="primeros-pasos">
+<span id="sec-primeros-pasos"></span><h2><a class="toc-backref" href="#id99">Primeros pasos</a><a class="headerlink" href="#primeros-pasos" title="Permalink to this heading">#</a></h2>
+<p>El algoritmo VQE (Variational Quantum Eigensolver) es un algoritmo que busca obtener el autovalor más pequeño de un operador. Se originó en el campo de la química computacional <span id="id1">[<a class="reference internal" href="Chapter_01_02_Introduction/Section_013_Conclusiones_myst.html#id70" title="Alberto Peruzzo, Jarrod McClean, Peter Shadbolt, Man-Hong Yung, Xiao-Qi Zhou, Peter J. Love, Alán Aspuru-Guzik, and Jeremy L. O’Brien. A variational eigenvalue solver on a photonic quantum processor. Nature Communications, 5(1):4213, July 2014. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/ncomms5213 (visited on 2022-12-19), doi:10.1038/ncomms5213.">3</a>]</span>, donde se propuso para encontrar el estado fundamental de moléculas, aunque tiene aplicaciones en muchos otros campos <span id="id2">[<a class="reference internal" href="Chapter_01_02_Introduction/Section_013_Conclusiones_myst.html#id72" title="Jules Tilly, Hongxiang Chen, Shuxiang Cao, Dario Picozzi, Kanav Setia, Ying Li, Edward Grant, Leonard Wossnig, Ivan Rungger, George H. Booth, and Jonathan Tennyson. The Variational Quantum Eigensolver: A review of methods and best practices. Physics Reports, 986:1–128, November 2022. URL: https://www.sciencedirect.com/science/article/pii/S0370157322003118 (visited on 2022-12-19), doi:10.1016/j.physrep.2022.08.003.">5</a>]</span>.</p>
+<p>Se trata de un <strong>algoritmo híbrido</strong>, pues combina computación cuántica y clásica. Utiliza un circuito cuántico parametrizado para generar estados cuánticos y posteriormente medir el valor esperado del operador. Este valor esperado se utilizará como función de coste para un <strong>optimizador clásico</strong>, que se encargará de ir variando los parámetros del circuito y devolviéndolos al sistema cuántico de forma iterativa hasta encontrar el autovalor mínimo.</p>
+<p>El circuito parametrizado, conocido como <strong>ansatz</strong>, será equivalente a un operador unitario que llamaremos <span class="math notranslate nohighlight">\(U(\boldsymbol{\theta})\)</span>, en el que <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> es un vector que contiene todos los parámetros del circuito. Este actuará sobre nuestros qubits inicialidados en el estado que más nos interese según la aplicación. Esto generará un estado parametrizado <span class="math notranslate nohighlight">\(|\Psi(\boldsymbol{\theta}) \rangle\)</span>. Esto nos permite explorar un <strong>subespacio del espacio de Hilbert</strong>. En este sentido, la elección del ansatz y el estado incial es crucial, ya que de esto depende en gran medida si conseguiremos encontrar el valor mínimo o no.</p>
+<p>Sobre ese estado parametrizado podremos medir el valor esperado del operador problema <span class="math notranslate nohighlight">\(\mathcal{H}\)</span>. Este valor será, al igual que el estado, dependiente de los parámetros del <em>ansatz</em>, y lo denotamos por <span class="math notranslate nohighlight">\(E(\boldsymbol{\theta})\)</span>. Utilizaremos este valor como función de coste para un optimizador clásico, de manera que tras un número suficiente de iteraciones conseguiremos una muy buena aproximación del autovalor más pequeño de nuestro operador <span class="math notranslate nohighlight">\(E_{G}\)</span>.</p>
+<p>El funcionamiento del circuito sería algo así:</p>
+<figure class="align-center" id="fig-flux-diagram">
+<a class="reference internal image-reference" href="../../_images/VQE_flux.png"><img alt="../../_images/VQE_flux.png" src="../../_images/VQE_flux.png" style="width: 1000px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Diagrama de flujo del algoritmo VQE. En primer lugar tenemos un problema caracterizado por un operador <span class="math notranslate nohighlight">\(\mathcal{H}\)</span>. Codificamos ese problema en un circuito cuántico con puertas parametrizadas. De ahí realizamos un proceso de optimización clásico. Si no converge, devolvemos los datos al circuito cuántico. Si converge, tenemos el resultado <span class="math notranslate nohighlight">\(E_G\)</span>.</span><a class="headerlink" href="#fig-flux-diagram" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="programando-el-algoritmo-vqe">
+<span id="sec-programando-el-algoritmo-vqe"></span><h3>Programando el Algoritmo VQE<a class="headerlink" href="#programando-el-algoritmo-vqe" title="Permalink to this heading">#</a></h3>
+<p>Vamos a ver el funcionamiento de este algoritmo para un caso trivial, programando “manualmente” siguiendo el método que se emplea en la referencia <span id="id3">[<a class="reference internal" href="Chapter_01_02_Introduction/Section_013_Conclusiones_myst.html#id77" title="Frank Zickert. Hands-On Quantum Machine Learning With Python. Combinatorial Optimization. Volume 2. PyQML, 2022. ISBN 979-8374278491.">6</a>]</span>. Estas funciones son bastante ineficientes y no pueden competir con las funciones <em>built-in</em> en librerías como Qibo, Qiskit o Pennylane, pero nos ayudan a ver cada parte de forma individual. En las siguientes secciones analizaremos casos prácticos haciendo uso de estas funciones mejor optimizadas.</p>
+<p>El problema a resolver es encontrar el autovalor más pequeño de la siguiente matriz <span class="math notranslate nohighlight">\( 4 \times 4\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathcal{H} = \begin{bmatrix}
+2.5 &amp; -1 &amp; -0.5 &amp; 0 \\
+-1.2 &amp; 5 &amp; 0 &amp; 0.5 \\
+-0.5 &amp; 0 &amp; 2.5 &amp; 1 \\
+0 &amp; 0.5 &amp; 1 &amp; 2.5 
+\end{bmatrix}
+\end{split}\]</div>
+<p>Vamos a dejarla diagonalizada también con Python, para asegurarnos de que obtenemos los autovalores correctos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.5</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">],[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">2.5</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+
+<span class="n">eigvals</span><span class="p">,</span> <span class="n">eigvecs</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Autovalores:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">eigvals</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Autovalor mínimo:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">eigvals</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Autovalores: [1. 2. 3. 4.]
+Autovalor mínimo: 1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Empezamos por definir las matrices de Pauli, ya que son los principales operadores que se utilizan en circuitería cuántica. Todo operador hermítico de dimensión <span class="math notranslate nohighlight">\(2^n\)</span> (entre los que se incluye nuestro operador <span class="math notranslate nohighlight">\(\mathcal{H}\)</span>) puede descomponerse en productos tensoriales de matrices de Pauli. Estas, al ser hermíticas y unitarias, nos permiten tanto descomponer operadores como construir circuitos cuánticos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PAULIS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;I&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">),</span>
+    <span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">),</span>
+    <span class="s2">&quot;Y&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="p">],[</span><span class="mi">1</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">),</span>
+    <span class="s2">&quot;Z&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Definimos la función <code class="docutils literal notranslate"><span class="pre">pauli_decomposition(H)</span></code>, que toma nuestro operador matricial <span class="math notranslate nohighlight">\(\mathcal{H}\)</span> y lo convierte en una cadena de matrices de Pauli.</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pauli_decomposition</span><span class="p">(</span><span class="n">H</span><span class="p">):</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="p">)))</span>
+    <span class="n">dims</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">n</span>
+    
+    <span class="k">if</span> <span class="n">H</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">dims</span><span class="p">,</span><span class="n">dims</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;La matriz debe tener dimensiones 2^n x 2^n&quot;</span><span class="p">)</span>
+        
+    <span class="n">basis_key</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">PAULIS</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">repeat</span> <span class="o">=</span> <span class="n">n</span><span class="p">)]</span>
+    <span class="n">components</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="n">PAULIS</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">repeat</span><span class="o">=</span><span class="n">n</span><span class="p">)):</span>
+        <span class="n">basis_mat</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+        <span class="n">coeff</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">basis_mat</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">dims</span>
+        <span class="n">coeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real_if_close</span><span class="p">(</span><span class="n">coeff</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">coeff</span><span class="p">,</span><span class="mi">0</span><span class="p">):</span>
+            <span class="n">components</span><span class="p">[</span><span class="n">basis_key</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">coeff</span>
+            
+    <span class="k">return</span> <span class="n">components</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">components</span> <span class="o">=</span> <span class="n">pauli_decomposition</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+<span class="n">components</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>defaultdict(int, {&#39;II&#39;: 2.5, &#39;XZ&#39;: -0.5, &#39;ZX&#39;: -1.0})
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si volvemos a sumar nuestras componentes, vemos que se recupera nuestra matriz original <span class="math notranslate nohighlight">\(\mathcal{H}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">restr</span> <span class="o">=</span> <span class="n">components</span><span class="p">[</span><span class="s1">&#39;II&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">],</span><span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="n">components</span><span class="p">[</span><span class="s1">&#39;XZ&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">],</span><span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="n">components</span><span class="p">[</span><span class="s1">&#39;ZX&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">],</span><span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">restr</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">restr</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="o">==</span> <span class="n">op</span><span class="o">.</span><span class="n">all</span><span class="p">():</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Las dos matrices son iguales.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 2.5+0.j -1. +0.j -0.5+0.j  0. +0.j]
+ [-1. +0.j  2.5+0.j  0. +0.j  0.5+0.j]
+ [-0.5+0.j  0. +0.j  2.5+0.j  1. +0.j]
+ [ 0. +0.j  0.5+0.j  1. +0.j  2.5+0.j]]
+
+ Las dos matrices son iguales.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Definimos también la función <code class="docutils literal notranslate"><span class="pre">ansatz</span></code>, que, tomando un circuito cuántico y un conjunto de parámetros, nos implementa el estado <span class="math notranslate nohighlight">\(|\psi (\boldsymbol{\theta})\rangle\)</span> como un conjunto de operadores parametrizados.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">def</span> <span class="nf">ansatz</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">thetas</span><span class="p">,</span> <span class="n">rounds</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">):</span>
+            <span class="n">offset</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">nqubits</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="mi">2</span>
+                        
+            <span class="n">circuit</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gates</span><span class="o">.</span><span class="n">RY</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">thetas</span><span class="p">[</span><span class="n">offset</span><span class="p">]))</span>
+            <span class="n">circuit</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gates</span><span class="o">.</span><span class="n">RZ</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">thetas</span><span class="p">[</span><span class="n">offset</span><span class="o">+</span><span class="mi">1</span><span class="p">]))</span>
+            
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">rounds</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">circuit</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gates</span><span class="o">.</span><span class="n">CNOT</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+                
+    <span class="k">return</span> <span class="n">circuit</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">def</span> <span class="nf">ansatz</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">qr</span><span class="p">,</span> <span class="n">thetas</span><span class="p">,</span> <span class="n">rounds</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">qr</span><span class="p">)):</span>
+            <span class="n">offset</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">qr</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="mi">2</span>
+            
+            <span class="n">qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">thetas</span><span class="p">[</span><span class="n">offset</span><span class="p">],</span> <span class="n">qr</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">qc</span><span class="o">.</span><span class="n">rz</span><span class="p">(</span><span class="n">thetas</span><span class="p">[</span><span class="n">offset</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">qr</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">rounds</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">qr</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">qr</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                
+    <span class="k">return</span> <span class="n">qc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>Veamos un ejemplo de ansatz que generaría este circuito si consideramos tres qubits:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">nqubits</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">nrounds</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="n">qc</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">circuit</span><span class="o">.</span><span class="n">Circuit</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)</span>
+<span class="n">angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">nqubits</span><span class="o">*</span><span class="n">nrounds</span><span class="p">)</span>
+
+<span class="n">qc</span> <span class="o">=</span> <span class="n">ansatz</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">nqubits</span><span class="o">=</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">thetas</span><span class="o">=</span><span class="n">angles</span><span class="p">,</span> <span class="n">rounds</span><span class="o">=</span><span class="n">nrounds</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">nqubits</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">nrounds</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="n">qr</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">qr</span><span class="p">)</span>
+<span class="n">angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">nqubits</span><span class="o">*</span><span class="n">nrounds</span><span class="p">)</span>
+
+<span class="n">qc</span> <span class="o">=</span> <span class="n">ansatz</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">qr</span><span class="p">,</span> <span class="n">thetas</span><span class="o">=</span><span class="n">angles</span><span class="p">,</span> <span class="n">rounds</span><span class="o">=</span><span class="n">nrounds</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>q0: ─RY─RZ─o─────────RY─RZ─o─────────RY─RZ─o─────────RY─RZ─
+q1: ─RY─RZ─X───────o─RY─RZ─X───────o─RY─RZ─X───────o─RY─RZ─
+q2: ─────────RY─RZ─X─────────RY─RZ─X─────────RY─RZ─X─RY─RZ─
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este caso concreto, tenemos puertas parametrizadas <span class="math notranslate nohighlight">\(R_Y\)</span> y <span class="math notranslate nohighlight">\(R_Z\)</span>, cuyos ángulos de rotación son los parámetros <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> que vamos a ir modificando hasta llegar al autovalor mínimo. Por supuesto, podríamos haber utilizado también puertas <span class="math notranslate nohighlight">\(R_X\)</span> o cualquier puerta que rotase los qubits en torno a un eje arbitrario.</p>
+<p>Para entrelazar qubits hemos utilizado puertas <span class="math notranslate nohighlight">\(CNOT\)</span>, aunque también se suelen usar <span class="math notranslate nohighlight">\(CZ\)</span>.</p>
+<p>Con todas estas herramientas, podemos definir la función <code class="docutils literal notranslate"><span class="pre">matrix_decomposition_circuits</span></code>, que toma nuestro operador <span class="math notranslate nohighlight">\(\mathcal{H}\)</span> y, utilizando <code class="docutils literal notranslate"><span class="pre">pauli_decomposition</span></code>, lo convierte en una suma de cadenas de Pauli. Con esto define tantos circuitos cuánticos como cadenas tengamos, añadiendo a cada uno de ellos nuestro <em>ansatz</em> empleando <code class="docutils literal notranslate"><span class="pre">ansatz</span></code> (la función <code class="docutils literal notranslate"><span class="pre">add_ansatz(qc,</span> <span class="pre">qr)</span></code> se define con ella).</p>
+<p>Después, dependiendo de como sean las cadenas de Pauli, añade los medidores que correspondan según la base (por ejemplo, si estamos midiendo en la dirección <span class="math notranslate nohighlight">\(Y\)</span>, debemos rotar nuestro qubit utilizando <span class="math notranslate nohighlight">\(H\)</span> y <span class="math notranslate nohighlight">\(S^\dagger\)</span>).</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">def</span> <span class="nf">matrix_decomposition_circuits</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">add_ansatz</span><span class="p">):</span>
+
+    <span class="kn">from</span> <span class="nn">qibo</span> <span class="kn">import</span> <span class="n">models</span><span class="p">,</span> <span class="n">gates</span>
+
+    <span class="c1"># Definimos variables y comprobamos las dimensiones del Hamiltoniano</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="p">)))</span>
+    <span class="n">dims</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">n</span>
+    
+    <span class="k">if</span> <span class="n">H</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">dims</span><span class="p">,</span><span class="n">dims</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;La matriz debe tener dimensiones 2^n x 2^n&quot;</span><span class="p">)</span>
+        
+    <span class="c1"># Descomponemos el Hamiltoniano en cadenas de Pauli</span>
+    <span class="n">components</span> <span class="o">=</span> <span class="n">pauli_decomposition</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+    
+    <span class="n">circuits</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">paulistring</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span> <span class="ow">in</span> <span class="n">components</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">paulis</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">paulistring</span><span class="p">)))</span>
+        <span class="n">qc</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Circuit</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        
+        <span class="c1"># No hacemos nada si todas las Pauli son I, utilizamos este circuito vacío que medirá el estado &quot;0&quot; (autovalor 1) en todos los caso</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;I&quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">paulis</span><span class="p">):</span>
+            <span class="n">qc</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gates</span><span class="o">.</span><span class="n">M</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">nqubits</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+            <span class="n">circuits</span><span class="p">[</span><span class="n">paulistring</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Al resto de posibles circuitos sí les añadimos el ansatz</span>
+        <span class="n">add_ansatz</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+            
+        <span class="c1"># Hacemos las transformaciones sobre un solo qubit</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">paulis</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">letter</span> <span class="o">==</span> <span class="s2">&quot;X&quot;</span><span class="p">:</span>
+                <span class="n">qc</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gates</span><span class="o">.</span><span class="n">H</span><span class="p">(</span><span class="n">idx</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">letter</span> <span class="o">==</span> <span class="s2">&quot;Y&quot;</span><span class="p">:</span>
+                <span class="n">qc</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gates</span><span class="o">.</span><span class="n">H</span><span class="p">(</span><span class="n">idx</span><span class="p">))</span>
+                <span class="n">qc</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gates</span><span class="o">.</span><span class="n">S</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span><span class="o">.</span><span class="n">dagger</span><span class="p">())</span>
+                
+        <span class="c1"># Añadimos las puertas multiqubit</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">paulis</span><span class="p">,</span> <span class="n">paulis</span><span class="p">[</span><span class="mi">1</span><span class="p">:])):</span>
+            <span class="k">if</span> <span class="n">second</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;I&quot;</span><span class="p">:</span>
+                <span class="n">qc</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gates</span><span class="o">.</span><span class="n">SWAP</span><span class="p">(</span><span class="n">first</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">second</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="k">elif</span> <span class="n">first</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;I&quot;</span><span class="p">:</span>
+                <span class="n">paulis</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">paulis</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">paulis</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">qc</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gates</span><span class="o">.</span><span class="n">CNOT</span><span class="p">(</span><span class="n">first</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">second</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+                
+        <span class="c1"># Medimos sobre el último qubit</span>
+        <span class="n">qc</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gates</span><span class="o">.</span><span class="n">M</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">nqubits</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">circuits</span><span class="p">[</span><span class="n">paulistring</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+        
+        
+    <span class="k">return</span> <span class="n">circuits</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">def</span> <span class="nf">matrix_decomposition_circuits</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">add_ansatz</span><span class="p">):</span>
+
+    <span class="c1"># Definimos variables y comprobamos las dimensiones del Hamiltoniano</span>
+    
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="p">)))</span>
+    <span class="n">dims</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">n</span>
+    
+    <span class="k">if</span> <span class="n">H</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">dims</span><span class="p">,</span><span class="n">dims</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;La matriz debe tener dimensiones 2^n x 2^n&quot;</span><span class="p">)</span>
+        
+    <span class="n">components</span> <span class="o">=</span> <span class="n">pauli_decomposition</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+    
+    <span class="n">circuits</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">paulistring</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span> <span class="ow">in</span> <span class="n">components</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">paulis</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">paulistring</span><span class="p">)))</span>
+        
+        <span class="n">qr</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;qr&quot;</span><span class="p">)</span>
+        <span class="n">cr</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;cr&quot;</span><span class="p">)</span>
+        <span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">qr</span><span class="p">,</span> <span class="n">cr</span><span class="p">)</span>
+        
+        <span class="n">add_ansatz</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span><span class="n">qr</span><span class="p">)</span>
+        
+        <span class="c1"># No hacemos nada si todas las Pauli son I</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;I&quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">paulis</span><span class="p">):</span>
+            <span class="c1"># utilizamos este circuito vacío que medirá el estado &quot;0&quot; (autovalor 1) en todos los casos</span>
+            <span class="n">circuits</span><span class="p">[</span><span class="n">paulistring</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+            <span class="k">continue</span>
+            
+        <span class="c1"># Hacmos las transformaciones sobre un solo qubit</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">paulis</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">letter</span> <span class="o">==</span> <span class="s2">&quot;X&quot;</span><span class="p">:</span>
+                <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qr</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">letter</span> <span class="o">==</span> <span class="s2">&quot;Y&quot;</span><span class="p">:</span>
+                <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qr</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+                <span class="n">qc</span><span class="o">.</span><span class="n">sdg</span><span class="p">(</span><span class="n">qr</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+                
+        <span class="c1"># Añadimos las puertas multiqubit</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">paulis</span><span class="p">,</span> <span class="n">paulis</span><span class="p">[</span><span class="mi">1</span><span class="p">:])):</span>
+            <span class="k">if</span> <span class="n">second</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;I&quot;</span><span class="p">:</span>
+                <span class="n">qc</span><span class="o">.</span><span class="n">swap</span><span class="p">(</span><span class="n">first</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">second</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">first</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;I&quot;</span><span class="p">:</span>
+                <span class="n">paulis</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">paulis</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">paulis</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">first</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">second</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                
+        <span class="c1"># Medimos sobre el último qubit</span>
+        <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">qr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">cr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">circuits</span><span class="p">[</span><span class="n">paulistring</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">circuits</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>Definimos ahora la función <code class="docutils literal notranslate"><span class="pre">run_circuit</span></code>, que lo que hace es ejecutar el circuito utilizando el backend que hayamos especificado y nos devuelve el valor esperado de la medida del circuito.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">def</span> <span class="nf">run_circuit</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">nshots</span><span class="o">=</span><span class="n">shots</span><span class="p">)</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">frequencies</span><span class="p">(</span><span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">counts</span><span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;0&quot;</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;1&quot;</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">else</span> <span class="mi">0</span><span class="p">))</span><span class="o">/</span><span class="n">shots</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">def</span> <span class="nf">run_circuit</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">backend</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">execute</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">backend</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="n">shots</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">counts</span><span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;0&quot;</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;1&quot;</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">else</span> <span class="mi">0</span><span class="p">))</span><span class="o">/</span><span class="n">shots</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>Definimos ahora <code class="docutils literal notranslate"><span class="pre">expectation</span></code>, que ejecuta los circuitos generados por <code class="docutils literal notranslate"><span class="pre">matrix_decomposition_circuits</span></code> utilizando <code class="docutils literal notranslate"><span class="pre">run_circuit</span></code> y suma sus resultados con los coeficientes de la descomposición, devolviendo el valor esperado del operador problema.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">def</span> <span class="nf">expectation</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">rounds</span><span class="p">,</span> <span class="n">thetas</span><span class="p">):</span>
+    <span class="n">circuits</span> <span class="o">=</span> <span class="n">matrix_decomposition_circuits</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">qc</span><span class="p">,</span><span class="n">n</span><span class="p">:</span> <span class="n">ansatz</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">thetas</span><span class="p">,</span> <span class="n">rounds</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">key</span><span class="p">:</span> <span class="n">run_circuit</span><span class="p">(</span><span class="n">circuits</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">circuits</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">circuits</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">def</span> <span class="nf">expectation</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">rounds</span><span class="p">,</span> <span class="n">thetas</span><span class="p">):</span>
+    <span class="n">backend</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;statevector_simulator&#39;</span><span class="p">)</span>
+    <span class="n">circuits</span> <span class="o">=</span> <span class="n">matrix_decomposition_circuits</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">qc</span><span class="p">,</span><span class="n">qr</span><span class="p">:</span> <span class="n">ansatz</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">qr</span><span class="p">,</span> <span class="n">thetas</span><span class="p">,</span> <span class="n">rounds</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">key</span><span class="p">:</span> <span class="n">run_circuit</span><span class="p">(</span><span class="n">circuits</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">backend</span><span class="p">)</span><span class="o">*</span><span class="n">circuits</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">circuits</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>Ahora definimos nuestro optimizador clásico. Vamos a utilizar un optimizador numérico conocido como SPSA (<em>Simultaneous Perturbation Stochastic Approximation</em>) <span id="id4">[<a class="reference internal" href="#id62" title="S. Bhatnagar, H.L. Prasad, and L.A. Prashanth. Stochastic Recursive Algorithms for Optimization. Volume 434 of Lecture Notes in Control and Information Sciences. Springer London, London, 2013. ISBN 978-1-4471-4284-3 978-1-4471-4285-0. URL: http://link.springer.com/10.1007/978-1-4471-4285-0 (visited on 2023-01-10), doi:10.1007/978-1-4471-4285-0.">1</a>]</span>. Lo programamos a continuación para ver cómo funciona pero, de nuevo, en adelante utilizaremos optimizadores que podemos encontrar en las librerías.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SPSA</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">loss_function</span><span class="p">):</span>
+        <span class="c1"># Inicializamos parámetros de ganancia y factores de decaímiento</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">c</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loss_function</span> <span class="o">=</span> <span class="n">loss_function</span>
+        
+        <span class="c1"># Contador</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+        
+    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_estimate</span><span class="p">):</span>
+        <span class="c1"># Obtenemos los valores actuales para las secuencias de ganancia</span>
+        <span class="n">a_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">)</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span>
+        <span class="n">c_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma</span>
+        
+        <span class="c1"># Vector de perturbaciones aleatorias de la distribución de Bernoulli</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">current_estimate</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+        
+        <span class="c1"># Medimos la función de pérdida en las perturbaciones</span>
+        <span class="n">loss_plus</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_function</span><span class="p">(</span><span class="n">current_estimate</span> <span class="o">+</span> <span class="n">delta</span> <span class="o">*</span> <span class="n">c_t</span><span class="p">)</span>
+        <span class="n">loss_minus</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_function</span><span class="p">(</span><span class="n">current_estimate</span> <span class="o">-</span> <span class="n">delta</span> <span class="o">*</span> <span class="n">c_t</span><span class="p">)</span>
+        
+        <span class="c1"># Estimación del gradiente</span>
+        <span class="n">g_t</span> <span class="o">=</span> <span class="p">(</span><span class="n">loss_plus</span> <span class="o">-</span> <span class="n">loss_minus</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">delta</span> <span class="o">*</span> <span class="n">c_t</span><span class="p">)</span>
+        
+        <span class="c1"># Actualizamos la estimación del parámetro</span>
+        <span class="n">current_estimate</span> <span class="o">=</span> <span class="n">current_estimate</span> <span class="o">-</span> <span class="n">a_t</span> <span class="o">*</span> <span class="n">g_t</span>
+        
+        <span class="c1"># Incrementamos el contador</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">+=</span><span class="mi">1</span>
+        
+        <span class="k">return</span> <span class="n">current_estimate</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Y ya, con un optimizador clásico y un operador cuántico, podemos definir nuestro algoritmo VQE, utilizando la función <code class="docutils literal notranslate"><span class="pre">expectation</span></code> como función de pérdida del optimizador (implementando aquí toda la circuitería cuántica).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vqe</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">rounds</span><span class="p">,</span> <span class="n">max_iter</span><span class="p">,</span> <span class="n">thetas</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_steps</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+   
+    <span class="n">cnt_qubits</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="n">thetas</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">thetas</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="n">rounds</span><span class="p">)</span><span class="o">*</span><span class="n">cnt_qubits</span><span class="o">*</span><span class="mi">2</span><span class="p">)))</span>
+        
+    <span class="c1"># Creamos la clase del optimizador</span>
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">SPSA</span><span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">max_iter</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.602</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.101</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="n">H</span><span class="p">,</span> <span class="n">loss_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t_thetas</span><span class="p">:</span> <span class="n">expectation</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">rounds</span><span class="p">,</span> <span class="n">t_thetas</span><span class="p">))</span>
+    
+    <span class="c1"># Loop principal</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+        <span class="n">thetas</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">thetas</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">save_steps</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">%</span> <span class="n">save_steps</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">thetas</span><span class="p">,</span> <span class="n">expectation</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">rounds</span><span class="p">,</span> <span class="n">thetas</span><span class="p">))</span>
+            
+    <span class="k">return</span> <span class="p">(</span><span class="n">thetas</span><span class="p">,</span> <span class="n">expectation</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">rounds</span><span class="p">,</span> <span class="n">thetas</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Y con todo este código podemos meter la matriz que diagonalizamos antes a mano y comprobar que, efectivamente, el autovalor más bajo que obtenemos es <span class="math notranslate nohighlight">\(E_G \simeq 1\)</span>.</p>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H</span> <span class="o">=</span> <span class="n">op</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">step_size</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="n">result_energy</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">vqe</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">rounds</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1002</span><span class="p">,</span> <span class="n">save_steps</span> <span class="o">=</span> <span class="n">step_size</span><span class="p">):</span>
+    <span class="n">result_energy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">step</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Paso </span><span class="si">{step}</span><span class="s1">. Valor actual de la función de coste: </span><span class="si">{ev: .3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ev</span> <span class="o">=</span> <span class="n">step</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">step</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Los parámetros óptimos para este circuito son: [</span><span class="se">\n</span><span class="s1">&#39;</span>
+     <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+     <span class="o">+</span><span class="s2">&quot;,</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="k">3</span> == 2 else &quot;\t&quot;+str(round(t,3))
+     <span class="o">+</span><span class="s2">&quot;,</span><span class="se">\t</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span><span class="o">+</span><span class="s2">&quot;]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;El valor del autovalor mínimo es: </span><span class="si">{ev: .3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ev</span><span class="o">=</span><span class="n">result</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 0. Valor actual de la función de coste:  2.395
+Paso 3. Valor actual de la función de coste:  2.374
+Paso 6. Valor actual de la función de coste:  2.372
+Paso 9. Valor actual de la función de coste:  2.385
+Paso 12. Valor actual de la función de coste:  2.431
+Paso 15. Valor actual de la función de coste:  2.324
+Paso 18. Valor actual de la función de coste:  2.271
+Paso 21. Valor actual de la función de coste:  2.186
+Paso 24. Valor actual de la función de coste:  2.187
+Paso 27. Valor actual de la función de coste:  2.171
+Paso 30. Valor actual de la función de coste:  2.175
+Paso 33. Valor actual de la función de coste:  2.066
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 36. Valor actual de la función de coste:  1.980
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 39. Valor actual de la función de coste:  1.973
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 42. Valor actual de la función de coste:  1.904
+Paso 45. Valor actual de la función de coste:  1.896
+Paso 48. Valor actual de la función de coste:  1.885
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 51. Valor actual de la función de coste:  1.876
+Paso 54. Valor actual de la función de coste:  1.846
+Paso 57. Valor actual de la función de coste:  1.814
+Paso 60. Valor actual de la función de coste:  1.661
+Paso 63. Valor actual de la función de coste:  1.621
+Paso 66. Valor actual de la función de coste:  1.568
+Paso 69. Valor actual de la función de coste:  1.591
+Paso 72. Valor actual de la función de coste:  1.557
+Paso 75. Valor actual de la función de coste:  1.549
+Paso 78. Valor actual de la función de coste:  1.425
+Paso 81. Valor actual de la función de coste:  1.403
+Paso 84. Valor actual de la función de coste:  1.392
+Paso 87. Valor actual de la función de coste:  1.374
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 90. Valor actual de la función de coste:  1.364
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 93. Valor actual de la función de coste:  1.361
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 96. Valor actual de la función de coste:  1.283
+Paso 99. Valor actual de la función de coste:  1.277
+Paso 102. Valor actual de la función de coste:  1.281
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 105. Valor actual de la función de coste:  1.284
+Paso 108. Valor actual de la función de coste:  1.266
+Paso 111. Valor actual de la función de coste:  1.253
+Paso 114. Valor actual de la función de coste:  1.224
+Paso 117. Valor actual de la función de coste:  1.172
+Paso 120. Valor actual de la función de coste:  1.161
+Paso 123. Valor actual de la función de coste:  1.155
+Paso 126. Valor actual de la función de coste:  1.133
+Paso 129. Valor actual de la función de coste:  1.107
+Paso 132. Valor actual de la función de coste:  1.085
+Paso 135. Valor actual de la función de coste:  1.083
+Paso 138. Valor actual de la función de coste:  1.081
+Paso 141. Valor actual de la función de coste:  1.072
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 144. Valor actual de la función de coste:  1.073
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 147. Valor actual de la función de coste:  1.072
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 150. Valor actual de la función de coste:  1.088
+Paso 153. Valor actual de la función de coste:  1.087
+Paso 156. Valor actual de la función de coste:  1.103
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 159. Valor actual de la función de coste:  1.108
+Paso 162. Valor actual de la función de coste:  1.063
+Paso 165. Valor actual de la función de coste:  1.062
+Paso 168. Valor actual de la función de coste:  1.056
+Paso 171. Valor actual de la función de coste:  1.049
+Paso 174. Valor actual de la función de coste:  1.056
+Paso 177. Valor actual de la función de coste:  1.018
+Paso 180. Valor actual de la función de coste:  1.013
+Paso 183. Valor actual de la función de coste:  1.016
+Paso 186. Valor actual de la función de coste:  1.018
+Paso 189. Valor actual de la función de coste:  1.013
+Paso 192. Valor actual de la función de coste:  1.011
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 195. Valor actual de la función de coste:  1.005
+Paso 198. Valor actual de la función de coste:  1.012
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 201. Valor actual de la función de coste:  1.014
+Paso 204. Valor actual de la función de coste:  1.015
+Paso 207. Valor actual de la función de coste:  1.010
+Paso 210. Valor actual de la función de coste:  1.015
+Paso 213. Valor actual de la función de coste:  1.011
+Paso 216. Valor actual de la función de coste:  1.014
+Paso 219. Valor actual de la función de coste:  1.007
+Paso 222. Valor actual de la función de coste:  1.008
+Paso 225. Valor actual de la función de coste:  1.011
+Paso 228. Valor actual de la función de coste:  1.011
+Paso 231. Valor actual de la función de coste:  1.009
+Paso 234. Valor actual de la función de coste:  1.014
+Paso 237. Valor actual de la función de coste:  1.012
+Paso 240. Valor actual de la función de coste:  1.012
+Paso 243. Valor actual de la función de coste:  1.009
+Paso 246. Valor actual de la función de coste:  1.009
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 249. Valor actual de la función de coste:  1.011
+Paso 252. Valor actual de la función de coste:  1.007
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 255. Valor actual de la función de coste:  1.005
+Paso 258. Valor actual de la función de coste:  1.007
+Paso 261. Valor actual de la función de coste:  1.011
+Paso 264. Valor actual de la función de coste:  1.010
+Paso 267. Valor actual de la función de coste:  1.006
+Paso 270. Valor actual de la función de coste:  1.007
+Paso 273. Valor actual de la función de coste:  1.006
+Paso 276. Valor actual de la función de coste:  1.008
+Paso 279. Valor actual de la función de coste:  1.006
+Paso 282. Valor actual de la función de coste:  1.004
+Paso 285. Valor actual de la función de coste:  1.005
+Paso 288. Valor actual de la función de coste:  1.005
+Paso 291. Valor actual de la función de coste:  1.006
+Paso 294. Valor actual de la función de coste:  1.004
+Paso 297. Valor actual de la función de coste:  1.004
+Paso 300. Valor actual de la función de coste:  1.005
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 303. Valor actual de la función de coste:  1.006
+Paso 306. Valor actual de la función de coste:  1.007
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 309. Valor actual de la función de coste:  1.007
+Paso 312. Valor actual de la función de coste:  1.006
+Paso 315. Valor actual de la función de coste:  1.011
+Paso 318. Valor actual de la función de coste:  1.012
+Paso 321. Valor actual de la función de coste:  1.012
+Paso 324. Valor actual de la función de coste:  1.011
+Paso 327. Valor actual de la función de coste:  1.011
+Paso 330. Valor actual de la función de coste:  1.013
+Paso 333. Valor actual de la función de coste:  1.011
+Paso 336. Valor actual de la función de coste:  1.010
+Paso 339. Valor actual de la función de coste:  1.008
+Paso 342. Valor actual de la función de coste:  1.011
+Paso 345. Valor actual de la función de coste:  1.011
+Paso 348. Valor actual de la función de coste:  1.009
+Paso 351. Valor actual de la función de coste:  1.010
+Paso 354. Valor actual de la función de coste:  1.010
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 357. Valor actual de la función de coste:  1.009
+Paso 360. Valor actual de la función de coste:  1.007
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 363. Valor actual de la función de coste:  1.004
+Paso 366. Valor actual de la función de coste:  1.002
+Paso 369. Valor actual de la función de coste:  1.001
+Paso 372. Valor actual de la función de coste:  1.002
+Paso 375. Valor actual de la función de coste:  1.006
+Paso 378. Valor actual de la función de coste:  1.007
+Paso 381. Valor actual de la función de coste:  1.010
+Paso 384. Valor actual de la función de coste:  1.011
+Paso 387. Valor actual de la función de coste:  1.011
+Paso 390. Valor actual de la función de coste:  1.013
+Paso 393. Valor actual de la función de coste:  1.011
+Paso 396. Valor actual de la función de coste:  1.008
+Paso 399. Valor actual de la función de coste:  1.007
+Paso 402. Valor actual de la función de coste:  1.007
+Paso 405. Valor actual de la función de coste:  1.009
+Paso 408. Valor actual de la función de coste:  1.007
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 411. Valor actual de la función de coste:  1.008
+Paso 414. Valor actual de la función de coste:  1.005
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 417. Valor actual de la función de coste:  1.003
+Paso 420. Valor actual de la función de coste:  1.003
+Paso 423. Valor actual de la función de coste:  1.002
+Paso 426. Valor actual de la función de coste:  1.004
+Paso 429. Valor actual de la función de coste:  1.002
+Paso 432. Valor actual de la función de coste:  1.001
+Paso 435. Valor actual de la función de coste:  1.000
+Paso 438. Valor actual de la función de coste:  1.001
+Paso 441. Valor actual de la función de coste:  1.004
+Paso 444. Valor actual de la función de coste:  1.003
+Paso 447. Valor actual de la función de coste:  1.003
+Paso 450. Valor actual de la función de coste:  1.002
+Paso 453. Valor actual de la función de coste:  1.005
+Paso 456. Valor actual de la función de coste:  1.004
+Paso 459. Valor actual de la función de coste:  1.003
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 462. Valor actual de la función de coste:  1.002
+Paso 465. Valor actual de la función de coste:  1.001
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 468. Valor actual de la función de coste:  1.001
+Paso 471. Valor actual de la función de coste:  1.001
+Paso 474. Valor actual de la función de coste:  1.003
+Paso 477. Valor actual de la función de coste:  1.003
+Paso 480. Valor actual de la función de coste:  1.002
+Paso 483. Valor actual de la función de coste:  1.005
+Paso 486. Valor actual de la función de coste:  1.004
+Paso 489. Valor actual de la función de coste:  1.007
+Paso 492. Valor actual de la función de coste:  1.006
+Paso 495. Valor actual de la función de coste:  1.006
+Paso 498. Valor actual de la función de coste:  1.009
+Paso 501. Valor actual de la función de coste:  1.006
+Paso 504. Valor actual de la función de coste:  1.018
+Paso 507. Valor actual de la función de coste:  1.016
+Paso 510. Valor actual de la función de coste:  1.008
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 513. Valor actual de la función de coste:  1.007
+Paso 516. Valor actual de la función de coste:  1.009
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 519. Valor actual de la función de coste:  1.009
+Paso 522. Valor actual de la función de coste:  1.007
+Paso 525. Valor actual de la función de coste:  1.009
+Paso 528. Valor actual de la función de coste:  1.007
+Paso 531. Valor actual de la función de coste:  1.008
+Paso 534. Valor actual de la función de coste:  1.006
+Paso 537. Valor actual de la función de coste:  1.005
+Paso 540. Valor actual de la función de coste:  1.006
+Paso 543. Valor actual de la función de coste:  1.008
+Paso 546. Valor actual de la función de coste:  1.004
+Paso 549. Valor actual de la función de coste:  1.006
+Paso 552. Valor actual de la función de coste:  1.007
+Paso 555. Valor actual de la función de coste:  1.004
+Paso 558. Valor actual de la función de coste:  1.005
+Paso 561. Valor actual de la función de coste:  1.007
+Paso 564. Valor actual de la función de coste:  1.008
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 567. Valor actual de la función de coste:  1.007
+Paso 570. Valor actual de la función de coste:  1.006
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 573. Valor actual de la función de coste:  1.008
+Paso 576. Valor actual de la función de coste:  1.005
+Paso 579. Valor actual de la función de coste:  1.009
+Paso 582. Valor actual de la función de coste:  1.006
+Paso 585. Valor actual de la función de coste:  1.007
+Paso 588. Valor actual de la función de coste:  1.007
+Paso 591. Valor actual de la función de coste:  1.006
+Paso 594. Valor actual de la función de coste:  1.008
+Paso 597. Valor actual de la función de coste:  1.004
+Paso 600. Valor actual de la función de coste:  1.006
+Paso 603. Valor actual de la función de coste:  1.005
+Paso 606. Valor actual de la función de coste:  1.007
+Paso 609. Valor actual de la función de coste:  1.005
+Paso 612. Valor actual de la función de coste:  1.004
+Paso 615. Valor actual de la función de coste:  1.006
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 618. Valor actual de la función de coste:  1.007
+Paso 621. Valor actual de la función de coste:  1.005
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 624. Valor actual de la función de coste:  1.006
+Paso 627. Valor actual de la función de coste:  1.005
+Paso 630. Valor actual de la función de coste:  1.008
+Paso 633. Valor actual de la función de coste:  1.006
+Paso 636. Valor actual de la función de coste:  1.009
+Paso 639. Valor actual de la función de coste:  1.008
+Paso 642. Valor actual de la función de coste:  1.009
+Paso 645. Valor actual de la función de coste:  1.009
+Paso 648. Valor actual de la función de coste:  1.008
+Paso 651. Valor actual de la función de coste:  1.009
+Paso 654. Valor actual de la función de coste:  1.010
+Paso 657. Valor actual de la función de coste:  1.015
+Paso 660. Valor actual de la función de coste:  1.018
+Paso 663. Valor actual de la función de coste:  1.019
+Paso 666. Valor actual de la función de coste:  1.016
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 669. Valor actual de la función de coste:  1.019
+Paso 672. Valor actual de la función de coste:  1.017
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 675. Valor actual de la función de coste:  1.017
+Paso 678. Valor actual de la función de coste:  1.018
+Paso 681. Valor actual de la función de coste:  1.015
+Paso 684. Valor actual de la función de coste:  1.019
+Paso 687. Valor actual de la función de coste:  1.018
+Paso 690. Valor actual de la función de coste:  1.025
+Paso 693. Valor actual de la función de coste:  1.024
+Paso 696. Valor actual de la función de coste:  1.025
+Paso 699. Valor actual de la función de coste:  1.020
+Paso 702. Valor actual de la función de coste:  1.023
+Paso 705. Valor actual de la función de coste:  1.030
+Paso 708. Valor actual de la función de coste:  1.024
+Paso 711. Valor actual de la función de coste:  1.026
+Paso 714. Valor actual de la función de coste:  1.024
+Paso 717. Valor actual de la función de coste:  1.023
+Paso 720. Valor actual de la función de coste:  1.019
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 723. Valor actual de la función de coste:  1.020
+Paso 726. Valor actual de la función de coste:  1.027
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 729. Valor actual de la función de coste:  1.029
+Paso 732. Valor actual de la función de coste:  1.020
+Paso 735. Valor actual de la función de coste:  1.021
+Paso 738. Valor actual de la función de coste:  1.018
+Paso 741. Valor actual de la función de coste:  1.011
+Paso 744. Valor actual de la función de coste:  1.018
+Paso 747. Valor actual de la función de coste:  1.017
+Paso 750. Valor actual de la función de coste:  1.019
+Paso 753. Valor actual de la función de coste:  1.015
+Paso 756. Valor actual de la función de coste:  1.011
+Paso 759. Valor actual de la función de coste:  1.007
+Paso 762. Valor actual de la función de coste:  1.008
+Paso 765. Valor actual de la función de coste:  1.010
+Paso 768. Valor actual de la función de coste:  1.005
+Paso 771. Valor actual de la función de coste:  1.009
+Paso 774. Valor actual de la función de coste:  1.006
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 777. Valor actual de la función de coste:  1.007
+Paso 780. Valor actual de la función de coste:  1.004
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 783. Valor actual de la función de coste:  1.002
+Paso 786. Valor actual de la función de coste:  1.004
+Paso 789. Valor actual de la función de coste:  1.002
+Paso 792. Valor actual de la función de coste:  1.002
+Paso 795. Valor actual de la función de coste:  1.002
+Paso 798. Valor actual de la función de coste:  1.001
+Paso 801. Valor actual de la función de coste:  1.001
+Paso 804. Valor actual de la función de coste:  1.002
+Paso 807. Valor actual de la función de coste:  1.003
+Paso 810. Valor actual de la función de coste:  1.005
+Paso 813. Valor actual de la función de coste:  1.005
+Paso 816. Valor actual de la función de coste:  1.006
+Paso 819. Valor actual de la función de coste:  1.004
+Paso 822. Valor actual de la función de coste:  1.004
+Paso 825. Valor actual de la función de coste:  1.004
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 828. Valor actual de la función de coste:  1.003
+Paso 831. Valor actual de la función de coste:  1.003
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 834. Valor actual de la función de coste:  1.003
+Paso 837. Valor actual de la función de coste:  1.004
+Paso 840. Valor actual de la función de coste:  1.001
+Paso 843. Valor actual de la función de coste:  1.004
+Paso 846. Valor actual de la función de coste:  1.003
+Paso 849. Valor actual de la función de coste:  1.003
+Paso 852. Valor actual de la función de coste:  1.002
+Paso 855. Valor actual de la función de coste:  1.003
+Paso 858. Valor actual de la función de coste:  1.005
+Paso 861. Valor actual de la función de coste:  1.002
+Paso 864. Valor actual de la función de coste:  1.004
+Paso 867. Valor actual de la función de coste:  1.002
+Paso 870. Valor actual de la función de coste:  1.002
+Paso 873. Valor actual de la función de coste:  1.003
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 876. Valor actual de la función de coste:  1.003
+Paso 879. Valor actual de la función de coste:  1.003
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 882. Valor actual de la función de coste:  1.003
+Paso 885. Valor actual de la función de coste:  1.002
+Paso 888. Valor actual de la función de coste:  1.002
+Paso 891. Valor actual de la función de coste:  1.002
+Paso 894. Valor actual de la función de coste:  1.002
+Paso 897. Valor actual de la función de coste:  1.002
+Paso 900. Valor actual de la función de coste:  1.002
+Paso 903. Valor actual de la función de coste:  1.003
+Paso 906. Valor actual de la función de coste:  1.001
+Paso 909. Valor actual de la función de coste:  1.001
+Paso 912. Valor actual de la función de coste:  1.001
+Paso 915. Valor actual de la función de coste:  1.001
+Paso 918. Valor actual de la función de coste:  1.002
+Paso 921. Valor actual de la función de coste:  1.002
+Paso 924. Valor actual de la función de coste:  1.002
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 927. Valor actual de la función de coste:  1.002
+Paso 930. Valor actual de la función de coste:  1.004
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 933. Valor actual de la función de coste:  1.005
+Paso 936. Valor actual de la función de coste:  1.002
+Paso 939. Valor actual de la función de coste:  1.002
+Paso 942. Valor actual de la función de coste:  1.002
+Paso 945. Valor actual de la función de coste:  1.003
+Paso 948. Valor actual de la función de coste:  1.001
+Paso 951. Valor actual de la función de coste:  1.003
+Paso 954. Valor actual de la función de coste:  1.002
+Paso 957. Valor actual de la función de coste:  1.002
+Paso 960. Valor actual de la función de coste:  1.004
+Paso 963. Valor actual de la función de coste:  1.002
+Paso 966. Valor actual de la función de coste:  1.002
+Paso 969. Valor actual de la función de coste:  1.002
+Paso 972. Valor actual de la función de coste:  1.002
+Paso 975. Valor actual de la función de coste:  1.001
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 978. Valor actual de la función de coste:  1.003
+Paso 981. Valor actual de la función de coste:  1.003
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paso 984. Valor actual de la función de coste:  1.002
+Paso 987. Valor actual de la función de coste:  1.002
+Paso 990. Valor actual de la función de coste:  1.002
+Paso 993. Valor actual de la función de coste:  1.001
+Paso 996. Valor actual de la función de coste:  1.002
+Paso 999. Valor actual de la función de coste:  1.002
+Los parámetros óptimos para este circuito son: [
+	-0.016,		0.229,		0.248,
+	0.378,		1.579,		1.692,
+	-0.229,		-0.172,		0.967,
+	1.414,		1.418,		0.937,
+	0.457,		0.735,		-0.671,
+	0.799,	]
+El valor del autovalor mínimo es:  1.002
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Con la información de las iteraciones podemos dibujar la convergencia de nuestro código</span>
+
+<span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result_energy</span><span class="p">)),</span> <span class="n">result_energy</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Valor de la energía&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Paso&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Energía&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Convergencia de la energía con el optimizador SPSA&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7d95258288737ed9aa76faec778ca9669320084fe9c426ad018ba4bcaa470275.png" src="../../_images/7d95258288737ed9aa76faec778ca9669320084fe9c426ad018ba4bcaa470275.png" />
+</div>
+</div>
+<p>Por supuesto, aunque con este código abordamos los principios básicos del algoritmo y podemos obtener una aproximacion decente de <span class="math notranslate nohighlight">\(E_G\)</span> para matrices pequeñas, este algoritmo se puede implementar de forma más eficaz, rápida y con mayor precisión en operadores de mayor dimensionalidad.</p>
+<p>En resumen, en el algoritmo VQE se fabrica un circuito cuántico (<em>ansatz</em>) parametrizado (<span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>), se ejecuta para obtener el valor esperado del operador problema (<span class="math notranslate nohighlight">\(E (\boldsymbol{\theta})\)</span>) y se envía el resultado a un optimizador clásico (<code class="docutils literal notranslate"><span class="pre">SPSA</span></code>) para que reajuste los parámetros. A lo largo de varias iteraciones, el algoritmo converge a un valor en torno a <span class="math notranslate nohighlight">\(E_G\)</span>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="bibliografia">
+<h2><a class="toc-backref" href="#id100">Bibliografía</a><a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
+<div class="docutils container" id="id5">
+<dl class="citation">
+<dt class="label" id="id62"><span class="brackets"><a class="fn-backref" href="#id4">1</a></span></dt>
+<dd><p>S. Bhatnagar, H.L. Prasad, and L.A. Prashanth. <em>Stochastic Recursive Algorithms for Optimization</em>. Volume 434 of Lecture Notes in Control and Information Sciences. Springer London, London, 2013. ISBN 978-1-4471-4284-3 978-1-4471-4285-0. URL: <a class="reference external" href="http://link.springer.com/10.1007/978-1-4471-4285-0">http://link.springer.com/10.1007/978-1-4471-4285-0</a> (visited on 2023-01-10), <a class="reference external" href="https://doi.org/10.1007/978-1-4471-4285-0">doi:10.1007/978-1-4471-4285-0</a>.</p>
+</dd>
+<dt class="label" id="id68"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
+<dd><p>Alberto Peruzzo, Jarrod McClean, Peter Shadbolt, Man-Hong Yung, Xiao-Qi Zhou, Peter J. Love, Alán Aspuru-Guzik, and Jeremy L. O’Brien. A variational eigenvalue solver on a photonic quantum processor. <em>Nature Communications</em>, 5(1):4213, July 2014. Number: 1 Publisher: Nature Publishing Group. URL: <a class="reference external" href="https://www.nature.com/articles/ncomms5213">https://www.nature.com/articles/ncomms5213</a> (visited on 2022-12-19), <a class="reference external" href="https://doi.org/10.1038/ncomms5213">doi:10.1038/ncomms5213</a>.</p>
+</dd>
+<dt class="label" id="id70"><span class="brackets"><a class="fn-backref" href="#id2">3</a></span></dt>
+<dd><p>Jules Tilly, Hongxiang Chen, Shuxiang Cao, Dario Picozzi, Kanav Setia, Ying Li, Edward Grant, Leonard Wossnig, Ivan Rungger, George H. Booth, and Jonathan Tennyson. The Variational Quantum Eigensolver: A review of methods and best practices. <em>Physics Reports</em>, 986:1–128, November 2022. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0370157322003118">https://www.sciencedirect.com/science/article/pii/S0370157322003118</a> (visited on 2022-12-19), <a class="reference external" href="https://doi.org/10.1016/j.physrep.2022.08.003">doi:10.1016/j.physrep.2022.08.003</a>.</p>
+</dd>
+<dt class="label" id="id75"><span class="brackets"><a class="fn-backref" href="#id3">4</a></span></dt>
+<dd><p>Frank Zickert. <em>Hands-On Quantum Machine Learning With Python. Combinatorial Optimization.</em> Volume 2. PyQML, 2022. ISBN 979-8374278491.</p>
+</dd>
+</dl>
+</div>
+<hr class="docutils" />
+<center>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+<img aling="left" alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+</center>
+<p>License: <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</a>.</p>
+<p>This work has been financially supported by the Ministry for Digital Transformation and of Civil Service of the Spanish Government through the QUANTUM ENIA project call - Quantum Spain project, and by the European Union through the Recovery, Transformation and Resilience Plan - NextGenerationEU within the framework of the Digital Spain 2026 Agenda.</p>
+<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png" class="align-left" src="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png" style="width: 1000px;" /></a>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs/Part_03_VQE"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PT3-Support</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter_01_02_Introduction/Section_011_Modelo-Ising_myst.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">El Modelo de Ising con el algoritmo VQE</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primeros-pasos">Primeros pasos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programando-el-algoritmo-vqe">Programando el Algoritmo VQE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By QuantumSpain & TalentQ
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
