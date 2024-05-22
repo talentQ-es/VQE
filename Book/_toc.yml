@@ -1,0 +1,17 @@
+format: jb-book
+root: docs/index
+parts:
+- caption:  Variational Quantum Eigensolver
+  chapters:
+  - file:  docs/Part_03_VQE/Chapter_01_01_Introduction_myst.ipynb
+    sections:
+    - file:  docs/Part_03_VQE/Chapter_01_02_Introduction/Section_011_Modelo-Ising_myst.ipynb
+    - file:  docs/Part_03_VQE/Chapter_01_02_Introduction/Section_012_Molecula-H2_myst.ipynb
+    - file:  docs/Part_03_VQE/Chapter_01_02_Introduction/Section_013_Conclusiones_myst.ipynb
+  - file:  docs/Part_03_VQE/Chapter_02_01_Ansatze_myst.ipynb
+    sections:
+    - file:  docs/Part_03_VQE/Chapter_02_02_Ansatz/Section_021_k-UpCCGSD_myst.ipynb
+    - file:  docs/Part_03_VQE/Chapter_02_02_Ansatz/Section_023_ADAPT_myst.ipynb
+  - file:  docs/Part_03_VQE/Chapter_03_01_Optimizadores_myst.md
+    sections:
+    - file:  docs/Part_03_VQE/Chapter_03_02_Optimizadores/Section_031_Rotosolve_myst.ipynb

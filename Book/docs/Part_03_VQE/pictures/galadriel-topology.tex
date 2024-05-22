@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage{tikz}
+
+\begin{document}
+
+\begin{tikzpicture}[rotate=45]
+    \node[draw,circle, inner sep=10pt] (center) at (0,0) {\Huge 2};
+    \foreach \angle in {0,90,180,270} {
+        \node[draw,circle, inner sep=10pt] (node\angle) at (\angle:5cm) {\phantom{\Huge Q}};
+        \draw (center) -- (node\angle);
+    }
+\end{tikzpicture}
+
+\end{document}
+

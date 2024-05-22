@@ -1,0 +1,1021 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>La molécula de \(\text{H}_2\) &#8212; PT3-Support</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/myfile.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "jamasole/Curso-TalentQ-Book");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/Part_03_VQE/Chapter_01_02_Introduction/Section_012_Molecula-H2_myst';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Conclusiones" href="Section_013_Conclusiones_myst.html" />
+    <link rel="prev" title="El Modelo de Ising con el algoritmo VQE" href="Section_011_Modelo-Ising_myst.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/TalentQ_LogoNegNegro.png" class="logo__image only-light" alt="PT3-Support - Home"/>
+    <script>document.write(`<img src="../../../_static/TalentQ_LogoNegNegro.png" class="logo__image only-dark" alt="PT3-Support - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational Quantum Eigensolver</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Chapter_01_01_Introduction_myst.html">Introducción al Algoritmo VQE</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Section_011_Modelo-Ising_myst.html">El Modelo de Ising con el algoritmo VQE</a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">La molécula de <span class="math notranslate nohighlight">\(\text{H}_2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Section_013_Conclusiones_myst.html">Conclusiones</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_02_01_Ansatze_myst.html">Ansätze</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_02_02_Ansatz/Section_021_k-UpCCGSD_myst.html">Ansatz k-UpCCGSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_02_02_Ansatz/Section_023_ADAPT_myst.html">ADAPT con el Modelo de Lipkin</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_03_01_Optimizadores_myst.html">Optimizadores</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Optimizadores/Section_031_Rotosolve_myst.html">Algoritmo de optimización Rotosolve</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/davidcb98/JupyterBook_plantilla" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/davidcb98/JupyterBook_plantilla/edit/master/Book/docs/Part_03_VQE/Chapter_01_02_Introduction/Section_012_Molecula-H2_myst.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/davidcb98/JupyterBook_plantilla/issues/new?title=Issue%20on%20page%20%2Fdocs/Part_03_VQE/Chapter_01_02_Introduction/Section_012_Molecula-H2_myst.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/docs/Part_03_VQE/Chapter_01_02_Introduction/Section_012_Molecula-H2_myst.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>La molécula de \text{H}_2</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <blockquote>
+<div><p>May 06, 2024 | 3 min read</p>
+</div></blockquote>
+<figure class="align-left">
+<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png" src="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png" style="width: 1000px;" /></a>
+</figure>
+<p>Authors:</p>
+<ul class="simple">
+<li><p>Irais Bautista (<a class="reference external" href="http://www.cesga.es">CESGA</a>), Sergio Martínez (<a class="reference external" href="https://bifi.es/es/">BIFi-UNIZAR</a>), Jaime Scharfhausen (<a class="reference external" href="https://www.uam.es/uam/inicio">UAM</a>) y Alejandro Jaramillo (<a class="reference external" href="https://www.csuc.cat/es">CSUC</a>)</p></li>
+</ul>
+<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png" src="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png" style="width: 100px;" /></a>
+<a class="reference internal image-reference" href="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png"><img alt="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png" src="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png"><img alt="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png" src="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png"><img alt="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png" src="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png" style="width: 200px;" /></a>
+<section class="tex2jax_ignore mathjax_ignore" id="la-molecula-de-text-h-2">
+<span id="sec-la-molecula-de-h2"></span><h1>La molécula de <span class="math notranslate nohighlight">\(\text{H}_2\)</span><a class="headerlink" href="#la-molecula-de-text-h-2" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_hide-input tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Librerías generales</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Librerías Qibo</span>
+<span class="kn">import</span> <span class="nn">qibo</span>
+<span class="kn">from</span> <span class="nn">qibo</span> <span class="kn">import</span> <span class="n">models</span><span class="p">,</span> <span class="n">gates</span><span class="p">,</span> <span class="n">hamiltonians</span>
+<span class="kn">from</span> <span class="nn">qibo</span> <span class="kn">import</span> <span class="n">matrices</span> <span class="k">as</span> <span class="n">m</span>
+
+<span class="c1"># Librerías Qiskit</span>
+<span class="kn">import</span> <span class="nn">qiskit</span>
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">IBMQ</span><span class="p">,</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">QuantumRegister</span><span class="p">,</span> <span class="n">ClassicalRegister</span><span class="p">,</span> <span class="n">Aer</span><span class="p">,</span> <span class="n">execute</span><span class="p">,</span> <span class="n">transpile</span>
+<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_bloch_multivector</span>
+<span class="kn">from</span> <span class="nn">qiskit.algorithms.optimizers</span> <span class="kn">import</span> <span class="n">COBYLA</span><span class="p">,</span> <span class="n">SPSA</span><span class="p">,</span> <span class="n">POWELL</span>
+<span class="kn">from</span> <span class="nn">qiskit.primitives</span> <span class="kn">import</span> <span class="n">Estimator</span>
+<span class="kn">from</span> <span class="nn">qiskit.algorithms.minimum_eigensolvers</span> <span class="kn">import</span> <span class="n">VQE</span>
+<span class="kn">from</span> <span class="nn">qiskit.utils</span> <span class="kn">import</span> <span class="n">QuantumInstance</span><span class="p">,</span> <span class="n">algorithm_globals</span>
+<span class="kn">from</span> <span class="nn">qiskit.opflow</span> <span class="kn">import</span> <span class="n">X</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">Y</span>
+<span class="kn">from</span> <span class="nn">qiskit.circuit.library</span> <span class="kn">import</span> <span class="n">TwoLocal</span>
+<span class="kn">from</span> <span class="nn">qiskit.tools.parallel</span> <span class="kn">import</span> <span class="n">parallel_map</span>
+
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">()</span>
+
+<span class="n">qibo</span><span class="o">.</span><span class="n">set_backend</span><span class="p">(</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>El algoritmo VQE se propuso originalmente para obtener el estado de mínima energía de moléculas complicadas a partir de su Hamiltoniano <span id="id1">[<a class="reference internal" href="Section_013_Conclusiones_myst.html#id70" title="Alberto Peruzzo, Jarrod McClean, Peter Shadbolt, Man-Hong Yung, Xiao-Qi Zhou, Peter J. Love, Alán Aspuru-Guzik, and Jeremy L. O’Brien. A variational eigenvalue solver on a photonic quantum processor. Nature Communications, 5(1):4213, July 2014. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/ncomms5213 (visited on 2022-12-19), doi:10.1038/ncomms5213.">3</a>]</span>. Por este motivo, gran parte de su historia y sus aplicaciones se han desarrollado y estudiado dentro del ámbito de la química computacional. También por este motivo, muchas librerías y lenguajes de programación orientados a utilizar computadores cuánticos tienen integradas multitud de funciones y características para trabajar con moléculas.</p>
+<p>Por ejemplo, Google tiene su librería de computación cuántica <a class="reference external" href="https://quantumai.google/openfermion"><code class="docutils literal notranslate"><span class="pre">openfermion</span></code></a>, mientras que Qiskit tiene, en su módulo <code class="docutils literal notranslate"><span class="pre">qiskit_nature</span></code>, un método para construir moléculas utilizando PYSCF.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">openfermion</span> <span class="kn">import</span> <span class="n">MolecularData</span>
+<span class="kn">from</span> <span class="nn">openfermionpyscf</span> <span class="kn">import</span> <span class="n">run_pyscf</span>
+<span class="kn">from</span> <span class="nn">openfermion</span> <span class="kn">import</span> <span class="n">jordan_wigner</span><span class="p">,</span> <span class="n">count_qubits</span>
+
+<span class="c1"># NOTA: Haciendo este código me ha salido un error interno de las librerías de pyscf.</span>
+<span class="c1"># Este error alega que no existe un módulo llamado openfermion.chem</span>
+<span class="c1"># Esto puede deberse a que la versión de openfermion esté en una versión no compatible.</span>
+<span class="c1"># Para solucionarlo, basta con ir al script de la función de pyscf y cambiar el comando</span>
+<span class="c1"># from openfermion.chem import *</span>
+<span class="c1">#   por</span>
+<span class="c1"># from openfermion import *</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">qiskit_nature</span>
+<span class="kn">from</span> <span class="nn">qiskit_nature.units</span> <span class="kn">import</span> <span class="n">DistanceUnit</span>
+<span class="kn">from</span> <span class="nn">qiskit_nature.second_q.drivers</span> <span class="kn">import</span> <span class="n">PySCFDriver</span>
+<span class="kn">from</span> <span class="nn">qiskit_nature.second_q.algorithms</span> <span class="kn">import</span> <span class="n">GroundStateEigensolver</span>
+<span class="kn">from</span> <span class="nn">qiskit_nature.second_q.circuit.library</span> <span class="kn">import</span> <span class="n">UCCSD</span>
+<span class="kn">from</span> <span class="nn">qiskit_nature.second_q.mappers</span> <span class="kn">import</span> <span class="n">JordanWignerMapper</span><span class="p">,</span> <span class="n">QubitMapper</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>Este módulo nos permite, entre otras cosas, fabricar diferentes moléculas, especificando los diferentes átomos que la componen, la base de funciones de la función de onda del electrón, la carga y la multiplicidad de la molécula.</p>
+<p>De todas las posibles moléculas que podríamos tratar, la más sencilla es la de <span class="math notranslate nohighlight">\(\text{H}_2\)</span>: el átomo de Hidrógeno es el más pequeño y simple, presenta un único enlace y solo tiene dos electrones.</p>
+<p>Aun así, al contrario que el Modelo de Ising, la molécula de Hidrógeno presenta un problema: no es resoluble analíticamente. En su lugar, el “valor teórico” de su energía fundamental es realmente el resultado de simulaciones y experimentos, en ocasiones dando resultados en forma de operaciones infinitas que hay que truncar en alguna parte.</p>
+<p>Así, por ejemplo, en <span id="id2">[<a class="reference internal" href="#id57" title="Tao Pang. Hydrogen molecule under confinement: Exact results. Physical Review A, 49(3):1709–1713, March 1994. URL: https://link.aps.org/doi/10.1103/PhysRevA.49.1709 (visited on 2023-01-12), doi:10.1103/PhysRevA.49.1709.">1</a>]</span> se presenta un resultado de <span class="math notranslate nohighlight">\(-1.1746(5) E_h\)</span> a partir de simulaciones de Monte Carlo, mientras que en <span id="id3">[<a class="reference internal" href="#id58" title="Zhen-Yu Yang and Ji-Xuan Hou. Calculating the ground state energy of hydrogen molecules and helium hydride ions using Bohr’s quantum theory. European Journal of Physics, 40(6):065405, November 2019. URL: https://iopscience.iop.org/article/10.1088/1361-6404/ab32ce (visited on 2023-01-12), doi:10.1088/1361-6404/ab32ce.">3</a>]</span> obtienen un resultado comprendido entre <span class="math notranslate nohighlight">\(-1.2241 E_h\)</span> y <span class="math notranslate nohighlight">\(-1.0999 E_h\)</span> empleando el modelo de Bohr.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Creamos la molécula con los parámetros requeridos</span>
+
+<span class="c1"># Parámetros moleculares</span>
+<span class="n">bond_length</span> <span class="o">=</span> <span class="mf">1.40104295</span>
+<span class="n">multiplicity</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># Dependiendo del tipo de molécula, el spin queda determinado por la multiplicidad. Si lo detecta como incompatible, dará error.</span>
+<span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;sto-3g&#39;</span>
+<span class="n">charge</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Especificamos los elementos y su disposición geométrica</span>
+<span class="n">geometry</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)),</span> <span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="n">bond_length</span><span class="p">))]</span>
+
+<span class="c1"># Parámetros del cálculo. En nuestro caso especificamos solo run_scf porque nos basta con haber hecho solo Hartree-Fock.</span>
+<span class="n">run_scf</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">run_mp2</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">run_cisd</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">run_ccsd</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">run_fci</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">delete_input</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">delete_output</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Inicializamos la estructura molecular</span>
+<span class="n">molecule</span> <span class="o">=</span> <span class="n">MolecularData</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">basis</span><span class="p">,</span> <span class="n">multiplicity</span><span class="p">,</span>
+                         <span class="n">charge</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">bond_length</span><span class="p">))</span>
+
+<span class="c1"># Calculamos sus integrales</span>
+<span class="n">molecule</span> <span class="o">=</span> <span class="n">run_pyscf</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span>
+                        <span class="n">run_scf</span><span class="o">=</span><span class="n">run_scf</span><span class="p">,</span>
+                        <span class="n">run_mp2</span><span class="o">=</span><span class="n">run_mp2</span><span class="p">,</span>
+                        <span class="n">run_cisd</span><span class="o">=</span><span class="n">run_cisd</span><span class="p">,</span>
+                        <span class="n">run_ccsd</span><span class="o">=</span><span class="n">run_ccsd</span><span class="p">,</span>
+                        <span class="n">run_fci</span><span class="o">=</span><span class="n">run_fci</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">PySCFDriver</span><span class="p">(</span>
+    <span class="n">atom</span><span class="o">=</span><span class="s2">&quot;H 0 0 0; H 0 0 0.741&quot;</span><span class="p">,</span>
+    <span class="n">basis</span><span class="o">=</span><span class="s2">&quot;sto3g&quot;</span><span class="p">,</span>
+    <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">spin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">unit</span><span class="o">=</span><span class="n">DistanceUnit</span><span class="o">.</span><span class="n">ANGSTROM</span><span class="p">,</span>
+    <span class="c1"># El método de aproximación por defecto es Hartree-Fock: method=MethodType.RHF</span>
+<span class="p">)</span>
+
+<span class="n">es_problem</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>Mientras que Qiskit puede generar el Hamiltoniano de la molécula con sus propias funciones, con Qibo necesitamos fabricar una función que nos convierta el problema molecular en uno legible por un circuito cuántico.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">def</span> <span class="nf">qibo_mol_H</span><span class="p">(</span><span class="n">molecule</span><span class="p">):</span>
+
+    <span class="c1"># molecule es una estructura molecular de OpenFermion</span>
+    <span class="c1"># devuelve un Hamiltoniano en términos de Qibo</span>
+
+    <span class="c1"># Obtenemos el Hamiltoniano molecular de nuestra molécula fabricada con OpenFermion</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">get_molecular_hamiltonian</span><span class="p">()</span>
+
+    <span class="c1"># Nos aseguramos de que el término constante está bien definido</span>
+    <span class="k">if</span> <span class="n">H</span><span class="o">.</span><span class="n">constant</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">H</span><span class="o">.</span><span class="n">constant</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Hacemos la transformación de Jordan Wigner</span>
+    <span class="n">JW</span> <span class="o">=</span> <span class="n">jordan_wigner</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+    <span class="n">dim</span> <span class="o">=</span> <span class="n">count_qubits</span><span class="p">(</span><span class="n">JW</span><span class="p">)</span>
+
+    <span class="c1"># Inicializamos el operador con el término constante</span>
+    <span class="n">operator</span> <span class="o">=</span> <span class="n">JW</span><span class="o">.</span><span class="n">constant</span> <span class="o">*</span> <span class="n">reduce</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">,</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">I</span><span class="p">]</span><span class="o">*</span><span class="n">dim</span><span class="p">)</span>  
+
+    <span class="c1"># Recorremos los términos del operador de Jordan-Wigner</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">JW</span><span class="o">.</span><span class="n">terms</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="p">():</span>
+            <span class="k">continue</span> <span class="c1"># Omitimos el término constante, ya que hemos inicializado con él</span>
+
+        <span class="c1"># Definimos una lista auxiliar de operadores identidad del tamaño del sistema</span>
+        <span class="n">lis</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">I</span><span class="p">]</span><span class="o">*</span><span class="n">dim</span>
+
+        <span class="c1"># Reemplazamos en nuestra lista los operadores en la posición en la que indica el término de JW</span>
+        <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">index</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">tag</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="n">lis</span><span class="p">[</span><span class="n">tag</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">X</span>
+            <span class="k">elif</span> <span class="n">tag</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="n">lis</span><span class="p">[</span><span class="n">tag</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">Y</span>
+            <span class="k">elif</span> <span class="n">tag</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Z&#39;</span><span class="p">:</span> <span class="n">lis</span><span class="p">[</span><span class="n">tag</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">Z</span>
+
+        <span class="c1"># Sumamos el término JW a nuestro operador matricial</span>
+        <span class="n">operator</span> <span class="o">+=</span> <span class="n">JW</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="n">reduce</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">,</span> <span class="n">lis</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">hamiltonians</span><span class="o">.</span><span class="n">Hamiltonian</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">operator</span><span class="p">),</span> <span class="n">dim</span><span class="p">,</span> <span class="n">operator</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">converter</span> <span class="o">=</span> <span class="n">JordanWignerMapper</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>Y, una vez tenemos el Hamiltoniano, podemos implementar el algoritmo VQE igual que hicimos antes:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Ahora creamos un circuito variacional de ansatz</span>
+<span class="c1"># En este caso usamos un circuito de puertas RY(theta) y CZ, haciendo los diferentes valores de theta aleatorios</span>
+
+<span class="n">op_H</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">mat</span> <span class="o">=</span> <span class="n">qibo_mol_H</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+
+<span class="n">nqubits</span> <span class="o">=</span> <span class="n">n</span>
+<span class="n">nlayers</span>  <span class="o">=</span> <span class="mi">8</span>
+
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Circuit</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nlayers</span><span class="p">):</span>
+    <span class="n">circuit</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">gates</span><span class="o">.</span><span class="n">RY</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)))</span>
+    <span class="n">circuit</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">gates</span><span class="o">.</span><span class="n">CZ</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">q</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nqubits</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+    <span class="n">circuit</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">gates</span><span class="o">.</span><span class="n">RY</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)))</span>
+    <span class="n">circuit</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">gates</span><span class="o">.</span><span class="n">CZ</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">q</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nqubits</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+    <span class="n">circuit</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gates</span><span class="o">.</span><span class="n">CZ</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nqubits</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    
+<span class="n">circuit</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">gates</span><span class="o">.</span><span class="n">RY</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">tl_circuit</span> <span class="o">=</span> <span class="n">TwoLocal</span><span class="p">(</span>
+    <span class="n">rotation_blocks</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="s2">&quot;rx&quot;</span><span class="p">],</span>
+    <span class="n">entanglement_blocks</span><span class="o">=</span><span class="s2">&quot;cz&quot;</span><span class="p">,</span>
+    <span class="n">entanglement</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span>
+    <span class="n">reps</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">parameter_prefix</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>Utilizamos, de nuevo, el algoritmo de optimización de Powell.</p>
+<div class="note admonition">
+<p class="admonition-title">Nota (Eficiencia en la optimización)</p>
+<p>El algoritmo de Powell que estamos empleando es considerablemente más eficiente que el resto de algoritmos que hemos probado para este problema específicamente. No obstante, su funcionamiento da lugar a unas gráficas de convergencia que no son particularmente ilustrativas. Si se quiere ver una gráfica en la que realmente se aprecie la convergencia del algoritmo, se puede probar a utilizar el algoritmo COBYLA. No obstante, la ejecución del código tardará un tiempo considerable (del orden de 20 minutos).</p>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Optimizador</span>
+<span class="c1"># opt = &#39;COBYLA&#39;</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="s1">&#39;Powell&#39;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Optimizador</span>
+<span class="c1"># opt = COBYLA(maxiter=1000)</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">POWELL</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>De nuevo necesitamos funciones de callback</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-10">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Esto son funciones auxiliares para guardar los datos de las iteraciones</span>
+
+<span class="n">intermediate_info</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s1">&#39;energy&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="c1">#&#39;stddev&#39;: []</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    
+    <span class="n">energy</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">vqe</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">callback</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">opt</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">compile</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">energy</span><span class="p">)</span>
+    
+    <span class="c1">#intermediate_info[&#39;stddev&#39;].append(stddev)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-11">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Esto son funciones auxiliares para guardar los datos de las iteraciones</span>
+
+<span class="n">intermediate_info</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s1">&#39;energy&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="c1">#&#39;stddev&#39;: []</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">eval_count</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">):</span>
+   <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+   <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-12">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Parámetros del Ansatz</span>
+<span class="n">initial_parameters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">nqubits</span><span class="o">*</span><span class="n">nlayers</span> <span class="o">+</span> <span class="n">nqubits</span><span class="p">)</span>
+
+<span class="c1"># Construcción del método VQE</span>
+<span class="n">vqe</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">VQE</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">op_H</span><span class="p">)</span>
+<span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;disp&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;return_all&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+
+<span class="c1"># Y ejecutamos el algoritmo</span>
+<span class="n">best</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="n">vqe</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">initial_parameters</span><span class="p">,</span> <span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">opt</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="n">options</span><span class="p">,</span> <span class="nb">compile</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-13">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Y ejecutamos el algoritmo</span>
+<span class="n">vqe_solver</span> <span class="o">=</span> <span class="n">VQE</span><span class="p">(</span><span class="n">Estimator</span><span class="p">(),</span> <span class="n">tl_circuit</span><span class="p">,</span> <span class="n">opt</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">)</span>
+
+<span class="n">calc</span> <span class="o">=</span> <span class="n">GroundStateEigensolver</span><span class="p">(</span><span class="n">converter</span><span class="p">,</span> <span class="n">vqe_solver</span><span class="p">)</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">es_problem</span><span class="p">)</span>
+<span class="n">best</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">total_energies</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: -1.015274
+         Iterations: 4
+         Function evaluations: 2500
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vemos el valor al que convergemos</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;E_G =&#39;</span><span class="p">,</span><span class="n">best</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E_G = -1.0152741319448177
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Con la información de las iteraciones podemos dibujar la convergencia de nuestro código</span>
+
+<span class="n">sim_values</span> <span class="o">=</span> <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span>
+<span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sim_values</span><span class="p">)),</span> <span class="n">sim_values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Energy value&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Steps&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Energy&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Energy convergence for Powell optimizer&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/eafc7a6c47d02dc38334f5414f1c2edb757054941f8b3d31c7491c33de35886a.png" src="../../../_images/eafc7a6c47d02dc38334f5414f1c2edb757054941f8b3d31c7491c33de35886a.png" />
+</div>
+</div>
+<p>Para este caso concreto es importante destacar que el problema que hemos resuelto es la diagonalización del Hamiltoniano de Hartree-Fock de la molécula.</p>
+<p>Existen otros modelos de <em>ansatz</em> (como los <em>ansätze</em> UCC) que, antes que hacer la diagonalización, operan sobre el circuito introduciendo términos y consideraciones nuevas, como correcciones relativistas o correlación electrónica, y después obtienen la energía fundamental, de forma que la resolución del problema tiene en cuenta efectos más difíciles de simular con computadores clásicos.</p>
+<hr class="docutils" />
+<section id="bibliografia">
+<h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
+<div class="docutils container" id="id4">
+<dl class="citation">
+<dt class="label" id="id57"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>Tao Pang. Hydrogen molecule under confinement: Exact results. <em>Physical Review A</em>, 49(3):1709–1713, March 1994. URL: <a class="reference external" href="https://link.aps.org/doi/10.1103/PhysRevA.49.1709">https://link.aps.org/doi/10.1103/PhysRevA.49.1709</a> (visited on 2023-01-12), <a class="reference external" href="https://doi.org/10.1103/PhysRevA.49.1709">doi:10.1103/PhysRevA.49.1709</a>.</p>
+</dd>
+<dt class="label" id="id67"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
+<dd><p>Alberto Peruzzo, Jarrod McClean, Peter Shadbolt, Man-Hong Yung, Xiao-Qi Zhou, Peter J. Love, Alán Aspuru-Guzik, and Jeremy L. O’Brien. A variational eigenvalue solver on a photonic quantum processor. <em>Nature Communications</em>, 5(1):4213, July 2014. Number: 1 Publisher: Nature Publishing Group. URL: <a class="reference external" href="https://www.nature.com/articles/ncomms5213">https://www.nature.com/articles/ncomms5213</a> (visited on 2022-12-19), <a class="reference external" href="https://doi.org/10.1038/ncomms5213">doi:10.1038/ncomms5213</a>.</p>
+</dd>
+<dt class="label" id="id58"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Zhen-Yu Yang and Ji-Xuan Hou. Calculating the ground state energy of hydrogen molecules and helium hydride ions using Bohr’s quantum theory. <em>European Journal of Physics</em>, 40(6):065405, November 2019. URL: <a class="reference external" href="https://iopscience.iop.org/article/10.1088/1361-6404/ab32ce">https://iopscience.iop.org/article/10.1088/1361-6404/ab32ce</a> (visited on 2023-01-12), <a class="reference external" href="https://doi.org/10.1088/1361-6404/ab32ce">doi:10.1088/1361-6404/ab32ce</a>.</p>
+</dd>
+</dl>
+</div>
+<hr class="docutils" />
+<center>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+<img aling="left" alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+</center>
+<p>License: <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</a>.</p>
+<p>This work has been financially supported by the Ministry for Digital Transformation and of Civil Service of the Spanish Government through the QUANTUM ENIA project call - Quantum Spain project, and by the European Union through the Recovery, Transformation and Resilience Plan - NextGenerationEU within the framework of the Digital Spain 2026 Agenda.</p>
+<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png" class="align-left" src="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png" style="width: 1000px;" /></a>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs/Part_03_VQE/Chapter_01_02_Introduction"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Section_011_Modelo-Ising_myst.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">El Modelo de Ising con el algoritmo VQE</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Section_013_Conclusiones_myst.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Conclusiones</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By QuantumSpain & TalentQ
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
