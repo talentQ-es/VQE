@@ -148,11 +148,21 @@ if len(i_start_figure_list) > 0:
     if len(i_date) > 0 :
         i_date = i_date[0]
         try: 
+            ''''
             Notebook_Date = f_data[i_date].split(':')[-1].split('\\n')[0].replace(" ","")
             Date_raw = datetime.strptime(Notebook_Date, "%Y/%m/%d")
             Date_formated = Date_raw.strftime("%b %d, %Y")
 
             f_data[i_date] = '    "\\n",\n'
+            '''
+            Notebook_Date = f_data[i_date].split(':')[-1].replace("\\n","").replace("\n","").replace(" ","").replace("\"","").replace(",","")
+            Date_raw = datetime.strptime(Notebook_Date, "%Y/%m/%d")
+            Date_formated = Date_raw.strftime("%b %d, %Y")
+
+            if '\\n\",\n' in f_data[i_date]:
+                f_data[i_date] = '    "\\n",\n'
+            else:
+                f_data[i_date] = '    "\\n"\n'
 
             my_replace(f_data, i_first_line[0], 'source": [\n'+
                                             #'    "> {sub-ref}`today` | {sub-ref}`wordcount-words` words | {sub-ref}`wordcount-minutes` min read\\n",\n'

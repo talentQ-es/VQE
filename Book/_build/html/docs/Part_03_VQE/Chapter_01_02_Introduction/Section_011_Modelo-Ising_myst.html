@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>El Modelo de Ising con el algoritmo VQE &#8212; PT3-Support</title>
+    <title>El Modelo de Ising con el algoritmo VQE &#8212; Variational Quantum Eigensolver (VQE)</title>
   
   
   
@@ -78,7 +78,7 @@ var addUtterances = () => {
     script.src = "https://utteranc.es/client.js";
     script.async = "async";
 
-    script.setAttribute("repo", "jamasole/Curso-TalentQ-Book");
+    script.setAttribute("repo", "talentQ-es/VQE");
     script.setAttribute("issue-term", "pathname");
     script.setAttribute("theme", "github-light");
     script.setAttribute("label", "💬 comment");
@@ -196,8 +196,8 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../../_static/TalentQ_LogoNegNegro.png" class="logo__image only-light" alt="PT3-Support - Home"/>
-    <script>document.write(`<img src="../../../_static/TalentQ_LogoNegNegro.png" class="logo__image only-dark" alt="PT3-Support - Home"/>`);</script>
+    <img src="../../../_static/TalentQ_LogoNegNegro.png" class="logo__image only-light" alt="Variational Quantum Eigensolver (VQE) - Home"/>
+    <script>document.write(`<img src="../../../_static/TalentQ_LogoNegNegro.png" class="logo__image only-dark" alt="Variational Quantum Eigensolver (VQE) - Home"/>`);</script>
   
   
 </a></div>
@@ -287,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/davidcb98/JupyterBook_plantilla" target="_blank"
+      <li><a href="https://github.com/talentQ-es/VQE" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -304,7 +304,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/davidcb98/JupyterBook_plantilla/edit/master/Book/docs/Part_03_VQE/Chapter_01_02_Introduction/Section_011_Modelo-Ising_myst.ipynb" target="_blank"
+      <li><a href="https://github.com/talentQ-es/VQE/edit/master/Book/docs/Part_03_VQE/Chapter_01_02_Introduction/Section_011_Modelo-Ising_myst.ipynb" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -321,7 +321,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/davidcb98/JupyterBook_plantilla/issues/new?title=Issue%20on%20page%20%2Fdocs/Part_03_VQE/Chapter_01_02_Introduction/Section_011_Modelo-Ising_myst.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/talentQ-es/VQE/issues/new?title=Issue%20on%20page%20%2Fdocs/Part_03_VQE/Chapter_01_02_Introduction/Section_011_Modelo-Ising_myst.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -466,17 +466,6 @@ document.write(`
   <blockquote>
 <div><p>May 06, 2024 | 4 min read</p>
 </div></blockquote>
-<figure class="align-left">
-<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png" src="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png" style="width: 1000px;" /></a>
-</figure>
-<p>Authors:</p>
-<ul class="simple">
-<li><p>Irais Bautista (<a class="reference external" href="http://www.cesga.es">CESGA</a>), Sergio Martínez (<a class="reference external" href="https://bifi.es/es/">BIFi-UNIZAR</a>), Jaime Scharfhausen (<a class="reference external" href="https://www.uam.es/uam/inicio">UAM</a>) y Alejandro Jaramillo (<a class="reference external" href="https://www.csuc.cat/es">CSUC</a>)</p></li>
-</ul>
-<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png" src="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png" style="width: 100px;" /></a>
-<a class="reference internal image-reference" href="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png"><img alt="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png" src="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png" style="width: 200px;" /></a>
-<a class="reference internal image-reference" href="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png"><img alt="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png" src="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png" style="width: 200px;" /></a>
-<a class="reference internal image-reference" href="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png"><img alt="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png" src="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png" style="width: 200px;" /></a>
 <section class="tex2jax_ignore mathjax_ignore" id="el-modelo-de-ising-con-el-algoritmo-vqe">
 <span id="sec-el-modelo-de-ising-con-el-algoritmo-vqe"></span><h1>El Modelo de Ising con el algoritmo VQE<a class="headerlink" href="#el-modelo-de-ising-con-el-algoritmo-vqe" title="Permalink to this heading">#</a></h1>
 <div class="cell tag_hide-input tag_remove-output docutils container">
@@ -936,14 +925,25 @@ Error relativo = 0.08932451663308086 %
 </dl>
 </div>
 <hr class="docutils" />
+<p>Authors:</p>
+<p>Irais Bautista (<a class="reference external" href="http://www.cesga.es">CESGA</a>), Sergio Martínez (<a class="reference external" href="https://bifi.es/es/">BIFi-UNIZAR</a>), Jaime Scharfhausen (<a class="reference external" href="https://www.uam.es/uam/inicio">UAM</a>) y Alejandro Jaramillo (<a class="reference external" href="https://www.csuc.cat/es">CSUC</a>)</p>
+<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png" src="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png" style="width: 150px;" /></a>
+<a class="reference internal image-reference" href="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png"><img alt="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png" src="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png"><img alt="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png" src="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png"><img alt="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png" src="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png" style="width: 200px;" /></a>
+<hr class="docutils" />
+<figure class="align-center">
+<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png" src="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png" style="width: 2000px;" /></a>
+</figure>
 <center>
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
 <img aling="left" alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
 </center>
 <p>License: <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</a>.</p>
 <p>This work has been financially supported by the Ministry for Digital Transformation and of Civil Service of the Spanish Government through the QUANTUM ENIA project call - Quantum Spain project, and by the European Union through the Recovery, Transformation and Resilience Plan - NextGenerationEU within the framework of the Digital Spain 2026 Agenda.</p>
-<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png" class="align-left" src="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png" style="width: 1000px;" /></a>
-</section>
+<center>
+<img align="left" src="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png" width="1000px" />
+</center></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1031,7 +1031,7 @@ Error relativo = 0.08932451663308086 %
   <div class="footer-item">
     
 <p class="component-author">
-By QuantumSpain & TalentQ
+By <a href="https://quantumspain-project.es">QuantumSpain</a> & <a href="https://www.talentq.es/es_es/">TalentQ</a>
 </p>
 
   </div>
