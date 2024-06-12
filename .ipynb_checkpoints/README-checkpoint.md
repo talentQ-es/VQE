@@ -12,8 +12,5 @@
         - **[ADAPT-VQE con el Modelo de Lipkin](./Notebooks/Part_03_VQE/Chapter_02_02_Ansatz/Section_023_ADAPT.ipynb)**
 
     - **[Optimizadores](./Notebooks/Part_03_VQE/Chapter_03_01_Optimizadores_myst.md)**
-<<<<<<< HEAD
-        - **[Rotosolve Qiskit](./Notebooks/Part_03_VQE/Chapter_03_02_Optimizadores/Section_031_Rotosolve_Qiskit.ipynb)**
-=======
+        - **[Optimizador Rotosolve con Pennylane](./Notebooks/Part_03_VQE/Chapter_03_02_Optimizadores/Section_031_Rotosolve_Pennylane.ipynb)**
         - **[Optimizador Rotosolve con Qiskit](./Notebooks/Part_03_VQE/Chapter_03_02_Optimizadores/Section_031_Rotosolve_Qiskit.ipynb)**
->>>>>>> jsc
