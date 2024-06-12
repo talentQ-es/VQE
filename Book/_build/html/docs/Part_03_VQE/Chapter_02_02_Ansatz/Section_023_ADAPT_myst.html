@@ -216,7 +216,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational Quantum Eigensolver</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_01_01_Introduction_myst.html">Introducción al Algoritmo VQE</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_01_01_Introduction_myst.html">Casos Sencillos con el Algoritmo VQE</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Chapter_01_02_Introduction/Section_011_Modelo-Ising_myst.html">El Modelo de Ising con el algoritmo VQE</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../Chapter_01_02_Introduction/Section_012_Molecula-H2_myst.html">La molécula de <span class="math notranslate nohighlight">\(\text{H}_2\)</span></a></li>
@@ -229,10 +229,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_03_01_Optimizadores_myst.html">Optimizadores</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Optimizadores/Section_031_Rotosolve_Pennylane_myst.html">Algoritmo de optimización Rotosolve</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Optimizadores/Section_031_Rotosolve_Qiskit_myst.html">Algoritmo de optimización Rotosolve</a></li>
 </ul>
 </li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Chapter_Bibliografia_myst.html">Bibliografía</a></li>
 </ul>
 
     </div>
@@ -447,7 +450,6 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-modelo-de-lipkin">El Modelo de Lipkin</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adapt-vqe">ADAPT-VQE</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
 </ul>
             </nav>
         </div>
@@ -485,15 +487,14 @@ document.write(`
 </div>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#el-modelo-de-lipkin" id="id102">El Modelo de Lipkin</a></p></li>
-<li><p><a class="reference internal" href="#adapt-vqe" id="id103">ADAPT-VQE</a></p></li>
-<li><p><a class="reference internal" href="#bibliografia" id="id104">Bibliografía</a></p></li>
+<li><p><a class="reference internal" href="#el-modelo-de-lipkin" id="id8">El Modelo de Lipkin</a></p></li>
+<li><p><a class="reference internal" href="#adapt-vqe" id="id9">ADAPT-VQE</a></p></li>
 </ul>
 </div>
 <section id="el-modelo-de-lipkin">
-<span id="sec-el-modelo-de-lipkin"></span><h2><a class="toc-backref" href="#id102">El Modelo de Lipkin</a><a class="headerlink" href="#el-modelo-de-lipkin" title="Permalink to this heading">#</a></h2>
-<p>Un problema abierto en física nuclear es la determinación de la energía del estado fundamental para núcleos atómicos de toda la carta de Segrè. El motivo de que esté abierto es, principalmente, que los modelos que se utilizan habitualmente no son resolubles analíticamente y muy complicados de resolver numéricamente <span id="id1">[<a class="reference internal" href="#id52" title="E. Caurier, G. Martínez-Pinedo, F. Nowacki, A. Poves, and A. P. Zuker. The shell model as a unified view of nuclear structure. Reviews of Modern Physics, 77(2):427–488, June 2005. URL: https://link.aps.org/doi/10.1103/RevModPhys.77.427 (visited on 2023-05-17), doi:10.1103/RevModPhys.77.427.">1</a>]</span>, <span id="id2">[<a class="reference internal" href="#id51" title="Takaharu Otsuka, Alexandra Gade, Olivier Sorlin, Toshio Suzuki, and Yutaka Utsuno. Evolution of shell structure in exotic nuclei. Reviews of Modern Physics, 92(1):015002, March 2020. Publisher: American Physical Society. URL: https://link.aps.org/doi/10.1103/RevModPhys.92.015002 (visited on 2023-05-17), doi:10.1103/RevModPhys.92.015002.">5</a>]</span>, debido a la escala exponencial de los grados de libertad con el tamaño del núcleo. Es por ello que algoritmos como los VQE pueden jugar un papel importante, ya que pueden obtener dicha energía del estado fundamental y ser implementados en un ordenador cuántico, donde el número de estados computacionales que pueden describir los grados de libertad del núcleo también escala exponencialmente <span id="id3">[<a class="reference internal" href="#id55" title="A. M. Romero, J. Engel, Ho Lun Tang, and Sophia E. Economou. Solving nuclear structure problems with the adaptive variational quantum algorithm. Physical Review C, 105(6):064317, June 2022. URL: https://link.aps.org/doi/10.1103/PhysRevC.105.064317 (visited on 2023-05-08), doi:10.1103/PhysRevC.105.064317.">7</a>]</span>, <span id="id4">[<a class="reference internal" href="#id56" title="A. Pérez-Obiol, A. M. Romero, J. Menéndez, A. Rios, A. García-Sáez, and B. Juliá-Díaz. Nuclear shell-model simulation in digital quantum computers. February 2023. arXiv:2302.03641 [nucl-th, physics:quant-ph]. URL: http://arxiv.org/abs/2302.03641 (visited on 2023-05-03).">6</a>]</span>, <span id="id5">[<a class="reference internal" href="#id53" title="Michael J. Cervia, A. B. Balantekin, S. N. Coppersmith, Calvin W. Johnson, Peter J. Love, C. Poole, K. Robbins, and M. Saffman. Lipkin model on a quantum computer. Physical Review C, 104(2):024305, August 2021. arXiv:2011.04097 [hep-th, physics:nucl-th, physics:quant-ph]. URL: http://arxiv.org/abs/2011.04097 (visited on 2023-05-08), doi:10.1103/PhysRevC.104.024305.">2</a>]</span>.</p>
-<p>No obstante, el modelo que vamos a resolver aquí, llamado el modelo de Lipkin-Meshkov-Glick <span id="id6">[<a class="reference internal" href="#id54" title="H.J. Lipkin, N. Meshkov, and A.J. Glick. Validity of many-body approximation methods for a solvable model. Nuclear Physics, 62(2):188–198, February 1965. URL: https://linkinghub.elsevier.com/retrieve/pii/002955826590862X (visited on 2023-05-08), doi:10.1016/0029-5582(65)90862-X.">4</a>]</span> o simplemente de Lipkin, no es más que un preámbulo, pues este sí es resoluble analíticamente (como el caso del Modelo de Ising 1D y 2D).</p>
+<span id="sec-el-modelo-de-lipkin"></span><h2><a class="toc-backref" href="#id8">El Modelo de Lipkin</a><a class="headerlink" href="#el-modelo-de-lipkin" title="Permalink to this heading">#</a></h2>
+<p>Un problema abierto en física nuclear es la determinación de la energía del estado fundamental para núcleos atómicos de toda la carta de Segrè. El motivo de que esté abierto es, principalmente, que los modelos que se utilizan habitualmente no son resolubles analíticamente y muy complicados de resolver numéricamente <span id="id1">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id45" title="E. Caurier, G. Martínez-Pinedo, F. Nowacki, A. Poves, and A. P. Zuker. The shell model as a unified view of nuclear structure. Reviews of Modern Physics, 77(2):427–488, June 2005. URL: https://link.aps.org/doi/10.1103/RevModPhys.77.427 (visited on 2023-05-17), doi:10.1103/RevModPhys.77.427.">4</a>]</span>, <span id="id2">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id44" title="Takaharu Otsuka, Alexandra Gade, Olivier Sorlin, Toshio Suzuki, and Yutaka Utsuno. Evolution of shell structure in exotic nuclei. Reviews of Modern Physics, 92(1):015002, March 2020. Publisher: American Physical Society. URL: https://link.aps.org/doi/10.1103/RevModPhys.92.015002 (visited on 2023-05-17), doi:10.1103/RevModPhys.92.015002.">15</a>]</span>, debido a la escala exponencial de los grados de libertad con el tamaño del núcleo. Es por ello que algoritmos como los VQE pueden jugar un papel importante, ya que pueden obtener dicha energía del estado fundamental y ser implementados en un ordenador cuántico, donde el número de estados computacionales que pueden describir los grados de libertad del núcleo también escala exponencialmente <span id="id3">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id48" title="A. M. Romero, J. Engel, Ho Lun Tang, and Sophia E. Economou. Solving nuclear structure problems with the adaptive variational quantum algorithm. Physical Review C, 105(6):064317, June 2022. URL: https://link.aps.org/doi/10.1103/PhysRevC.105.064317 (visited on 2023-05-08), doi:10.1103/PhysRevC.105.064317.">20</a>]</span>, <span id="id4">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id49" title="A. Pérez-Obiol, A. M. Romero, J. Menéndez, A. Rios, A. García-Sáez, and B. Juliá-Díaz. Nuclear shell-model simulation in digital quantum computers. February 2023. arXiv:2302.03641 [nucl-th, physics:quant-ph]. URL: http://arxiv.org/abs/2302.03641 (visited on 2023-05-03).">19</a>]</span>, <span id="id5">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id46" title="Michael J. Cervia, A. B. Balantekin, S. N. Coppersmith, Calvin W. Johnson, Peter J. Love, C. Poole, K. Robbins, and M. Saffman. Lipkin model on a quantum computer. Physical Review C, 104(2):024305, August 2021. arXiv:2011.04097 [hep-th, physics:nucl-th, physics:quant-ph]. URL: http://arxiv.org/abs/2011.04097 (visited on 2023-05-08), doi:10.1103/PhysRevC.104.024305.">6</a>]</span>.</p>
+<p>No obstante, el modelo que vamos a resolver aquí, llamado el modelo de Lipkin-Meshkov-Glick <span id="id6">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id47" title="H.J. Lipkin, N. Meshkov, and A.J. Glick. Validity of many-body approximation methods for a solvable model. Nuclear Physics, 62(2):188–198, February 1965. URL: https://linkinghub.elsevier.com/retrieve/pii/002955826590862X (visited on 2023-05-08), doi:10.1016/0029-5582(65)90862-X.">12</a>]</span> o simplemente de Lipkin, no es más que un preámbulo, pues este sí es resoluble analíticamente (como el caso del Modelo de Ising 1D y 2D).</p>
 <p>En este modelo consideramos un sistema fermiónico de n partículas que pueden ocupar dos niveles cuya separación en energía es un gap de magnitud <span class="math notranslate nohighlight">\(\varepsilon\)</span> y ambos tienen degeneración <span class="math notranslate nohighlight">\(\Omega = n\)</span>. Este modelo presenta una interacción a dos cuerpos constante de magnitud <span class="math notranslate nohighlight">\(V\)</span>. El Hamiltoniano del modelo de Lipkin viene dado por:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -525,8 +526,8 @@ document.write(`
 </div>
 </section>
 <section id="adapt-vqe">
-<span id="sec-adapt-vqe"></span><h2><a class="toc-backref" href="#id103">ADAPT-VQE</a><a class="headerlink" href="#adapt-vqe" title="Permalink to this heading">#</a></h2>
-<p>Para este problema vamos a explorar un nuevo tipo de <em>ansatz</em> utilizable en problemas VQE: ADAPT <span id="id7">[<a class="reference internal" href="#id50" title="Harper R. Grimsley, Sophia E. Economou, Edwin Barnes, and Nicholas J. Mayhall. An adaptive variational algorithm for exact molecular simulations on a quantum computer. Nature Communications, 10(1):3007, July 2019. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/s41467-019-10988-2 (visited on 2023-05-17), doi:10.1038/s41467-019-10988-2.">3</a>]</span>. Se trata de un sistema muy similar a los <em>ansätze</em> tipo UCC: Tenemos un conjunto de operadores <span class="math notranslate nohighlight">\(\{\mathcal{A}_i (\theta_i)\}\)</span> con el que podemos codificar nuestros fenómenos físicos, como excitaciones o desexcitaciones dobles. En un problema tipo UCC, obtendríamos el operador unitario <span class="math notranslate nohighlight">\(U = \exp\left[\sum_i \mathcal{A}_i\right]\)</span> y haríamos una descomposición de Trotter-Suzuki.</p>
+<span id="sec-adapt-vqe"></span><h2><a class="toc-backref" href="#id9">ADAPT-VQE</a><a class="headerlink" href="#adapt-vqe" title="Permalink to this heading">#</a></h2>
+<p>Para este problema vamos a explorar un nuevo tipo de <em>ansatz</em> utilizable en problemas VQE: ADAPT <span id="id7">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id43" title="Harper R. Grimsley, Sophia E. Economou, Edwin Barnes, and Nicholas J. Mayhall. An adaptive variational algorithm for exact molecular simulations on a quantum computer. Nature Communications, 10(1):3007, July 2019. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/s41467-019-10988-2 (visited on 2023-05-17), doi:10.1038/s41467-019-10988-2.">9</a>]</span>. Se trata de un sistema muy similar a los <em>ansätze</em> tipo UCC: Tenemos un conjunto de operadores <span class="math notranslate nohighlight">\(\{\mathcal{A}_i (\theta_i)\}\)</span> con el que podemos codificar nuestros fenómenos físicos, como excitaciones o desexcitaciones dobles. En un problema tipo UCC, obtendríamos el operador unitario <span class="math notranslate nohighlight">\(U = \exp\left[\sum_i \mathcal{A}_i\right]\)</span> y haríamos una descomposición de Trotter-Suzuki.</p>
 <p>Sin embargo, en este caso lo que hacemos es definir nuestro conjunto de operadores posibles de forma que <span class="math notranslate nohighlight">\([\mathcal{A}_i, \mathcal{A}_j] = 0\)</span>. Con esto, conseguimos que</p>
 <div class="math notranslate nohighlight">
 \[
@@ -772,10 +773,10 @@ U = \exp\left[\sum_i \mathcal{A}_i\right] = \prod_i e^{\mathcal{A}_i}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Qibo 0.1.12.dev0|INFO|2024-05-22 13:15:02]: Using tensorflow backend on /device:CPU:0
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Qibo 0.1.12.dev0|INFO|2024-06-12 10:14:58]: Using tensorflow backend on /device:CPU:0
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Qibo 0.1.12.dev0|WARNING|2024-05-22 13:15:02]: Calculating the dense form of a symbolic Hamiltonian. This operation is memory inefficient.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Qibo 0.1.12.dev0|WARNING|2024-06-12 10:14:58]: Calculating the dense form of a symbolic Hamiltonian. This operation is memory inefficient.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Min eigenvalue from diagonalization:  -1.8690874778886049
@@ -821,35 +822,6 @@ Ground state:
 </pre></div>
 </div>
 </div>
-</div>
-</section>
-<hr class="docutils" />
-<section id="bibliografia">
-<h2><a class="toc-backref" href="#id104">Bibliografía</a><a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
-<div class="docutils container" id="id8">
-<dl class="citation">
-<dt class="label" id="id52"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>E. Caurier, G. Martínez-Pinedo, F. Nowacki, A. Poves, and A. P. Zuker. The shell model as a unified view of nuclear structure. <em>Reviews of Modern Physics</em>, 77(2):427–488, June 2005. URL: <a class="reference external" href="https://link.aps.org/doi/10.1103/RevModPhys.77.427">https://link.aps.org/doi/10.1103/RevModPhys.77.427</a> (visited on 2023-05-17), <a class="reference external" href="https://doi.org/10.1103/RevModPhys.77.427">doi:10.1103/RevModPhys.77.427</a>.</p>
-</dd>
-<dt class="label" id="id53"><span class="brackets"><a class="fn-backref" href="#id5">2</a></span></dt>
-<dd><p>Michael J. Cervia, A. B. Balantekin, S. N. Coppersmith, Calvin W. Johnson, Peter J. Love, C. Poole, K. Robbins, and M. Saffman. Lipkin model on a quantum computer. <em>Physical Review C</em>, 104(2):024305, August 2021. arXiv:2011.04097 [hep-th, physics:nucl-th, physics:quant-ph]. URL: <a class="reference external" href="http://arxiv.org/abs/2011.04097">http://arxiv.org/abs/2011.04097</a> (visited on 2023-05-08), <a class="reference external" href="https://doi.org/10.1103/PhysRevC.104.024305">doi:10.1103/PhysRevC.104.024305</a>.</p>
-</dd>
-<dt class="label" id="id50"><span class="brackets"><a class="fn-backref" href="#id7">3</a></span></dt>
-<dd><p>Harper R. Grimsley, Sophia E. Economou, Edwin Barnes, and Nicholas J. Mayhall. An adaptive variational algorithm for exact molecular simulations on a quantum computer. <em>Nature Communications</em>, 10(1):3007, July 2019. Number: 1 Publisher: Nature Publishing Group. URL: <a class="reference external" href="https://www.nature.com/articles/s41467-019-10988-2">https://www.nature.com/articles/s41467-019-10988-2</a> (visited on 2023-05-17), <a class="reference external" href="https://doi.org/10.1038/s41467-019-10988-2">doi:10.1038/s41467-019-10988-2</a>.</p>
-</dd>
-<dt class="label" id="id54"><span class="brackets"><a class="fn-backref" href="#id6">4</a></span></dt>
-<dd><p>H.J. Lipkin, N. Meshkov, and A.J. Glick. Validity of many-body approximation methods for a solvable model. <em>Nuclear Physics</em>, 62(2):188–198, February 1965. URL: <a class="reference external" href="https://linkinghub.elsevier.com/retrieve/pii/002955826590862X">https://linkinghub.elsevier.com/retrieve/pii/002955826590862X</a> (visited on 2023-05-08), <a class="reference external" href="https://doi.org/10.1016/0029-5582(65)90862-X">doi:10.1016/0029-5582(65)90862-X</a>.</p>
-</dd>
-<dt class="label" id="id51"><span class="brackets"><a class="fn-backref" href="#id2">5</a></span></dt>
-<dd><p>Takaharu Otsuka, Alexandra Gade, Olivier Sorlin, Toshio Suzuki, and Yutaka Utsuno. Evolution of shell structure in exotic nuclei. <em>Reviews of Modern Physics</em>, 92(1):015002, March 2020. Publisher: American Physical Society. URL: <a class="reference external" href="https://link.aps.org/doi/10.1103/RevModPhys.92.015002">https://link.aps.org/doi/10.1103/RevModPhys.92.015002</a> (visited on 2023-05-17), <a class="reference external" href="https://doi.org/10.1103/RevModPhys.92.015002">doi:10.1103/RevModPhys.92.015002</a>.</p>
-</dd>
-<dt class="label" id="id56"><span class="brackets"><a class="fn-backref" href="#id4">6</a></span></dt>
-<dd><p>A. Pérez-Obiol, A. M. Romero, J. Menéndez, A. Rios, A. García-Sáez, and B. Juliá-Díaz. Nuclear shell-model simulation in digital quantum computers. February 2023. arXiv:2302.03641 [nucl-th, physics:quant-ph]. URL: <a class="reference external" href="http://arxiv.org/abs/2302.03641">http://arxiv.org/abs/2302.03641</a> (visited on 2023-05-03).</p>
-</dd>
-<dt class="label" id="id55"><span class="brackets"><a class="fn-backref" href="#id3">7</a></span></dt>
-<dd><p>A. M. Romero, J. Engel, Ho Lun Tang, and Sophia E. Economou. Solving nuclear structure problems with the adaptive variational quantum algorithm. <em>Physical Review C</em>, 105(6):064317, June 2022. URL: <a class="reference external" href="https://link.aps.org/doi/10.1103/PhysRevC.105.064317">https://link.aps.org/doi/10.1103/PhysRevC.105.064317</a> (visited on 2023-05-08), <a class="reference external" href="https://doi.org/10.1103/PhysRevC.105.064317">doi:10.1103/PhysRevC.105.064317</a>.</p>
-</dd>
-</dl>
 </div>
 <hr class="docutils" />
 <center>
@@ -928,7 +900,6 @@ Ground state:
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-modelo-de-lipkin">El Modelo de Lipkin</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adapt-vqe">ADAPT-VQE</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
 </ul>
   </nav></div>
 

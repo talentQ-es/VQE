@@ -214,7 +214,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational Quantum Eigensolver</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Chapter_01_01_Introduction_myst.html">Introducción al Algoritmo VQE</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Chapter_01_01_Introduction_myst.html">Casos Sencillos con el Algoritmo VQE</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Section_011_Modelo-Ising_myst.html">El Modelo de Ising con el algoritmo VQE</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="Section_012_Molecula-H2_myst.html">La molécula de <span class="math notranslate nohighlight">\(\text{H}_2\)</span></a></li>
@@ -227,10 +227,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_03_01_Optimizadores_myst.html">Optimizadores</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Optimizadores/Section_031_Rotosolve_Pennylane_myst.html">Algoritmo de optimización Rotosolve</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Optimizadores/Section_031_Rotosolve_Qiskit_myst.html">Algoritmo de optimización Rotosolve</a></li>
 </ul>
 </li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Chapter_Bibliografia_myst.html">Bibliografía</a></li>
 </ul>
 
     </div>
@@ -420,9 +423,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -438,14 +439,6 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -504,33 +497,8 @@ document.write(`
 </details>
 </div>
 <p>El punto clave del algoritmo VQE, y de los algoritmos variacionales en general, es que, al ser repeticiones de un proceso parametrizado, los posibles errores inducidos por el circuito cuántico (puertas, cross-talking, recaída al fundamental…) al final son contemplados por las sucesivas elecciones de los parámetros, haciéndolo más robusto. Esto hace que, en esta era de la computación NISQ en la que vivimos, sea un algoritmo aplicable e implementable, al menos para casos lo suficientemente sencillos y que no demanden muchos recursos.</p>
-<p>Y es una suerte que esto sea así, porque los problemas de diagonalización y obtención del autovalor más bajo son de vital importancia en muchas ramas de la ciencia, como puede ser la química teórica <span id="id1">[<a class="reference internal" href="#id70" title="Alberto Peruzzo, Jarrod McClean, Peter Shadbolt, Man-Hong Yung, Xiao-Qi Zhou, Peter J. Love, Alán Aspuru-Guzik, and Jeremy L. O’Brien. A variational eigenvalue solver on a photonic quantum processor. Nature Communications, 5(1):4213, July 2014. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/ncomms5213 (visited on 2022-12-19), doi:10.1038/ncomms5213.">3</a>]</span>, <span id="id2">[<a class="reference internal" href="#id72" title="Jules Tilly, Hongxiang Chen, Shuxiang Cao, Dario Picozzi, Kanav Setia, Ying Li, Edward Grant, Leonard Wossnig, Ivan Rungger, George H. Booth, and Jonathan Tennyson. The Variational Quantum Eigensolver: A review of methods and best practices. Physics Reports, 986:1–128, November 2022. URL: https://www.sciencedirect.com/science/article/pii/S0370157322003118 (visited on 2022-12-19), doi:10.1016/j.physrep.2022.08.003.">5</a>]</span> o la física nuclear <span id="id3">[<a class="reference internal" href="../Chapter_02_02_Ansatz/Section_023_ADAPT_myst.html#id53" title="Michael J. Cervia, A. B. Balantekin, S. N. Coppersmith, Calvin W. Johnson, Peter J. Love, C. Poole, K. Robbins, and M. Saffman. Lipkin model on a quantum computer. Physical Review C, 104(2):024305, August 2021. arXiv:2011.04097 [hep-th, physics:nucl-th, physics:quant-ph]. URL: http://arxiv.org/abs/2011.04097 (visited on 2023-05-08), doi:10.1103/PhysRevC.104.024305.">2</a>]</span>, <span id="id4">[<a class="reference internal" href="../Chapter_02_02_Ansatz/Section_023_ADAPT_myst.html#id50" title="Harper R. Grimsley, Sophia E. Economou, Edwin Barnes, and Nicholas J. Mayhall. An adaptive variational algorithm for exact molecular simulations on a quantum computer. Nature Communications, 10(1):3007, July 2019. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/s41467-019-10988-2 (visited on 2023-05-17), doi:10.1038/s41467-019-10988-2.">3</a>]</span>, <span id="id5">[<a class="reference internal" href="../Chapter_02_02_Ansatz/Section_023_ADAPT_myst.html#id55" title="A. M. Romero, J. Engel, Ho Lun Tang, and Sophia E. Economou. Solving nuclear structure problems with the adaptive variational quantum algorithm. Physical Review C, 105(6):064317, June 2022. URL: https://link.aps.org/doi/10.1103/PhysRevC.105.064317 (visited on 2023-05-08), doi:10.1103/PhysRevC.105.064317.">7</a>]</span>, así como en problemas de otras disciplinas, como la economía (<em>travelling salesman</em>, <em>max-cut</em>) <span id="id6">[<a class="reference internal" href="#id77" title="Frank Zickert. Hands-On Quantum Machine Learning With Python. Combinatorial Optimization. Volume 2. PyQML, 2022. ISBN 979-8374278491.">6</a>]</span>.</p>
+<p>Y es una suerte que esto sea así, porque los problemas de diagonalización y obtención del autovalor más bajo son de vital importancia en muchas ramas de la ciencia, como puede ser la química teórica <span id="id1">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id64" title="Alberto Peruzzo, Jarrod McClean, Peter Shadbolt, Man-Hong Yung, Xiao-Qi Zhou, Peter J. Love, Alán Aspuru-Guzik, and Jeremy L. O’Brien. A variational eigenvalue solver on a photonic quantum processor. Nature Communications, 5(1):4213, July 2014. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/ncomms5213 (visited on 2022-12-19), doi:10.1038/ncomms5213.">17</a>]</span>, <span id="id2">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id66" title="Jules Tilly, Hongxiang Chen, Shuxiang Cao, Dario Picozzi, Kanav Setia, Ying Li, Edward Grant, Leonard Wossnig, Ivan Rungger, George H. Booth, and Jonathan Tennyson. The Variational Quantum Eigensolver: A review of methods and best practices. Physics Reports, 986:1–128, November 2022. URL: https://www.sciencedirect.com/science/article/pii/S0370157322003118 (visited on 2022-12-19), doi:10.1016/j.physrep.2022.08.003.">22</a>]</span> o la física nuclear <span id="id3">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id46" title="Michael J. Cervia, A. B. Balantekin, S. N. Coppersmith, Calvin W. Johnson, Peter J. Love, C. Poole, K. Robbins, and M. Saffman. Lipkin model on a quantum computer. Physical Review C, 104(2):024305, August 2021. arXiv:2011.04097 [hep-th, physics:nucl-th, physics:quant-ph]. URL: http://arxiv.org/abs/2011.04097 (visited on 2023-05-08), doi:10.1103/PhysRevC.104.024305.">6</a>]</span>, <span id="id4">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id43" title="Harper R. Grimsley, Sophia E. Economou, Edwin Barnes, and Nicholas J. Mayhall. An adaptive variational algorithm for exact molecular simulations on a quantum computer. Nature Communications, 10(1):3007, July 2019. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/s41467-019-10988-2 (visited on 2023-05-17), doi:10.1038/s41467-019-10988-2.">9</a>]</span>, <span id="id5">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id48" title="A. M. Romero, J. Engel, Ho Lun Tang, and Sophia E. Economou. Solving nuclear structure problems with the adaptive variational quantum algorithm. Physical Review C, 105(6):064317, June 2022. URL: https://link.aps.org/doi/10.1103/PhysRevC.105.064317 (visited on 2023-05-08), doi:10.1103/PhysRevC.105.064317.">20</a>]</span>, así como en problemas de otras disciplinas, como la economía (<em>travelling salesman</em>, <em>max-cut</em>) <span id="id6">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id71" title="Frank Zickert. Hands-On Quantum Machine Learning With Python. Combinatorial Optimization. Volume 2. PyQML, 2022. ISBN 979-8374278491.">26</a>]</span>.</p>
 <p>Los puntos claves de este algoritmo para aumentar las posibilidades y la velocidad de convergencia son la elección del <em>ansatz</em> (que al final determina la cantidad de recursos demandados y varias de las condiciones del problema a resolver) y del algoritmo de optimizador clásico (que debe lidiar con múltiples problemas en el espacio de parámetros, como los mínimos locales o los <em>barren plateaus</em>). En los siguientes apartados de esta documentación hablaremos más sobre estos dos temas.</p>
-<hr class="docutils" />
-<section id="bibliografia">
-<h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
-<div class="docutils container" id="id7">
-<dl class="citation">
-<dt class="label" id="id52"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
-<dd><p>Michael J. Cervia, A. B. Balantekin, S. N. Coppersmith, Calvin W. Johnson, Peter J. Love, C. Poole, K. Robbins, and M. Saffman. Lipkin model on a quantum computer. <em>Physical Review C</em>, 104(2):024305, August 2021. arXiv:2011.04097 [hep-th, physics:nucl-th, physics:quant-ph]. URL: <a class="reference external" href="http://arxiv.org/abs/2011.04097">http://arxiv.org/abs/2011.04097</a> (visited on 2023-05-08), <a class="reference external" href="https://doi.org/10.1103/PhysRevC.104.024305">doi:10.1103/PhysRevC.104.024305</a>.</p>
-</dd>
-<dt class="label" id="id49"><span class="brackets"><a class="fn-backref" href="#id4">2</a></span></dt>
-<dd><p>Harper R. Grimsley, Sophia E. Economou, Edwin Barnes, and Nicholas J. Mayhall. An adaptive variational algorithm for exact molecular simulations on a quantum computer. <em>Nature Communications</em>, 10(1):3007, July 2019. Number: 1 Publisher: Nature Publishing Group. URL: <a class="reference external" href="https://www.nature.com/articles/s41467-019-10988-2">https://www.nature.com/articles/s41467-019-10988-2</a> (visited on 2023-05-17), <a class="reference external" href="https://doi.org/10.1038/s41467-019-10988-2">doi:10.1038/s41467-019-10988-2</a>.</p>
-</dd>
-<dt class="label" id="id70"><span class="brackets"><a class="fn-backref" href="#id1">3</a></span></dt>
-<dd><p>Alberto Peruzzo, Jarrod McClean, Peter Shadbolt, Man-Hong Yung, Xiao-Qi Zhou, Peter J. Love, Alán Aspuru-Guzik, and Jeremy L. O’Brien. A variational eigenvalue solver on a photonic quantum processor. <em>Nature Communications</em>, 5(1):4213, July 2014. Number: 1 Publisher: Nature Publishing Group. URL: <a class="reference external" href="https://www.nature.com/articles/ncomms5213">https://www.nature.com/articles/ncomms5213</a> (visited on 2022-12-19), <a class="reference external" href="https://doi.org/10.1038/ncomms5213">doi:10.1038/ncomms5213</a>.</p>
-</dd>
-<dt class="label" id="id54"><span class="brackets"><a class="fn-backref" href="#id5">4</a></span></dt>
-<dd><p>A. M. Romero, J. Engel, Ho Lun Tang, and Sophia E. Economou. Solving nuclear structure problems with the adaptive variational quantum algorithm. <em>Physical Review C</em>, 105(6):064317, June 2022. URL: <a class="reference external" href="https://link.aps.org/doi/10.1103/PhysRevC.105.064317">https://link.aps.org/doi/10.1103/PhysRevC.105.064317</a> (visited on 2023-05-08), <a class="reference external" href="https://doi.org/10.1103/PhysRevC.105.064317">doi:10.1103/PhysRevC.105.064317</a>.</p>
-</dd>
-<dt class="label" id="id72"><span class="brackets"><a class="fn-backref" href="#id2">5</a></span></dt>
-<dd><p>Jules Tilly, Hongxiang Chen, Shuxiang Cao, Dario Picozzi, Kanav Setia, Ying Li, Edward Grant, Leonard Wossnig, Ivan Rungger, George H. Booth, and Jonathan Tennyson. The Variational Quantum Eigensolver: A review of methods and best practices. <em>Physics Reports</em>, 986:1–128, November 2022. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0370157322003118">https://www.sciencedirect.com/science/article/pii/S0370157322003118</a> (visited on 2022-12-19), <a class="reference external" href="https://doi.org/10.1016/j.physrep.2022.08.003">doi:10.1016/j.physrep.2022.08.003</a>.</p>
-</dd>
-<dt class="label" id="id77"><span class="brackets"><a class="fn-backref" href="#id6">6</a></span></dt>
-<dd><p>Frank Zickert. <em>Hands-On Quantum Machine Learning With Python. Combinatorial Optimization.</em> Volume 2. PyQML, 2022. ISBN 979-8374278491.</p>
-</dd>
-</dl>
-</div>
 <hr class="docutils" />
 <p>Authors:</p>
 <p>Irais Bautista (<a class="reference external" href="http://www.cesga.es">CESGA</a>), Sergio Martínez (<a class="reference external" href="https://bifi.es/es/">BIFi-UNIZAR</a>), Jaime Scharfhausen (<a class="reference external" href="https://www.uam.es/uam/inicio">UAM</a>) y Alejandro Jaramillo (<a class="reference external" href="https://www.csuc.cat/es">CSUC</a>)</p>
@@ -551,7 +519,6 @@ document.write(`
 <center>
 <img align="left" src="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png" width="1000px" />
 </center></section>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -608,20 +575,7 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
+                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>

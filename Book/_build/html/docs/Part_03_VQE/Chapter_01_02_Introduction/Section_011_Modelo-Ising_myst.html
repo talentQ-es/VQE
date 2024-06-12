@@ -107,7 +107,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="La molécula de \(\text{H}_2\)" href="Section_012_Molecula-H2_myst.html" />
-    <link rel="prev" title="Introducción al Algoritmo VQE" href="../Chapter_01_01_Introduction_myst.html" />
+    <link rel="prev" title="Casos Sencillos con el Algoritmo VQE" href="../Chapter_01_01_Introduction_myst.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -216,7 +216,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational Quantum Eigensolver</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Chapter_01_01_Introduction_myst.html">Introducción al Algoritmo VQE</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Chapter_01_01_Introduction_myst.html">Casos Sencillos con el Algoritmo VQE</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">El Modelo de Ising con el algoritmo VQE</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="Section_012_Molecula-H2_myst.html">La molécula de <span class="math notranslate nohighlight">\(\text{H}_2\)</span></a></li>
@@ -229,10 +229,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_03_01_Optimizadores_myst.html">Optimizadores</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Optimizadores/Section_031_Rotosolve_Pennylane_myst.html">Algoritmo de optimización Rotosolve</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Optimizadores/Section_031_Rotosolve_Qiskit_myst.html">Algoritmo de optimización Rotosolve</a></li>
 </ul>
 </li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Chapter_Bibliografia_myst.html">Bibliografía</a></li>
 </ul>
 
     </div>
@@ -448,7 +451,6 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">El Modelo de Ising con el algoritmo VQE</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-modelo-de-ising">Introducción al Modelo de Ising</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-modelo-de-ising-1d">El Modelo de Ising 1D</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
 </ul>
 </li>
 </ul>
@@ -526,7 +528,7 @@ document.write(`
 <p>Este problema puede complicarse dados diferentes factores microcópicos como la estructura cristalina o incluso tener interacciones más allá de los primeros vecinos, lo que requiere métodos aproximados para solucionarlo. No obstante, hay dos casos especiales para los que existe una solución exacta y analítica del modelo: cuando el sistema tiene solo una dimensión o cuando el sistema tiene dos dimensiones y una estructura cuadrada.</p>
 <section id="el-modelo-de-ising-1d">
 <h2>El Modelo de Ising 1D<a class="headerlink" href="#el-modelo-de-ising-1d" title="Permalink to this heading">#</a></h2>
-<p>Vamos a analizar el caso cuántico de la cadena de Ising <strong>unidimensional</strong>. Precisamente por la naturaleza cuántica del problema podemos utilizar las matrices de Pauli para caracterizar el Hamiltoniano, dando lugar a una nueva forma del operador <span id="id1">[<a class="reference internal" href="#id67" title="Alba Cervera-Lierta. Exact Ising model simulation on a quantum computer. Quantum, 2:114, December 2018. Publisher: Verein zur Förderung des Open Access Publizierens in den Quantenwissenschaften. URL: https://quantum-journal.org/papers/q-2018-12-21-114/ (visited on 2022-12-19), doi:10.22331/q-2018-12-21-114.">1</a>]</span>:</p>
+<p>Vamos a analizar el caso cuántico de la cadena de Ising <strong>unidimensional</strong>. Precisamente por la naturaleza cuántica del problema podemos utilizar las matrices de Pauli para caracterizar el Hamiltoniano, dando lugar a una nueva forma del operador <span id="id1">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id65" title="Alba Cervera-Lierta. Exact Ising model simulation on a quantum computer. Quantum, 2:114, December 2018. Publisher: Verein zur Förderung des Open Access Publizierens in den Quantenwissenschaften. URL: https://quantum-journal.org/papers/q-2018-12-21-114/ (visited on 2022-12-19), doi:10.22331/q-2018-12-21-114.">5</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \mathcal{H} = -J \sum_{i=1}^N X_i X_{i+1} - J g \sum_i Z_i \;,
@@ -692,7 +694,7 @@ Qiskit</label><div class="sd-tab-content docutils">
 </div>
 <div class="cell tag_remove_input docutils container">
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Qibo 0.1.12.dev0|WARNING|2024-05-22 13:14:38]: Calculating the dense form of a symbolic Hamiltonian. This operation is memory inefficient.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Qibo 0.1.12.dev0|WARNING|2024-06-12 10:14:07]: Calculating the dense form of a symbolic Hamiltonian. This operation is memory inefficient.
 </pre></div>
 </div>
 </div>
@@ -735,7 +737,7 @@ Qiskit</label><div class="sd-tab-content docutils">
 </div>
 <div class="cell tag_remove_input docutils container">
 </div>
-<p>En este caso, en lugar de utilizar el optimizador SPSA como hicimos en la sección anterior, empleamos uno nuevo: el método de Powell <span id="id2">[<a class="reference internal" href="#id71" title="M. J. D. Powell. An efficient method for finding the minimum of a function of several variables without calculating derivatives. The Computer Journal, 7(2):155–162, January 1964. URL: https://doi.org/10.1093/comjnl/7.2.155 (visited on 2023-06-23), doi:10.1093/comjnl/7.2.155.">2</a>]</span>.</p>
+<p>En este caso, en lugar de utilizar el optimizador SPSA como hicimos en la sección anterior, empleamos uno nuevo: el método de Powell <span id="id2">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id69" title="M. J. D. Powell. An efficient method for finding the minimum of a function of several variables without calculating derivatives. The Computer Journal, 7(2):155–162, January 1964. URL: https://doi.org/10.1093/comjnl/7.2.155 (visited on 2023-06-23), doi:10.1093/comjnl/7.2.155.">18</a>]</span>.</p>
 <div class="note admonition">
 <p class="admonition-title">Nota (Eficiencia en la optimización)</p>
 <p>El algoritmo de Powell que estamos empleando es considerablemente más eficiente que el resto de algoritmos que hemos probado para este problema específicamente. No obstante, su funcionamiento da lugar a unas gráficas de convergencia que no son particularmente ilustrativas. Si se quiere ver una gráfica en la que realmente se aprecie la convergencia del algoritmo, se puede probar a utilizar el algoritmo COBYLA. No obstante, la ejecución del código tardará un tiempo considerable (del orden de 20 minutos).</p>
@@ -850,9 +852,9 @@ Qiskit</label><div class="sd-tab-content docutils">
 <div class="cell tag_remove_input docutils container">
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: -4.089306
+         Current function value: -4.089240
          Iterations: 3
-         Function evaluations: 1871
+         Function evaluations: 1868
 </pre></div>
 </div>
 </div>
@@ -865,7 +867,7 @@ Qiskit</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E_G = -4.089305581262189
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E_G = -4.089239703852069
 </pre></div>
 </div>
 </div>
@@ -889,7 +891,7 @@ Qiskit</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/3ee900b8782302c63f94a88493d8615e9820ea57da2c264f9a9ee50be3a712c0.png" src="../../../_images/3ee900b8782302c63f94a88493d8615e9820ea57da2c264f9a9ee50be3a712c0.png" />
+<img alt="../../../_images/bf955365c6ae444a38fff3a8392b75a95923f914ccb5f02519bc354ef54e9e02.png" src="../../../_images/bf955365c6ae444a38fff3a8392b75a95923f914ccb5f02519bc354ef54e9e02.png" />
 </div>
 </div>
 <p>También comparamos con el valor que obtenemos simplemente de diagonalizar la matriz, ya que, al ser “pequeña” (<span class="math notranslate nohighlight">\(16 \times 16\)</span>), <code class="docutils literal notranslate"><span class="pre">scipy</span></code> no tiene problema en hacerlo.</p>
@@ -905,24 +907,10 @@ Qiskit</label><div class="sd-tab-content docutils">
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E_G = -4.092961599426855
-Error relativo = 0.08932451663308086 %
+Error relativo = 0.09093404578500594 %
 </pre></div>
 </div>
 </div>
-</div>
-</section>
-<hr class="docutils" />
-<section id="bibliografia">
-<h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
-<div class="docutils container" id="id3">
-<dl class="citation">
-<dt class="label" id="id67"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Alba Cervera-Lierta. Exact Ising model simulation on a quantum computer. <em>Quantum</em>, 2:114, December 2018. Publisher: Verein zur Förderung des Open Access Publizierens in den Quantenwissenschaften. URL: <a class="reference external" href="https://quantum-journal.org/papers/q-2018-12-21-114/">https://quantum-journal.org/papers/q-2018-12-21-114/</a> (visited on 2022-12-19), <a class="reference external" href="https://doi.org/10.22331/q-2018-12-21-114">doi:10.22331/q-2018-12-21-114</a>.</p>
-</dd>
-<dt class="label" id="id71"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>M. J. D. Powell. An efficient method for finding the minimum of a function of several variables without calculating derivatives. <em>The Computer Journal</em>, 7(2):155–162, January 1964. URL: <a class="reference external" href="https://doi.org/10.1093/comjnl/7.2.155">https://doi.org/10.1093/comjnl/7.2.155</a> (visited on 2023-06-23), <a class="reference external" href="https://doi.org/10.1093/comjnl/7.2.155">doi:10.1093/comjnl/7.2.155</a>.</p>
-</dd>
-</dl>
 </div>
 <hr class="docutils" />
 <p>Authors:</p>
@@ -982,7 +970,7 @@ Error relativo = 0.08932451663308086 %
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Introducción al Algoritmo VQE</p>
+        <p class="prev-next-title">Casos Sencillos con el Algoritmo VQE</p>
       </div>
     </a>
     <a class="right-next"
@@ -1013,7 +1001,6 @@ Error relativo = 0.08932451663308086 %
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">El Modelo de Ising con el algoritmo VQE</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-modelo-de-ising">Introducción al Modelo de Ising</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-modelo-de-ising-1d">El Modelo de Ising 1D</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
 </ul>
 </li>
 </ul>

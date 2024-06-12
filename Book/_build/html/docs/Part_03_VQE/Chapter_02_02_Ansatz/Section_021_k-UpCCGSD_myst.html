@@ -216,7 +216,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational Quantum Eigensolver</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_01_01_Introduction_myst.html">Introducción al Algoritmo VQE</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_01_01_Introduction_myst.html">Casos Sencillos con el Algoritmo VQE</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Chapter_01_02_Introduction/Section_011_Modelo-Ising_myst.html">El Modelo de Ising con el algoritmo VQE</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../Chapter_01_02_Introduction/Section_012_Molecula-H2_myst.html">La molécula de <span class="math notranslate nohighlight">\(\text{H}_2\)</span></a></li>
@@ -229,10 +229,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_03_01_Optimizadores_myst.html">Optimizadores</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Optimizadores/Section_031_Rotosolve_Pennylane_myst.html">Algoritmo de optimización Rotosolve</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Optimizadores/Section_031_Rotosolve_Qiskit_myst.html">Algoritmo de optimización Rotosolve</a></li>
 </ul>
 </li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Chapter_Bibliografia_myst.html">Bibliografía</a></li>
 </ul>
 
     </div>
@@ -447,7 +450,6 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teoria-de-coupled-cluster">Teoría de Coupled Cluster</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizar-k-upccgsd">Utilizar k-UpCCGSD</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
 </ul>
             </nav>
         </div>
@@ -506,17 +508,16 @@ document.write(`
 </div>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#teoria-de-coupled-cluster" id="id102">Teoría de Coupled Cluster</a></p></li>
-<li><p><a class="reference internal" href="#utilizar-k-upccgsd" id="id103">Utilizar k-UpCCGSD</a></p></li>
-<li><p><a class="reference internal" href="#bibliografia" id="id104">Bibliografía</a></p></li>
+<li><p><a class="reference internal" href="#teoria-de-coupled-cluster" id="id8">Teoría de Coupled Cluster</a></p></li>
+<li><p><a class="reference internal" href="#utilizar-k-upccgsd" id="id9">Utilizar k-UpCCGSD</a></p></li>
 </ul>
 </div>
 <section id="teoria-de-coupled-cluster">
-<span id="sec-teoria-de-coupled-cluster"></span><h2><a class="toc-backref" href="#id102">Teoría de Coupled Cluster</a><a class="headerlink" href="#teoria-de-coupled-cluster" title="Permalink to this heading">#</a></h2>
+<span id="sec-teoria-de-coupled-cluster"></span><h2><a class="toc-backref" href="#id8">Teoría de Coupled Cluster</a><a class="headerlink" href="#teoria-de-coupled-cluster" title="Permalink to this heading">#</a></h2>
 <p>Para obtener el estado fundamental de una molécula, dado que son sistemas relativamente complejos en los que los diferentes electrones pueden ocupar muchas posiciones en los diferentes orbitales, es prácticamente imposible obtener un resultado exacto. En su lugar, se utilizan métodos aproximados.</p>
 <p>El más famoso de estos métodos, así como el punto de partida para empezar a aplicar el resto, es el método de Hartree-Fock. Con él se pueden aproximar las funciones de onda de los electrones del sistema atendiendo a la configuración de los orbitales atómicos o moleculares.</p>
-<p>Sin embargo, este método está bastante limitado por varios motivos: no considera la correlación electrónica, hace uso de la aproximación de Born-Oppenheimer para los núcleos, no tiene en cuenta posibles efectos relativistas… Es por todo esto que, tras obtener una primera aproximación del estado fundamental, se utilizan otros métodos para terminar de “pulir” este resultado como <em>Configuration Interaction</em> (CI) o <em>Møller–Plesset perturbation theory</em> (MP) <span id="id1">[<a class="reference internal" href="#id60" title="Juan Andrés Bort and Joan Bertran Rusca. Theoretical and computational chemistry: foundations, methods and techniques. Publicacions de la Universitat Jaume I, Castelló de la Plana, 2007. ISBN 978-84-8021-615-9. OCLC: 804115743.">2</a>]</span>.</p>
-<p>Es dentro de estos métodos post-Hartree-Fock donde encontramos los métodos de <em>Coupled Cluster</em> <span id="id2">[<a class="reference internal" href="#id59" title="J Cizek and J Paldus. Coupled Cluster Approach. Physica Scripta, 21(3-4):251–254, January 1980. URL: https://iopscience.iop.org/article/10.1088/0031-8949/21/3-4/006 (visited on 2023-02-10), doi:10.1088/0031-8949/21/3-4/006.">3</a>]</span>, <span id="id3">[<a class="reference internal" href="#id57" title="Jarrod R McClean, Jonathan Romero, Ryan Babbush, and Alán Aspuru-Guzik. The theory of variational hybrid quantum-classical algorithms. New Journal of Physics, 18(2):023023, February 2016. URL: https://iopscience.iop.org/article/10.1088/1367-2630/18/2/023023 (visited on 2023-03-10), doi:10.1088/1367-2630/18/2/023023.">7</a>]</span>, <span id="id4">[<a class="reference internal" href="#id58" title="Abhinav Anand, Philipp Schleich, Sumner Alperin-Lea, Phillip W. K. Jensen, Sukin Sim, Manuel Díaz-Tinoco, Jakob S. Kottmann, Matthias Degroote, Artur F. Izmaylov, and Alán Aspuru-Guzik. A quantum computing view on unitary coupled cluster theory. Chemical Society Reviews, 51(5):1659–1684, 2022. URL: http://xlink.rsc.org/?DOI=D1CS00932J (visited on 2023-03-08), doi:10.1039/D1CS00932J.">1</a>]</span>. La base del CC es, en resumidas cuentas, considerar de forma ponderada cómo contribuyen los estados con electrones a la energía del estado fundamental molecular. Para ello se añaden términos a la función de onda considerando las excitaciones de un electron de los orbitales libres a los orbitales ocupados (<em>Single excitation</em>), después de dos electrones con todas las combinaciones posibles (<em>Double</em>) y así sucesivamente.</p>
+<p>Sin embargo, este método está bastante limitado por varios motivos: no considera la correlación electrónica, hace uso de la aproximación de Born-Oppenheimer para los núcleos, no tiene en cuenta posibles efectos relativistas… Es por todo esto que, tras obtener una primera aproximación del estado fundamental, se utilizan otros métodos para terminar de “pulir” este resultado como <em>Configuration Interaction</em> (CI) o <em>Møller–Plesset perturbation theory</em> (MP) <span id="id1">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id53" title="Juan Andrés Bort and Joan Bertran Rusca. Theoretical and computational chemistry: foundations, methods and techniques. Publicacions de la Universitat Jaume I, Castelló de la Plana, 2007. ISBN 978-84-8021-615-9. OCLC: 804115743.">2</a>]</span>.</p>
+<p>Es dentro de estos métodos post-Hartree-Fock donde encontramos los métodos de <em>Coupled Cluster</em> <span id="id2">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id52" title="J Cizek and J Paldus. Coupled Cluster Approach. Physica Scripta, 21(3-4):251–254, January 1980. URL: https://iopscience.iop.org/article/10.1088/0031-8949/21/3-4/006 (visited on 2023-02-10), doi:10.1088/0031-8949/21/3-4/006.">7</a>]</span>, <span id="id3">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id50" title="Jarrod R McClean, Jonathan Romero, Ryan Babbush, and Alán Aspuru-Guzik. The theory of variational hybrid quantum-classical algorithms. New Journal of Physics, 18(2):023023, February 2016. URL: https://iopscience.iop.org/article/10.1088/1367-2630/18/2/023023 (visited on 2023-03-10), doi:10.1088/1367-2630/18/2/023023.">13</a>]</span>, <span id="id4">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id51" title="Abhinav Anand, Philipp Schleich, Sumner Alperin-Lea, Phillip W. K. Jensen, Sukin Sim, Manuel Díaz-Tinoco, Jakob S. Kottmann, Matthias Degroote, Artur F. Izmaylov, and Alán Aspuru-Guzik. A quantum computing view on unitary coupled cluster theory. Chemical Society Reviews, 51(5):1659–1684, 2022. URL: http://xlink.rsc.org/?DOI=D1CS00932J (visited on 2023-03-08), doi:10.1039/D1CS00932J.">1</a>]</span>. La base del CC es, en resumidas cuentas, considerar de forma ponderada cómo contribuyen los estados con electrones a la energía del estado fundamental molecular. Para ello se añaden términos a la función de onda considerando las excitaciones de un electron de los orbitales libres a los orbitales ocupados (<em>Single excitation</em>), después de dos electrones con todas las combinaciones posibles (<em>Double</em>) y así sucesivamente.</p>
 <p>Los métodos CC se usan para crear sistemas correlacionados utilizando un <strong>operador de cluster</strong> <span class="math notranslate nohighlight">\(\hat{T}\)</span>, de forma que el estado fabricado se genera a partir de otro de referencia haciendo</p>
 <div class="math notranslate nohighlight">
 \[
@@ -563,7 +564,7 @@ document.write(`
 \[ 
 \hat{T}_2 = \sum_{p,q} t^{q_\alpha q_\beta}_{p_\alpha p_\beta} \hat{a}^\dagger_{q_\alpha} \hat{a}^\dagger_{q_\beta} \hat{a}_{p_\beta} \hat{a}_{p_\alpha}
 \]</div>
-<p>Y de aquí por fin llegamos a la clase que queremos estudiar, k-UpCCGSD <span id="id5">[<a class="reference internal" href="#id67" title="Joonho Lee, William J. Huggins, Martin Head-Gordon, and K. Birgitta Whaley. Generalized Unitary Coupled Cluster Wave functions for Quantum Computation. Journal of Chemical Theory and Computation, 15(1):311–324, January 2019. URL: https://pubs.acs.org/doi/10.1021/acs.jctc.8b01004 (visited on 2022-12-19), doi:10.1021/acs.jctc.8b01004.">5</a>]</span>, <span id="id6">[<a class="reference internal" href="#id64" title="Gabriel Greene-Diniz and David Muñoz Ramo. Generalized unitary coupled cluster excitations for multireference molecular states optimized by the variational quantum eigensolver. International Journal of Quantum Chemistry, 121(4):e26352, 2021. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/qua.26352. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/qua.26352 (visited on 2023-01-10), doi:10.1002/qua.26352.">4</a>]</span>, <span id="id7">[<a class="reference internal" href="#id63" title="Hocheol Lim, Hyeon-Nae Jeon, June-Koo Rhee, Byungdu Oh, and Kyoung Tai No. Quantum computational study of chloride attack on chloromethane for chemical accuracy and quantum noise effects with UCCSD and k-UpCCGSD ansatzes. Scientific Reports, 12(1):7495, May 2022. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/s41598-022-11537-6 (visited on 2023-01-10), doi:10.1038/s41598-022-11537-6.">6</a>]</span>, con <span class="math notranslate nohighlight">\(k \in \mathbb{Z}\)</span>. Con este entero <span class="math notranslate nohighlight">\(k\)</span> definimos nuestra función de prueba <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> como</p>
+<p>Y de aquí por fin llegamos a la clase que queremos estudiar, k-UpCCGSD <span id="id5">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id60" title="Joonho Lee, William J. Huggins, Martin Head-Gordon, and K. Birgitta Whaley. Generalized Unitary Coupled Cluster Wave functions for Quantum Computation. Journal of Chemical Theory and Computation, 15(1):311–324, January 2019. URL: https://pubs.acs.org/doi/10.1021/acs.jctc.8b01004 (visited on 2022-12-19), doi:10.1021/acs.jctc.8b01004.">10</a>]</span>, <span id="id6">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id57" title="Gabriel Greene-Diniz and David Muñoz Ramo. Generalized unitary coupled cluster excitations for multireference molecular states optimized by the variational quantum eigensolver. International Journal of Quantum Chemistry, 121(4):e26352, 2021. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/qua.26352. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/qua.26352 (visited on 2023-01-10), doi:10.1002/qua.26352.">8</a>]</span>, <span id="id7">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id56" title="Hocheol Lim, Hyeon-Nae Jeon, June-Koo Rhee, Byungdu Oh, and Kyoung Tai No. Quantum computational study of chloride attack on chloromethane for chemical accuracy and quantum noise effects with UCCSD and k-UpCCGSD ansatzes. Scientific Reports, 12(1):7495, May 2022. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/s41598-022-11537-6 (visited on 2023-01-10), doi:10.1038/s41598-022-11537-6.">11</a>]</span>, con <span class="math notranslate nohighlight">\(k \in \mathbb{Z}\)</span>. Con este entero <span class="math notranslate nohighlight">\(k\)</span> definimos nuestra función de prueba <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> como</p>
 <div class="math notranslate nohighlight">
 \[ 
 \ket{\psi} = \left( \prod_{\mu = 1}^k e^{\hat{T}^{(\mu)} - \hat{T}^{(\mu) \dagger}} \right) \ket{\phi_0} 
@@ -571,7 +572,7 @@ document.write(`
 <p>haciendo que cada <span class="math notranslate nohighlight">\( \hat{T}^{(\mu)} \)</span> tenga su propio conjunto de parámetros <span class="math notranslate nohighlight">\(t^q_p, t^{q_\alpha q_\beta}_{p_\alpha p_\beta}\)</span>.</p>
 </section>
 <section id="utilizar-k-upccgsd">
-<span id="sec-utilizar-k-upccgsd"></span><h2><a class="toc-backref" href="#id103">Utilizar k-UpCCGSD</a><a class="headerlink" href="#utilizar-k-upccgsd" title="Permalink to this heading">#</a></h2>
+<span id="sec-utilizar-k-upccgsd"></span><h2><a class="toc-backref" href="#id9">Utilizar k-UpCCGSD</a><a class="headerlink" href="#utilizar-k-upccgsd" title="Permalink to this heading">#</a></h2>
 <p>Las mejores alternativas para implementar el ansatz k-UpCCGSD son <code class="docutils literal notranslate"><span class="pre">qiskit</span></code>, librería con la que ya estamos, familiarizados, y <code class="docutils literal notranslate"><span class="pre">pennylane</span></code> otra librería enfocada a la Computación Cuántica y, más concretamente, a Quantum Machine Learning.</p>
 <p>Como ejemplo prototípico para problemas moleculares, vamos a resolver la molécula de hidrógeno <span class="math notranslate nohighlight">\(H_2\)</span>.</p>
 <div class="sd-tab-set docutils">
@@ -749,11 +750,11 @@ Qiskit</label><div class="sd-tab-content docutils">
 </div>
 <div class="cell tag_remove_input docutils container">
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Energía del estado fundamental (obtenida) = -1.13727593 Ha
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Energía del estado fundamental (obtenida) = -1.13727589 Ha
 
-Valores óptimos del circuito = [[0.6287253  0.38126098 0.8091489  0.10186109 0.88747959 0.22449632]
- [0.38985653 0.59764919 0.71443528 0.33465924 0.5765674  0.96139254]
- [0.67167797 0.37253699 0.25454268 0.8403816  0.59688236 0.66349443]]
+Valores óptimos del circuito = [[0.30204056 0.83566594 0.45354406 0.74041391 0.81104547 0.78424294]
+ [0.20652374 0.20138947 0.25038356 0.24002515 0.35951567 0.17285924]
+ [0.25123922 0.45265924 0.04357797 0.52678114 0.33503815 0.32114631]]
 </pre></div>
 </div>
 </div>
@@ -813,35 +814,6 @@ Valores óptimos del circuito = [[0.6287253  0.38126098 0.8091489  0.10186109 0.
 </tr>
 </tbody>
 </table>
-</section>
-<hr class="docutils" />
-<section id="bibliografia">
-<h2><a class="toc-backref" href="#id104">Bibliografía</a><a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
-<div class="docutils container" id="id8">
-<dl class="citation">
-<dt class="label" id="id58"><span class="brackets"><a class="fn-backref" href="#id4">1</a></span></dt>
-<dd><p>Abhinav Anand, Philipp Schleich, Sumner Alperin-Lea, Phillip W. K. Jensen, Sukin Sim, Manuel Díaz-Tinoco, Jakob S. Kottmann, Matthias Degroote, Artur F. Izmaylov, and Alán Aspuru-Guzik. A quantum computing view on unitary coupled cluster theory. <em>Chemical Society Reviews</em>, 51(5):1659–1684, 2022. URL: <a class="reference external" href="http://xlink.rsc.org/?DOI=D1CS00932J">http://xlink.rsc.org/?DOI=D1CS00932J</a> (visited on 2023-03-08), <a class="reference external" href="https://doi.org/10.1039/D1CS00932J">doi:10.1039/D1CS00932J</a>.</p>
-</dd>
-<dt class="label" id="id60"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
-<dd><p>Juan Andrés Bort and Joan Bertran Rusca. <em>Theoretical and computational chemistry: foundations, methods and techniques</em>. Publicacions de la Universitat Jaume I, Castelló de la Plana, 2007. ISBN 978-84-8021-615-9. OCLC: 804115743.</p>
-</dd>
-<dt class="label" id="id59"><span class="brackets"><a class="fn-backref" href="#id2">3</a></span></dt>
-<dd><p>J Cizek and J Paldus. Coupled Cluster Approach. <em>Physica Scripta</em>, 21(3-4):251–254, January 1980. URL: <a class="reference external" href="https://iopscience.iop.org/article/10.1088/0031-8949/21/3-4/006">https://iopscience.iop.org/article/10.1088/0031-8949/21/3-4/006</a> (visited on 2023-02-10), <a class="reference external" href="https://doi.org/10.1088/0031-8949/21/3-4/006">doi:10.1088/0031-8949/21/3-4/006</a>.</p>
-</dd>
-<dt class="label" id="id64"><span class="brackets"><a class="fn-backref" href="#id6">4</a></span></dt>
-<dd><p>Gabriel Greene-Diniz and David Muñoz Ramo. Generalized unitary coupled cluster excitations for multireference molecular states optimized by the variational quantum eigensolver. <em>International Journal of Quantum Chemistry</em>, 121(4):e26352, 2021. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/qua.26352. URL: <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/qua.26352">https://onlinelibrary.wiley.com/doi/abs/10.1002/qua.26352</a> (visited on 2023-01-10), <a class="reference external" href="https://doi.org/10.1002/qua.26352">doi:10.1002/qua.26352</a>.</p>
-</dd>
-<dt class="label" id="id67"><span class="brackets"><a class="fn-backref" href="#id5">5</a></span></dt>
-<dd><p>Joonho Lee, William J. Huggins, Martin Head-Gordon, and K. Birgitta Whaley. Generalized Unitary Coupled Cluster Wave functions for Quantum Computation. <em>Journal of Chemical Theory and Computation</em>, 15(1):311–324, January 2019. URL: <a class="reference external" href="https://pubs.acs.org/doi/10.1021/acs.jctc.8b01004">https://pubs.acs.org/doi/10.1021/acs.jctc.8b01004</a> (visited on 2022-12-19), <a class="reference external" href="https://doi.org/10.1021/acs.jctc.8b01004">doi:10.1021/acs.jctc.8b01004</a>.</p>
-</dd>
-<dt class="label" id="id63"><span class="brackets"><a class="fn-backref" href="#id7">6</a></span></dt>
-<dd><p>Hocheol Lim, Hyeon-Nae Jeon, June-Koo Rhee, Byungdu Oh, and Kyoung Tai No. Quantum computational study of chloride attack on chloromethane for chemical accuracy and quantum noise effects with UCCSD and k-UpCCGSD ansatzes. <em>Scientific Reports</em>, 12(1):7495, May 2022. Number: 1 Publisher: Nature Publishing Group. URL: <a class="reference external" href="https://www.nature.com/articles/s41598-022-11537-6">https://www.nature.com/articles/s41598-022-11537-6</a> (visited on 2023-01-10), <a class="reference external" href="https://doi.org/10.1038/s41598-022-11537-6">doi:10.1038/s41598-022-11537-6</a>.</p>
-</dd>
-<dt class="label" id="id57"><span class="brackets"><a class="fn-backref" href="#id3">7</a></span></dt>
-<dd><p>Jarrod R McClean, Jonathan Romero, Ryan Babbush, and Alán Aspuru-Guzik. The theory of variational hybrid quantum-classical algorithms. <em>New Journal of Physics</em>, 18(2):023023, February 2016. URL: <a class="reference external" href="https://iopscience.iop.org/article/10.1088/1367-2630/18/2/023023">https://iopscience.iop.org/article/10.1088/1367-2630/18/2/023023</a> (visited on 2023-03-10), <a class="reference external" href="https://doi.org/10.1088/1367-2630/18/2/023023">doi:10.1088/1367-2630/18/2/023023</a>.</p>
-</dd>
-</dl>
-</div>
 <hr class="docutils" />
 <p>Authors:</p>
 <p>Irais Bautista (<a class="reference external" href="http://www.cesga.es">CESGA</a>), Sergio Martínez (<a class="reference external" href="https://bifi.es/es/">BIFi-UNIZAR</a>), Jaime Scharfhausen (<a class="reference external" href="https://www.uam.es/uam/inicio">UAM</a>) y Alejandro Jaramillo (<a class="reference external" href="https://www.csuc.cat/es">CSUC</a>)</p>
@@ -930,7 +902,6 @@ Valores óptimos del circuito = [[0.6287253  0.38126098 0.8091489  0.10186109 0.
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teoria-de-coupled-cluster">Teoría de Coupled Cluster</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizar-k-upccgsd">Utilizar k-UpCCGSD</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
 </ul>
   </nav></div>
 

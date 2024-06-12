@@ -14,5 +14,7 @@ parts:
     - file:  docs/Part_03_VQE/Chapter_02_02_Ansatz/Section_023_ADAPT_myst.ipynb
   - file:  docs/Part_03_VQE/Chapter_03_01_Optimizadores_myst.md
     sections:
-    - file:  docs/Part_03_VQE/Chapter_03_02_Optimizadores/Section_031_Rotosolve_Pennylane_myst.ipynb
     - file:  docs/Part_03_VQE/Chapter_03_02_Optimizadores/Section_031_Rotosolve_Qiskit_myst.ipynb
+- caption: Referencias
+  chapters:
+  - file: docs/Chapter_Bibliografia_myst.ipynb
