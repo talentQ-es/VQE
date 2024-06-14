@@ -1,0 +1,1061 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>El Modelo de Ising con el algoritmo VQE &#8212; Variational Quantum Eigensolver (VQE)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/myfile.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "talentQ-es/VQE");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/Part_03_VQE/Chapter_02_02_CasosSencillos/Section_021_Modelo-Ising_myst';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="La molécula de \(\text{H}_2\)" href="Section_022_Molecula-H2_myst.html" />
+    <link rel="prev" title="Casos Sencillos del Algoritmo VQE" href="../Chapter_02_01_CasosSencillos_myst.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/TalentQ_LogoNegNegro.png" class="logo__image only-light" alt="Variational Quantum Eigensolver (VQE) - Home"/>
+    <script>document.write(`<img src="../../../_static/TalentQ_LogoNegNegro.png" class="logo__image only-dark" alt="Variational Quantum Eigensolver (VQE) - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational Quantum Eigensolver</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Chapter_01_01_Introduction_myst.html">Introducción  al Algoritmo VQE</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Chapter_02_01_CasosSencillos_myst.html">Casos Sencillos del Algoritmo VQE</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">El Modelo de Ising con el algoritmo VQE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Section_022_Molecula-H2_myst.html">La molécula de <span class="math notranslate nohighlight">\(\text{H}_2\)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_03_01_Ansatze_myst.html">Ansätze</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Ansatz/Section_031_k-UpCCGSD_myst.html">Ansatz k-UpCCGSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Ansatz/Section_033_ADAPT_myst.html">ADAPT con el Modelo de Lipkin</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_04_01_Optimizadores_myst.html">Optimizadores</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_04_02_Optimizadores/Section_041_Rotosolve_Qiskit_myst.html">Algoritmo de optimización Rotosolve</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Chapter_Bibliografia_myst.html">Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/talentQ-es/VQE" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/talentQ-es/VQE/edit/master/Book/docs/Part_03_VQE/Chapter_02_02_CasosSencillos/Section_021_Modelo-Ising_myst.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/talentQ-es/VQE/issues/new?title=Issue%20on%20page%20%2Fdocs/Part_03_VQE/Chapter_02_02_CasosSencillos/Section_021_Modelo-Ising_myst.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/docs/Part_03_VQE/Chapter_02_02_CasosSencillos/Section_021_Modelo-Ising_myst.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>El Modelo de Ising con el algoritmo VQE</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-modelo-de-ising">Introducción al Modelo de Ising</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-modelo-de-ising-1d">El Modelo de Ising 1D</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <blockquote>
+<div><p>May 06, 2024 | 4 min read</p>
+</div></blockquote>
+<section class="tex2jax_ignore mathjax_ignore" id="el-modelo-de-ising-con-el-algoritmo-vqe">
+<span id="sec-el-modelo-de-ising-con-el-algoritmo-vqe"></span><h1>El Modelo de Ising con el algoritmo VQE<a class="headerlink" href="#el-modelo-de-ising-con-el-algoritmo-vqe" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_hide-input tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Librerías generales</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Librerías Qibo</span>
+<span class="kn">import</span> <span class="nn">qibo</span>
+<span class="kn">from</span> <span class="nn">qibo</span> <span class="kn">import</span> <span class="n">models</span><span class="p">,</span> <span class="n">gates</span><span class="p">,</span> <span class="n">hamiltonians</span>
+<span class="kn">from</span> <span class="nn">qibo</span> <span class="kn">import</span> <span class="n">matrices</span> <span class="k">as</span> <span class="n">m</span>
+
+<span class="c1"># Librerías Qiskit</span>
+<span class="kn">import</span> <span class="nn">qiskit</span>
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">IBMQ</span><span class="p">,</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">QuantumRegister</span><span class="p">,</span> <span class="n">ClassicalRegister</span><span class="p">,</span> <span class="n">Aer</span><span class="p">,</span> <span class="n">execute</span><span class="p">,</span> <span class="n">transpile</span>
+<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_bloch_multivector</span>
+<span class="kn">from</span> <span class="nn">qiskit.algorithms.optimizers</span> <span class="kn">import</span> <span class="n">COBYLA</span><span class="p">,</span> <span class="n">SPSA</span><span class="p">,</span> <span class="n">POWELL</span>
+<span class="kn">from</span> <span class="nn">qiskit.primitives</span> <span class="kn">import</span> <span class="n">Estimator</span>
+<span class="kn">from</span> <span class="nn">qiskit.algorithms.minimum_eigensolvers</span> <span class="kn">import</span> <span class="n">VQE</span>
+<span class="kn">from</span> <span class="nn">qiskit.utils</span> <span class="kn">import</span> <span class="n">QuantumInstance</span><span class="p">,</span> <span class="n">algorithm_globals</span>
+<span class="kn">from</span> <span class="nn">qiskit.opflow</span> <span class="kn">import</span> <span class="n">X</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">Y</span>
+<span class="kn">from</span> <span class="nn">qiskit.circuit.library</span> <span class="kn">import</span> <span class="n">TwoLocal</span>
+<span class="kn">from</span> <span class="nn">qiskit.tools.parallel</span> <span class="kn">import</span> <span class="n">parallel_map</span>
+
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">()</span>
+
+<span class="n">qibo</span><span class="o">.</span><span class="n">set_backend</span><span class="p">(</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduccion-al-modelo-de-ising" id="id3">Introducción al Modelo de Ising</a></p></li>
+</ul>
+</div>
+<section id="introduccion-al-modelo-de-ising">
+<span id="sec-introduccion-al-modelo-de-ising"></span><h2><a class="toc-backref" href="#id3">Introducción al Modelo de Ising</a><a class="headerlink" href="#introduccion-al-modelo-de-ising" title="Permalink to this heading">#</a></h2>
+<p>El Modelo de Ising es un modelo para entender los materiales magnéticos en términos de los <em>spines</em> de los átomos y los electrones que lo forman. Pdemos imaginar el sólido magnético como una red cristalina, y en cada uno de los nodos tenemos una flecha que apunta hacia arriba (<span class="math notranslate nohighlight">\(\uparrow\)</span>) o hacia abajo (<span class="math notranslate nohighlight">\(\downarrow\)</span>). Si dos flechas contiguas apuntan en la misma dirección (<span class="math notranslate nohighlight">\(\uparrow \uparrow\)</span> o <span class="math notranslate nohighlight">\(\downarrow \downarrow\)</span>), esta unión tiene una contribución negativa a la energía del sistema: el sistema tiende a alinear los <em>spines</em> entre si. Por otro lado si las flechas apuntan en direcciones contrarias (<span class="math notranslate nohighlight">\(\uparrow \downarrow\)</span>), la energía de esa unión es positiva: al sistema le “cuesta” mantener flechas en direcciones opuestas.</p>
+<p>Existen dos factores externos que pueden condicionar el estado del sistema: el campo magnético y la temperatura a los que lo sometemos. Por un lado, si introducimos un campo magnético apuntando hacia arriba, los <em>spines</em> tienden a alinearse con el campo, por lo que todos querrán apuntar hacia arriba. Por otro lado, si calentamos mucho el sistema, las excitaciones térmicas provocarán que los <em>spines</em> se agiten, cambiando de dirección y desordenándose.</p>
+<p>En el caso cuántico, las fluctuaciones cuánticas del sistema provocan cambios en estos spines incluso a temperatura cero, permitiendo la existencia de transiciones de fase cuánticas.</p>
+<p>Podemos expresar el Hamiltoniano del sistema como:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{H} = - J \sum_{\langle i,j \rangle} \sigma_i \sigma_j - h \sum_i \sigma_i \;,
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(J\)</span> es la contribución energética de la interacción de dos <em>spines</em> adyacentes (fijémonos en que en el primer sumatorio solo se suma a primeros vecinos, <span class="math notranslate nohighlight">\(\langle i,j \rangle\)</span>) y <span class="math notranslate nohighlight">\(h\)</span> está relacionado con este campo magnético externo. <span class="math notranslate nohighlight">\(\sigma_i\)</span> es la “etiqueta” del <em>spin</em> y vale <span class="math notranslate nohighlight">\(+1\)</span> o <span class="math notranslate nohighlight">\(-1\)</span> según apunte hacia arriba o hacia abajo.</p>
+<p>Este problema puede complicarse dados diferentes factores microcópicos como la estructura cristalina o incluso tener interacciones más allá de los primeros vecinos, lo que requiere métodos aproximados para solucionarlo. No obstante, hay dos casos especiales para los que existe una solución exacta y analítica del modelo: cuando el sistema tiene solo una dimensión o cuando el sistema tiene dos dimensiones y una estructura cuadrada.</p>
+<section id="el-modelo-de-ising-1d">
+<span id="sec-el-modelo-de-ising-1d"></span><h3>El Modelo de Ising 1D<a class="headerlink" href="#el-modelo-de-ising-1d" title="Permalink to this heading">#</a></h3>
+<p>Vamos a analizar el caso cuántico de la cadena de Ising <strong>unidimensional</strong>. Precisamente por la naturaleza cuántica del problema podemos utilizar las matrices de Pauli para caracterizar el Hamiltoniano, dando lugar a una nueva forma del operador <span id="id1">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id65" title="Alba Cervera-Lierta. Exact Ising model simulation on a quantum computer. Quantum, 2:114, December 2018. Publisher: Verein zur Förderung des Open Access Publizierens in den Quantenwissenschaften. URL: https://quantum-journal.org/papers/q-2018-12-21-114/ (visited on 2022-12-19), doi:10.22331/q-2018-12-21-114.">5</a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{H} = -J \sum_{i=1}^N X_i X_{i+1} - J g \sum_i Z_i \;,
+\]</div>
+<p>siendo <span class="math notranslate nohighlight">\(N\)</span> la longitud de la cadena y, de nuevo, <span class="math notranslate nohighlight">\(J\)</span> está relacionado con la energía del sistema y <span class="math notranslate nohighlight">\(g\)</span> con la intensidad del campo magnético a primeros vecinos. <span class="math notranslate nohighlight">\(X_i\)</span> y <span class="math notranslate nohighlight">\(Z_i\)</span> son operadores de Pauli como los que introducíamos al principio de este documento, actuando sobre el <em>spin</em> en posición <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>Este modelo se conoce como <strong>transverse field Ising Model</strong>. A veces se define <span class="math notranslate nohighlight">\(\Gamma = J g\)</span>, donde <span class="math notranslate nohighlight">\(\Gamma\)</span> se conoce como campo transverso.</p>
+<div class="note admonition">
+<p class="admonition-title">Nota (Notación reducida)</p>
+<p>En lo que a la descomposición de Pauli se refiere, los productos anteriores realmente son productos tensoriales de operadores para las partículas <span class="math notranslate nohighlight">\(i\)</span> e <span class="math notranslate nohighlight">\(i+1\)</span>, teniendo identidades en el resto de posiciones. Por ejemplo, para una cadena de tres <i>spines</i>, <span class="math notranslate nohighlight">\(N=3\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{H} = -J(X \otimes X \otimes I + I \otimes X \otimes X + X \otimes I \otimes X) - J g (Z \otimes I \otimes I + I \otimes Z \otimes I + I \otimes I \otimes Z) \;,
+\]</div>
+<p>donde hemos tomado condiciones de contorno periódicas (<span class="math notranslate nohighlight">\(\sigma_{N+1} \rightarrow \sigma_1\)</span>).</p>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PAULIS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;I&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">),</span>
+    <span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">),</span>
+    <span class="s2">&quot;Y&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="p">],[</span><span class="mi">1</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">),</span>
+    <span class="s2">&quot;Z&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Vamos a redefinir nuestras constantes del problema <span class="math notranslate nohighlight">\(J\)</span> y <span class="math notranslate nohighlight">\(g\)</span> de forma que podamos expresarlas como magnitudes relativas, escribiendo nuestro operador como</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{H} = \sum_{i=1}^N X_i X_{i+1} + \gamma \sum_i Z_i \;.
+\]</div>
+<p>Ahora los signos (<span class="math notranslate nohighlight">\(-\)</span>) han pasado a ser positivos y solo tenemos una constante de acoplo, <span class="math notranslate nohighlight">\(\gamma\)</span>. Esto implica que, cuando <span class="math notranslate nohighlight">\(\gamma\)</span> es positivo estamos en el caso ferromagnético y cuando es negativo en el antiferromagnético.</p>
+<p>La función que implementa esto es la siguiente:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">def</span> <span class="nf">ising_chain_ham_qibo</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">gam</span><span class="p">):</span>
+    
+    <span class="c1"># Esta función nos devuelve el Hamiltoniano en términos utilizables por los algoritmos de Qibo</span>
+    <span class="c1"># n = number of spin positions</span>
+    <span class="c1"># gam = transverse field parameter</span>
+
+    <span class="kn">from</span> <span class="nn">qibo.symbols</span> <span class="kn">import</span> <span class="n">X</span><span class="p">,</span> <span class="n">Z</span>
+
+    <span class="n">sym_X</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">sym_Z</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">Z</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">sym_H</span> <span class="o">=</span> <span class="n">sym_X</span> <span class="o">+</span> <span class="n">gam</span> <span class="o">*</span> <span class="n">sym_Z</span>
+
+    <span class="n">H</span> <span class="o">=</span> <span class="n">hamiltonians</span><span class="o">.</span><span class="n">SymbolicHamiltonian</span><span class="p">(</span><span class="n">sym_H</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">H</span><span class="p">,</span> <span class="n">H</span><span class="o">.</span><span class="n">matrix</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">def</span> <span class="nf">ising_chain_ham</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">gam</span><span class="p">):</span>
+    
+    <span class="c1"># Esta función nos devuelve el Hamiltoniano en términos utilizables por los algoritmos de Qiskit</span>
+    <span class="c1"># n = number of spin positions</span>
+    <span class="c1"># gam = transverse field parameter</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">vecX</span> <span class="o">=</span> <span class="p">[</span><span class="n">I</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+        <span class="n">vecZ</span> <span class="o">=</span> <span class="p">[</span><span class="n">I</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+        <span class="n">vecX</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span>
+        <span class="n">vecZ</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Z</span>
+        
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">vecX</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">vecX</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span>
+
+        <span class="n">auxX</span> <span class="o">=</span> <span class="n">vecX</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">auxZ</span> <span class="o">=</span> <span class="n">vecZ</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">vecX</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">]:</span>
+            <span class="n">auxX</span> <span class="o">=</span> <span class="n">auxX</span> <span class="o">^</span> <span class="n">a</span>
+        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">vecZ</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">]:</span>
+            <span class="n">auxZ</span> <span class="o">=</span> <span class="n">auxZ</span> <span class="o">^</span> <span class="n">b</span>
+            
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">H</span> <span class="o">=</span> <span class="p">(</span><span class="n">auxX</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">gam</span> <span class="o">*</span> <span class="n">auxZ</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">H</span> <span class="o">=</span> <span class="n">H</span> <span class="o">+</span> <span class="p">(</span><span class="n">auxX</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">gam</span> <span class="o">*</span> <span class="n">auxZ</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">H</span>
+
+
+<span class="k">def</span> <span class="nf">ising_chain_matrix</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">gam</span><span class="p">):</span>
+    
+    <span class="c1"># Esta función devuelve el Hamiltoniano como un array (lista de listas)</span>
+      
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">HX</span> <span class="o">=</span> <span class="p">[</span><span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">]]</span> <span class="o">*</span> <span class="n">n</span>
+        <span class="n">HZ</span> <span class="o">=</span> <span class="p">[</span><span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">]]</span> <span class="o">*</span> <span class="n">n</span>
+        <span class="n">HX</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">]</span>
+        <span class="n">HZ</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">HX</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">HX</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">]</span>
+            
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">,</span> <span class="n">HZ</span><span class="p">)</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span> <span class="o">*</span> <span class="n">gam</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">H</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">,</span> <span class="n">HX</span><span class="p">)</span> <span class="o">+</span> <span class="n">aux</span>
+        <span class="k">else</span><span class="p">:</span>            
+            <span class="n">H</span> <span class="o">=</span> <span class="n">H</span> <span class="o">+</span> <span class="n">reduce</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">,</span> <span class="n">HX</span><span class="p">)</span> <span class="o">+</span> <span class="n">aux</span>
+        
+    <span class="k">return</span> <span class="n">H</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>Vamos a resolver una cadena de Ising de <span class="math notranslate nohighlight">\(N = 4\)</span> <em>spines</em>. Entonces prepararemos el Hamiltoniano y después le haremos una serie de transformaciones que nos permiten diagonalizarlo.</p>
+<p>Empezamos por escribir nuestro operador. Como tenemos <span class="math notranslate nohighlight">\(N=4\)</span> <i>spines</i>, el operador será</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{H} = X_1X_2I_3I_4 + I_1X_2X_3I_4 + I_1I_2X_3X_4 + X_1I_2I_3X_4 + \gamma (Z_1I_2I_3I_4 + I_1Z_2I_3I_4 + I_1I_2Z_3I_4 + I_1I_2I_3Z_4)
+\]</div>
+<p>Tomemos un valor de <span class="math notranslate nohighlight">\(\gamma\)</span> pequeño, por ejemplo, <span class="math notranslate nohighlight">\(\gamma = 0.3\)</span>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Definimos el Hamiltoniano</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">gam</span> <span class="o">=</span> <span class="mf">.3</span>
+
+<span class="n">op_H</span><span class="p">,</span> <span class="n">matrix</span> <span class="o">=</span> <span class="n">ising_chain_ham_qibo</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">gam</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Definimos el Hamiltoniano</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">gam</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">op_H</span> <span class="o">=</span> <span class="n">ising_chain_ham</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">gam</span><span class="p">)</span>
+<span class="n">matrix</span> <span class="o">=</span> <span class="n">ising_chain_matrix</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">gam</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Qibo 0.1.12.dev0|WARNING|2024-06-13 07:32:27]: Calculating the dense form of a symbolic Hamiltonian. This operation is memory inefficient.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Ahora creamos un circuito variacional de ansatz</span>
+<span class="c1"># En este caso usamos un circuito de puertas RY(theta) y CZ, haciendo los diferentes valores de theta aleatorios</span>
+
+<span class="n">nqubits</span> <span class="o">=</span> <span class="n">n</span>
+<span class="n">nlayers</span>  <span class="o">=</span> <span class="mi">8</span>
+
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Circuit</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nlayers</span><span class="p">):</span>
+    <span class="n">circuit</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">gates</span><span class="o">.</span><span class="n">RY</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)))</span>
+    <span class="n">circuit</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">gates</span><span class="o">.</span><span class="n">CZ</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">q</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nqubits</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+    <span class="n">circuit</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">gates</span><span class="o">.</span><span class="n">RY</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)))</span>
+    <span class="n">circuit</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">gates</span><span class="o">.</span><span class="n">CZ</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">q</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nqubits</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+    <span class="n">circuit</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gates</span><span class="o">.</span><span class="n">CZ</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nqubits</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    
+<span class="n">circuit</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">gates</span><span class="o">.</span><span class="n">RY</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Ahora creamos un circuito variacional de ansatz</span>
+<span class="c1"># En este caso usamos un circuito de puertas RY(theta) y CZ, haciendo los diferentes valores de theta aleatorios</span>
+
+<span class="n">ansatz_circ</span> <span class="o">=</span> <span class="n">TwoLocal</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">rotation_blocks</span><span class="o">=</span><span class="s1">&#39;ry&#39;</span><span class="p">,</span> <span class="n">entanglement_blocks</span><span class="o">=</span><span class="s1">&#39;cz&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>En este caso, en lugar de utilizar el optimizador SPSA como hicimos en la sección anterior, empleamos uno nuevo: el método de Powell <span id="id2">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id69" title="M. J. D. Powell. An efficient method for finding the minimum of a function of several variables without calculating derivatives. The Computer Journal, 7(2):155–162, January 1964. URL: https://doi.org/10.1093/comjnl/7.2.155 (visited on 2023-06-23), doi:10.1093/comjnl/7.2.155.">18</a>]</span>.</p>
+<div class="note admonition">
+<p class="admonition-title">Nota (Eficiencia en la optimización)</p>
+<p>El algoritmo de Powell que estamos empleando es considerablemente más eficiente que el resto de algoritmos que hemos probado para este problema específicamente. No obstante, su funcionamiento da lugar a unas gráficas de convergencia que no son particularmente ilustrativas. Si se quiere ver una gráfica en la que realmente se aprecie la convergencia del algoritmo, se puede probar a utilizar el algoritmo COBYLA. No obstante, la ejecución del código tardará un tiempo considerable (del orden de 20 minutos).</p>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Especificamos el algorimto de optimización clásica</span>
+<span class="c1"># opt = &#39;COBYLA&#39;</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="s1">&#39;Powell&#39;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Especificamos el algorimto de optimización clásica</span>
+<span class="c1"># opt = COBYLA(maxiter = 10000)</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">POWELL</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>Implementamos unas funciones de callback para poder almacenar los datos de cada iteración y hacer un análisis de la convergencia.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Esto son funciones auxiliares para guardar los datos de las iteraciones</span>
+
+<span class="n">intermediate_info</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s1">&#39;energy&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="c1">#&#39;stddev&#39;: []</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>    
+    <span class="n">energy</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">vqe</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">callback</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">opt</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">compile</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">energy</span><span class="p">)</span>
+    <span class="c1">#intermediate_info[&#39;stddev&#39;].append(stddev)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Esto son funciones auxiliares para guardar los datos de las iteraciones</span>
+
+<span class="n">counts</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">def</span> <span class="nf">store_intermediate_result</span><span class="p">(</span><span class="n">eval_count</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">):</span>
+    <span class="n">counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eval_count</span><span class="p">)</span>
+    <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>Como anticipamos previamente, vamos a hacer uso de la función <code class="docutils literal notranslate"><span class="pre">vqe</span></code> que está ya implementada, ya que es considerablemente más eficiente que la que programamos en la sección anterior.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-10">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Parámetros del Ansatz</span>
+<span class="n">initial_parameters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">nqubits</span><span class="o">*</span><span class="n">nlayers</span> <span class="o">+</span> <span class="n">nqubits</span><span class="p">)</span>
+
+<span class="c1"># Construcción del método VQE</span>
+<span class="n">vqe</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">VQE</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">op_H</span><span class="p">)</span>
+<span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;disp&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;return_all&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+
+<span class="c1"># Y ejecutamos el algoritmo</span>
+<span class="n">best</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="n">vqe</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">initial_parameters</span><span class="p">,</span> <span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">opt</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="n">options</span><span class="p">,</span> <span class="nb">compile</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">values</span> <span class="o">=</span> <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-11">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Simulador/Ordenador cuántico</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;statevector_simulator&#39;</span><span class="p">)</span>
+
+<span class="c1"># Entorno para la resolución</span>
+<span class="n">algorithm_globals</span><span class="o">.</span><span class="n">random_seed</span> <span class="o">=</span> <span class="mi">63</span>
+<span class="n">qi</span> <span class="o">=</span> <span class="n">QuantumInstance</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">seed_transpiler</span><span class="o">=</span><span class="mi">63</span><span class="p">,</span> <span class="n">seed_simulator</span><span class="o">=</span><span class="mi">63</span><span class="p">)</span>
+
+<span class="c1"># Algoritmo VQE, introduciendo el ansatz y el optimizador elegidos</span>
+<span class="n">vqe_proc</span> <span class="o">=</span> <span class="n">VQE</span><span class="p">(</span><span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">()</span> <span class="p">,</span><span class="n">ansatz</span><span class="o">=</span><span class="n">ansatz_circ</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">opt</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">store_intermediate_result</span><span class="p">)</span>
+<span class="n">vqe_proc</span><span class="o">.</span><span class="n">quantum_instance</span> <span class="o">=</span> <span class="n">qi</span>
+
+<span class="c1"># Resultados</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">vqe_proc</span><span class="o">.</span><span class="n">compute_minimum_eigenvalue</span><span class="p">(</span><span class="n">operator</span> <span class="o">=</span> <span class="n">op_H</span><span class="p">)</span>
+<span class="c1"># print(sol, &quot;\n&quot;)</span>
+<span class="n">best</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">optimal_value</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: -4.090337
+         Iterations: 4
+         Function evaluations: 2498
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Y ya vemos el valor de la solución:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;E_G =&quot;</span><span class="p">,</span><span class="n">best</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E_G = -4.090337110276804
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Con la información de las iteraciones podemos dibujar la convergencia de nuestro código</span>
+
+<span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)),</span> <span class="n">values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Energy value&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Steps&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Energy&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Energy convergence for Powell optimizer&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/ee7876b641aa74958d430643701647dfdd09d64195a20857528c1fe67404aa46.png" src="../../../_images/ee7876b641aa74958d430643701647dfdd09d64195a20857528c1fe67404aa46.png" />
+</div>
+</div>
+<p>También comparamos con el valor que obtenemos simplemente de diagonalizar la matriz, ya que, al ser “pequeña” (<span class="math notranslate nohighlight">\(16 \times 16\)</span>), <code class="docutils literal notranslate"><span class="pre">scipy</span></code> no tiene problema en hacerlo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eigvals</span><span class="p">,</span> <span class="n">eigvecs</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;E_G =&quot;</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">eigvals</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error relativo =&quot;</span><span class="p">,</span> <span class="nb">abs</span><span class="p">((</span><span class="n">best</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">eigvals</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="o">/</span><span class="nb">min</span><span class="p">(</span><span class="n">eigvals</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E_G = -4.092961599426855
+Error relativo = 0.06412200765378798 %
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p>Authors:</p>
+<p>Irais Bautista (<a class="reference external" href="http://www.cesga.es">CESGA</a>), Sergio Martínez (<a class="reference external" href="https://bifi.es/es/">BIFi-UNIZAR</a>), Jaime Scharfhausen (<a class="reference external" href="https://www.uam.es/uam/inicio">UAM</a>) y Alejandro Jaramillo (<a class="reference external" href="https://www.csuc.cat/es">CSUC</a>)</p>
+<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png" src="https://quantumspain-project.es/wp-content/uploads/2022/11/CESGA.png" style="width: 150px;" /></a>
+<a class="reference internal image-reference" href="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png"><img alt="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png" src="http://bifi.es/wp-content/uploads/2016/11/logo_vectorial-web.png" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png"><img alt="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png" src="https://www.iib.uam.es/iiblf6theme-theme/images/custom/logo-uam.png" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png"><img alt="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png" src="https://www.csuc.cat/sites/default/files/2021-02/CSUC_logo_corporatiu_0.png" style="width: 200px;" /></a>
+<hr class="docutils" />
+<figure class="align-center">
+<a class="reference internal image-reference" href="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png"><img alt="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png" src="https://quantumspain-project.es/wp-content/uploads/2022/11/Logo_QS_EspanaDigital.png" style="width: 2000px;" /></a>
+</figure>
+<center>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+<img aling="left" alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+</center>
+<p>License: <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</a>.</p>
+<p>This work has been financially supported by the Ministry for Digital Transformation and of Civil Service of the Spanish Government through the QUANTUM ENIA project call - Quantum Spain project, and by the European Union through the Recovery, Transformation and Resilience Plan - NextGenerationEU within the framework of the Digital Spain 2026 Agenda.</p>
+<center>
+<img align="left" src="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png" width="1000px" />
+</center></section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs/Part_03_VQE/Chapter_02_02_CasosSencillos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Chapter_02_01_CasosSencillos_myst.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Casos Sencillos del Algoritmo VQE</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Section_022_Molecula-H2_myst.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">La molécula de <span class="math notranslate nohighlight">\(\text{H}_2\)</span></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-modelo-de-ising">Introducción al Modelo de Ising</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-modelo-de-ising-1d">El Modelo de Ising 1D</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://quantumspain-project.es">QuantumSpain</a> & <a href="https://www.talentq.es/es_es/">TalentQ</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
