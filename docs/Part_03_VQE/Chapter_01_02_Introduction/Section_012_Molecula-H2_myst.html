@@ -216,7 +216,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational Quantum Eigensolver</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Chapter_01_01_Introduction_myst.html">Introducción al Algoritmo VQE</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Chapter_01_01_Introduction_myst.html">Casos Sencillos con el Algoritmo VQE</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Section_011_Modelo-Ising_myst.html">El Modelo de Ising con el algoritmo VQE</a></li>
 
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">La molécula de <span class="math notranslate nohighlight">\(\text{H}_2\)</span></a></li>
@@ -229,10 +229,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_03_01_Optimizadores_myst.html">Optimizadores</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Optimizadores/Section_031_Rotosolve_Pennylane_myst.html">Algoritmo de optimización Rotosolve</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Optimizadores/Section_031_Rotosolve_Qiskit_myst.html">Algoritmo de optimización Rotosolve</a></li>
 </ul>
 </li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Chapter_Bibliografia_myst.html">Bibliografía</a></li>
 </ul>
 
     </div>
@@ -422,9 +425,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -440,14 +441,6 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -505,7 +498,7 @@ document.write(`
 </div>
 </details>
 </div>
-<p>El algoritmo VQE se propuso originalmente para obtener el estado de mínima energía de moléculas complicadas a partir de su Hamiltoniano <span id="id1">[<a class="reference internal" href="Section_013_Conclusiones_myst.html#id70" title="Alberto Peruzzo, Jarrod McClean, Peter Shadbolt, Man-Hong Yung, Xiao-Qi Zhou, Peter J. Love, Alán Aspuru-Guzik, and Jeremy L. O’Brien. A variational eigenvalue solver on a photonic quantum processor. Nature Communications, 5(1):4213, July 2014. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/ncomms5213 (visited on 2022-12-19), doi:10.1038/ncomms5213.">3</a>]</span>. Por este motivo, gran parte de su historia y sus aplicaciones se han desarrollado y estudiado dentro del ámbito de la química computacional. También por este motivo, muchas librerías y lenguajes de programación orientados a utilizar computadores cuánticos tienen integradas multitud de funciones y características para trabajar con moléculas.</p>
+<p>El algoritmo VQE se propuso originalmente para obtener el estado de mínima energía de moléculas complicadas a partir de su Hamiltoniano <span id="id1">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id64" title="Alberto Peruzzo, Jarrod McClean, Peter Shadbolt, Man-Hong Yung, Xiao-Qi Zhou, Peter J. Love, Alán Aspuru-Guzik, and Jeremy L. O’Brien. A variational eigenvalue solver on a photonic quantum processor. Nature Communications, 5(1):4213, July 2014. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/ncomms5213 (visited on 2022-12-19), doi:10.1038/ncomms5213.">17</a>]</span>. Por este motivo, gran parte de su historia y sus aplicaciones se han desarrollado y estudiado dentro del ámbito de la química computacional. También por este motivo, muchas librerías y lenguajes de programación orientados a utilizar computadores cuánticos tienen integradas multitud de funciones y características para trabajar con moléculas.</p>
 <p>Por ejemplo, Google tiene su librería de computación cuántica <a class="reference external" href="https://quantumai.google/openfermion"><code class="docutils literal notranslate"><span class="pre">openfermion</span></code></a>, mientras que Qiskit tiene, en su módulo <code class="docutils literal notranslate"><span class="pre">qiskit_nature</span></code>, un método para construir moléculas utilizando PYSCF.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
@@ -545,7 +538,7 @@ Qiskit</label><div class="sd-tab-content docutils">
 <p>Este módulo nos permite, entre otras cosas, fabricar diferentes moléculas, especificando los diferentes átomos que la componen, la base de funciones de la función de onda del electrón, la carga y la multiplicidad de la molécula.</p>
 <p>De todas las posibles moléculas que podríamos tratar, la más sencilla es la de <span class="math notranslate nohighlight">\(\text{H}_2\)</span>: el átomo de Hidrógeno es el más pequeño y simple, presenta un único enlace y solo tiene dos electrones.</p>
 <p>Aun así, al contrario que el Modelo de Ising, la molécula de Hidrógeno presenta un problema: no es resoluble analíticamente. En su lugar, el “valor teórico” de su energía fundamental es realmente el resultado de simulaciones y experimentos, en ocasiones dando resultados en forma de operaciones infinitas que hay que truncar en alguna parte.</p>
-<p>Así, por ejemplo, en <span id="id2">[<a class="reference internal" href="#id57" title="Tao Pang. Hydrogen molecule under confinement: Exact results. Physical Review A, 49(3):1709–1713, March 1994. URL: https://link.aps.org/doi/10.1103/PhysRevA.49.1709 (visited on 2023-01-12), doi:10.1103/PhysRevA.49.1709.">1</a>]</span> se presenta un resultado de <span class="math notranslate nohighlight">\(-1.1746(5) E_h\)</span> a partir de simulaciones de Monte Carlo, mientras que en <span id="id3">[<a class="reference internal" href="#id58" title="Zhen-Yu Yang and Ji-Xuan Hou. Calculating the ground state energy of hydrogen molecules and helium hydride ions using Bohr’s quantum theory. European Journal of Physics, 40(6):065405, November 2019. URL: https://iopscience.iop.org/article/10.1088/1361-6404/ab32ce (visited on 2023-01-12), doi:10.1088/1361-6404/ab32ce.">3</a>]</span> obtienen un resultado comprendido entre <span class="math notranslate nohighlight">\(-1.2241 E_h\)</span> y <span class="math notranslate nohighlight">\(-1.0999 E_h\)</span> empleando el modelo de Bohr.</p>
+<p>Así, por ejemplo, en <span id="id2">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id54" title="Tao Pang. Hydrogen molecule under confinement: Exact results. Physical Review A, 49(3):1709–1713, March 1994. URL: https://link.aps.org/doi/10.1103/PhysRevA.49.1709 (visited on 2023-01-12), doi:10.1103/PhysRevA.49.1709.">16</a>]</span> se presenta un resultado de <span class="math notranslate nohighlight">\(-1.1746(5) E_h\)</span> a partir de simulaciones de Monte Carlo, mientras que en <span id="id3">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id55" title="Zhen-Yu Yang and Ji-Xuan Hou. Calculating the ground state energy of hydrogen molecules and helium hydride ions using Bohr’s quantum theory. European Journal of Physics, 40(6):065405, November 2019. URL: https://iopscience.iop.org/article/10.1088/1361-6404/ab32ce (visited on 2023-01-12), doi:10.1088/1361-6404/ab32ce.">25</a>]</span> obtienen un resultado comprendido entre <span class="math notranslate nohighlight">\(-1.2241 E_h\)</span> y <span class="math notranslate nohighlight">\(-1.0999 E_h\)</span> empleando el modelo de Bohr.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-2">
@@ -817,9 +810,9 @@ Qiskit</label><div class="sd-tab-content docutils">
 <div class="cell tag_remove_input docutils container">
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: -1.015274
-         Iterations: 4
-         Function evaluations: 2502
+         Current function value: -1.015272
+         Iterations: 5
+         Function evaluations: 3090
 </pre></div>
 </div>
 </div>
@@ -832,7 +825,7 @@ Qiskit</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E_G = -1.015274349550454
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E_G = -1.0152715222551367
 </pre></div>
 </div>
 </div>
@@ -857,27 +850,11 @@ Qiskit</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/d6f6d2a5f9a2a88391d1e2a4316d3ecc1b69c849512fd6b17e2915da7ebb5a2f.png" src="../../../_images/d6f6d2a5f9a2a88391d1e2a4316d3ecc1b69c849512fd6b17e2915da7ebb5a2f.png" />
+<img alt="../../../_images/5329b418b7b2c2658dd623abf4b6365c008e6f8a95ffb3ec2873d800aab86605.png" src="../../../_images/5329b418b7b2c2658dd623abf4b6365c008e6f8a95ffb3ec2873d800aab86605.png" />
 </div>
 </div>
 <p>Para este caso concreto es importante destacar que el problema que hemos resuelto es la diagonalización del Hamiltoniano de Hartree-Fock de la molécula.</p>
 <p>Existen otros modelos de <em>ansatz</em> (como los <em>ansätze</em> UCC) que, antes que hacer la diagonalización, operan sobre el circuito introduciendo términos y consideraciones nuevas, como correcciones relativistas o correlación electrónica, y después obtienen la energía fundamental, de forma que la resolución del problema tiene en cuenta efectos más difíciles de simular con computadores clásicos.</p>
-<hr class="docutils" />
-<section id="bibliografia">
-<h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
-<div class="docutils container" id="id4">
-<dl class="citation">
-<dt class="label" id="id57"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
-<dd><p>Tao Pang. Hydrogen molecule under confinement: Exact results. <em>Physical Review A</em>, 49(3):1709–1713, March 1994. URL: <a class="reference external" href="https://link.aps.org/doi/10.1103/PhysRevA.49.1709">https://link.aps.org/doi/10.1103/PhysRevA.49.1709</a> (visited on 2023-01-12), <a class="reference external" href="https://doi.org/10.1103/PhysRevA.49.1709">doi:10.1103/PhysRevA.49.1709</a>.</p>
-</dd>
-<dt class="label" id="id67"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
-<dd><p>Alberto Peruzzo, Jarrod McClean, Peter Shadbolt, Man-Hong Yung, Xiao-Qi Zhou, Peter J. Love, Alán Aspuru-Guzik, and Jeremy L. O’Brien. A variational eigenvalue solver on a photonic quantum processor. <em>Nature Communications</em>, 5(1):4213, July 2014. Number: 1 Publisher: Nature Publishing Group. URL: <a class="reference external" href="https://www.nature.com/articles/ncomms5213">https://www.nature.com/articles/ncomms5213</a> (visited on 2022-12-19), <a class="reference external" href="https://doi.org/10.1038/ncomms5213">doi:10.1038/ncomms5213</a>.</p>
-</dd>
-<dt class="label" id="id58"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
-<dd><p>Zhen-Yu Yang and Ji-Xuan Hou. Calculating the ground state energy of hydrogen molecules and helium hydride ions using Bohr’s quantum theory. <em>European Journal of Physics</em>, 40(6):065405, November 2019. URL: <a class="reference external" href="https://iopscience.iop.org/article/10.1088/1361-6404/ab32ce">https://iopscience.iop.org/article/10.1088/1361-6404/ab32ce</a> (visited on 2023-01-12), <a class="reference external" href="https://doi.org/10.1088/1361-6404/ab32ce">doi:10.1088/1361-6404/ab32ce</a>.</p>
-</dd>
-</dl>
-</div>
 <hr class="docutils" />
 <p>Authors:</p>
 <p>Irais Bautista (<a class="reference external" href="http://www.cesga.es">CESGA</a>), Sergio Martínez (<a class="reference external" href="https://bifi.es/es/">BIFi-UNIZAR</a>), Jaime Scharfhausen (<a class="reference external" href="https://www.uam.es/uam/inicio">UAM</a>) y Alejandro Jaramillo (<a class="reference external" href="https://www.csuc.cat/es">CSUC</a>)</p>
@@ -898,7 +875,6 @@ Qiskit</label><div class="sd-tab-content docutils">
 <center>
 <img align="left" src="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png" width="1000px" />
 </center></section>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -955,20 +931,7 @@ Qiskit</label><div class="sd-tab-content docutils">
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
+                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>

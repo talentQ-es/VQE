@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>El Modelo de Ising con el algoritmo VQE &#8212; Variational Quantum Eigensolver (VQE)</title>
+    <title>La molécula de \(\text{H}_2\) &#8212; Variational Quantum Eigensolver (VQE)</title>
   
   
   
@@ -102,12 +102,12 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/Part_03_VQE/Chapter_01_02_Introduction/Section_011_Modelo-Ising_myst';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/Part_03_VQE/Chapter_02_02_CasosSencillos/Section_022_Molecula-H2_myst';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="La molécula de \(\text{H}_2\)" href="Section_012_Molecula-H2_myst.html" />
-    <link rel="prev" title="Casos Sencillos con el Algoritmo VQE" href="../Chapter_01_01_Introduction_myst.html" />
+    <link rel="next" title="Ansätze" href="../Chapter_03_01_Ansatze_myst.html" />
+    <link rel="prev" title="El Modelo de Ising con el algoritmo VQE" href="Section_021_Modelo-Ising_myst.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -216,20 +216,19 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational Quantum Eigensolver</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Chapter_01_01_Introduction_myst.html">Casos Sencillos con el Algoritmo VQE</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">El Modelo de Ising con el algoritmo VQE</a></li>
-
-<li class="toctree-l2"><a class="reference internal" href="Section_012_Molecula-H2_myst.html">La molécula de <span class="math notranslate nohighlight">\(\text{H}_2\)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="Section_013_Conclusiones_myst.html">Conclusiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Chapter_01_01_Introduction_myst.html">Introducción  al Algoritmo VQE</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Chapter_02_01_CasosSencillos_myst.html">Casos Sencillos del Algoritmo VQE</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Section_021_Modelo-Ising_myst.html">El Modelo de Ising con el algoritmo VQE</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">La molécula de <span class="math notranslate nohighlight">\(\text{H}_2\)</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_02_01_Ansatze_myst.html">Ansätze</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Chapter_02_02_Ansatz/Section_021_k-UpCCGSD_myst.html">Ansatz k-UpCCGSD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Chapter_02_02_Ansatz/Section_023_ADAPT_myst.html">ADAPT con el Modelo de Lipkin</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_03_01_Ansatze_myst.html">Ansätze</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Ansatz/Section_031_k-UpCCGSD_myst.html">Ansatz k-UpCCGSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Ansatz/Section_033_ADAPT_myst.html">ADAPT con el Modelo de Lipkin</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_03_01_Optimizadores_myst.html">Optimizadores</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Chapter_03_02_Optimizadores/Section_031_Rotosolve_Qiskit_myst.html">Algoritmo de optimización Rotosolve</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Chapter_04_01_Optimizadores_myst.html">Optimizadores</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Chapter_04_02_Optimizadores/Section_041_Rotosolve_Qiskit_myst.html">Algoritmo de optimización Rotosolve</a></li>
 </ul>
 </li>
 </ul>
@@ -307,7 +306,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/talentQ-es/VQE/edit/master/Book/docs/Part_03_VQE/Chapter_01_02_Introduction/Section_011_Modelo-Ising_myst.ipynb" target="_blank"
+      <li><a href="https://github.com/talentQ-es/VQE/edit/master/Book/docs/Part_03_VQE/Chapter_02_02_CasosSencillos/Section_022_Molecula-H2_myst.ipynb" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -324,7 +323,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/talentQ-es/VQE/issues/new?title=Issue%20on%20page%20%2Fdocs/Part_03_VQE/Chapter_01_02_Introduction/Section_011_Modelo-Ising_myst.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/talentQ-es/VQE/issues/new?title=Issue%20on%20page%20%2Fdocs/Part_03_VQE/Chapter_02_02_CasosSencillos/Section_022_Molecula-H2_myst.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -354,7 +353,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/docs/Part_03_VQE/Chapter_01_02_Introduction/Section_011_Modelo-Ising_myst.ipynb" target="_blank"
+      <li><a href="../../../_sources/docs/Part_03_VQE/Chapter_02_02_CasosSencillos/Section_022_Molecula-H2_myst.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -425,9 +424,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -438,24 +435,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>El Modelo de Ising con el algoritmo VQE</h1>
+    <h1>La molécula de \text{H}_2</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">El Modelo de Ising con el algoritmo VQE</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-modelo-de-ising">Introducción al Modelo de Ising</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-modelo-de-ising-1d">El Modelo de Ising 1D</a></li>
-</ul>
-</li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -466,10 +450,10 @@ document.write(`
                 <article class="bd-article">
                   
   <blockquote>
-<div><p>May 06, 2024 | 4 min read</p>
+<div><p>May 06, 2024 | 3 min read</p>
 </div></blockquote>
-<section class="tex2jax_ignore mathjax_ignore" id="el-modelo-de-ising-con-el-algoritmo-vqe">
-<span id="sec-el-modelo-de-ising-con-el-algoritmo-vqe"></span><h1>El Modelo de Ising con el algoritmo VQE<a class="headerlink" href="#el-modelo-de-ising-con-el-algoritmo-vqe" title="Permalink to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="la-molecula-de-text-h-2">
+<span id="sec-la-molecula-de-h2"></span><h1>La molécula de <span class="math notranslate nohighlight">\(\text{H}_2\)</span><a class="headerlink" href="#la-molecula-de-text-h-2" title="Permalink to this heading">#</a></h1>
 <div class="cell tag_hide-input tag_remove-output docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -513,82 +497,24 @@ document.write(`
 </div>
 </details>
 </div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="introduccion-al-modelo-de-ising">
-<span id="sec-introduccion-al-modelo-de-ising"></span><h1>Introducción al Modelo de Ising<a class="headerlink" href="#introduccion-al-modelo-de-ising" title="Permalink to this heading">#</a></h1>
-<p>El Modelo de Ising es un modelo para entender los materiales magnéticos en términos de los <em>spines</em> de los átomos y los electrones que lo forman. Pdemos imaginar el sólido magnético como una red cristalina, y en cada uno de los nodos tenemos una flecha que apunta hacia arriba (<span class="math notranslate nohighlight">\(\uparrow\)</span>) o hacia abajo (<span class="math notranslate nohighlight">\(\downarrow\)</span>). Si dos flechas contiguas apuntan en la misma dirección (<span class="math notranslate nohighlight">\(\uparrow \uparrow\)</span> o <span class="math notranslate nohighlight">\(\downarrow \downarrow\)</span>), esta unión tiene una contribución negativa a la energía del sistema: el sistema tiende a alinear los <em>spines</em> entre si. Por otro lado si las flechas apuntan en direcciones contrarias (<span class="math notranslate nohighlight">\(\uparrow \downarrow\)</span>), la energía de esa unión es positiva: al sistema le “cuesta” mantener flechas en direcciones opuestas.</p>
-<p>Existen dos factores externos que pueden condicionar el estado del sistema: el campo magnético y la temperatura a los que lo sometemos. Por un lado, si introducimos un campo magnético apuntando hacia arriba, los <em>spines</em> tienden a alinearse con el campo, por lo que todos querrán apuntar hacia arriba. Por otro lado, si calentamos mucho el sistema, las excitaciones térmicas provocarán que los <em>spines</em> se agiten, cambiando de dirección y desordenándose.</p>
-<p>En el caso cuántico, las fluctuaciones cuánticas del sistema provocan cambios en estos spines incluso a temperatura cero, permitiendo la existencia de transiciones de fase cuánticas.</p>
-<p>Podemos expresar el Hamiltoniano del sistema como:</p>
-<div class="math notranslate nohighlight">
-\[
-\mathcal{H} = - J \sum_{\langle i,j \rangle} \sigma_i \sigma_j - h \sum_i \sigma_i \;,
-\]</div>
-<p>donde <span class="math notranslate nohighlight">\(J\)</span> es la contribución energética de la interacción de dos <em>spines</em> adyacentes (fijémonos en que en el primer sumatorio solo se suma a primeros vecinos, <span class="math notranslate nohighlight">\(\langle i,j \rangle\)</span>) y <span class="math notranslate nohighlight">\(h\)</span> está relacionado con este campo magnético externo. <span class="math notranslate nohighlight">\(\sigma_i\)</span> es la “etiqueta” del <em>spin</em> y vale <span class="math notranslate nohighlight">\(+1\)</span> o <span class="math notranslate nohighlight">\(-1\)</span> según apunte hacia arriba o hacia abajo.</p>
-<p>Este problema puede complicarse dados diferentes factores microcópicos como la estructura cristalina o incluso tener interacciones más allá de los primeros vecinos, lo que requiere métodos aproximados para solucionarlo. No obstante, hay dos casos especiales para los que existe una solución exacta y analítica del modelo: cuando el sistema tiene solo una dimensión o cuando el sistema tiene dos dimensiones y una estructura cuadrada.</p>
-<section id="el-modelo-de-ising-1d">
-<h2>El Modelo de Ising 1D<a class="headerlink" href="#el-modelo-de-ising-1d" title="Permalink to this heading">#</a></h2>
-<p>Vamos a analizar el caso cuántico de la cadena de Ising <strong>unidimensional</strong>. Precisamente por la naturaleza cuántica del problema podemos utilizar las matrices de Pauli para caracterizar el Hamiltoniano, dando lugar a una nueva forma del operador <span id="id1">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id65" title="Alba Cervera-Lierta. Exact Ising model simulation on a quantum computer. Quantum, 2:114, December 2018. Publisher: Verein zur Förderung des Open Access Publizierens in den Quantenwissenschaften. URL: https://quantum-journal.org/papers/q-2018-12-21-114/ (visited on 2022-12-19), doi:10.22331/q-2018-12-21-114.">5</a>]</span>:</p>
-<div class="math notranslate nohighlight">
-\[
-\mathcal{H} = -J \sum_{i=1}^N X_i X_{i+1} - J g \sum_i Z_i \;,
-\]</div>
-<p>siendo <span class="math notranslate nohighlight">\(N\)</span> la longitud de la cadena y, de nuevo, <span class="math notranslate nohighlight">\(J\)</span> está relacionado con la energía del sistema y <span class="math notranslate nohighlight">\(g\)</span> con la intensidad del campo magnético a primeros vecinos. <span class="math notranslate nohighlight">\(X_i\)</span> y <span class="math notranslate nohighlight">\(Z_i\)</span> son operadores de Pauli como los que introducíamos al principio de este documento, actuando sobre el <em>spin</em> en posición <span class="math notranslate nohighlight">\(i\)</span>.</p>
-<p>Este modelo se conoce como <strong>transverse field Ising Model</strong>. A veces se define <span class="math notranslate nohighlight">\(\Gamma = J g\)</span>, donde <span class="math notranslate nohighlight">\(\Gamma\)</span> se conoce como campo transverso.</p>
-<div class="note admonition">
-<p class="admonition-title">Nota (Notación reducida)</p>
-<p>En lo que a la descomposición de Pauli se refiere, los productos anteriores realmente son productos tensoriales de operadores para las partículas <span class="math notranslate nohighlight">\(i\)</span> e <span class="math notranslate nohighlight">\(i+1\)</span>, teniendo identidades en el resto de posiciones. Por ejemplo, para una cadena de tres <i>spines</i>, <span class="math notranslate nohighlight">\(N=3\)</span>,</p>
-<div class="math notranslate nohighlight">
-\[
-\mathcal{H} = -J(X \otimes X \otimes I + I \otimes X \otimes X + X \otimes I \otimes X) - J g (Z \otimes I \otimes I + I \otimes Z \otimes I + I \otimes I \otimes Z) \;,
-\]</div>
-<p>donde hemos tomado condiciones de contorno periódicas (<span class="math notranslate nohighlight">\(\sigma_{N+1} \rightarrow \sigma_1\)</span>).</p>
-</div>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PAULIS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;I&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">),</span>
-    <span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">),</span>
-    <span class="s2">&quot;Y&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="p">],[</span><span class="mi">1</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">),</span>
-    <span class="s2">&quot;Z&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-<p>Vamos a redefinir nuestras constantes del problema <span class="math notranslate nohighlight">\(J\)</span> y <span class="math notranslate nohighlight">\(g\)</span> de forma que podamos expresarlas como magnitudes relativas, escribiendo nuestro operador como</p>
-<div class="math notranslate nohighlight">
-\[
-\mathcal{H} = \sum_{i=1}^N X_i X_{i+1} + \gamma \sum_i Z_i \;.
-\]</div>
-<p>Ahora los signos (<span class="math notranslate nohighlight">\(-\)</span>) han pasado a ser positivos y solo tenemos una constante de acoplo, <span class="math notranslate nohighlight">\(\gamma\)</span>. Esto implica que, cuando <span class="math notranslate nohighlight">\(\gamma\)</span> es positivo estamos en el caso ferromagnético y cuando es negativo en el antiferromagnético.</p>
-<p>La función que implementa esto es la siguiente:</p>
+<p>El algoritmo VQE se propuso originalmente para obtener el estado de mínima energía de moléculas complicadas a partir de su Hamiltoniano <span id="id1">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id64" title="Alberto Peruzzo, Jarrod McClean, Peter Shadbolt, Man-Hong Yung, Xiao-Qi Zhou, Peter J. Love, Alán Aspuru-Guzik, and Jeremy L. O’Brien. A variational eigenvalue solver on a photonic quantum processor. Nature Communications, 5(1):4213, July 2014. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/ncomms5213 (visited on 2022-12-19), doi:10.1038/ncomms5213.">17</a>]</span>. Por este motivo, gran parte de su historia y sus aplicaciones se han desarrollado y estudiado dentro del ámbito de la química computacional. También por este motivo, muchas librerías y lenguajes de programación orientados a utilizar computadores cuánticos tienen integradas multitud de funciones y características para trabajar con moléculas.</p>
+<p>Por ejemplo, Google tiene su librería de computación cuántica <a class="reference external" href="https://quantumai.google/openfermion"><code class="docutils literal notranslate"><span class="pre">openfermion</span></code></a>, mientras que Qiskit tiene, en su módulo <code class="docutils literal notranslate"><span class="pre">qiskit_nature</span></code>, un método para construir moléculas utilizando PYSCF.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-0">
 Qibo</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="k">def</span> <span class="nf">ising_chain_ham_qibo</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">gam</span><span class="p">):</span>
-    
-    <span class="c1"># Esta función nos devuelve el Hamiltoniano en términos utilizables por los algoritmos de Qibo</span>
-    <span class="c1"># n = number of spin positions</span>
-    <span class="c1"># gam = transverse field parameter</span>
+<span class="kn">from</span> <span class="nn">openfermion</span> <span class="kn">import</span> <span class="n">MolecularData</span>
+<span class="kn">from</span> <span class="nn">openfermionpyscf</span> <span class="kn">import</span> <span class="n">run_pyscf</span>
+<span class="kn">from</span> <span class="nn">openfermion</span> <span class="kn">import</span> <span class="n">jordan_wigner</span><span class="p">,</span> <span class="n">count_qubits</span>
 
-    <span class="kn">from</span> <span class="nn">qibo.symbols</span> <span class="kn">import</span> <span class="n">X</span><span class="p">,</span> <span class="n">Z</span>
-
-    <span class="n">sym_X</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">sym_Z</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">Z</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-    <span class="n">sym_H</span> <span class="o">=</span> <span class="n">sym_X</span> <span class="o">+</span> <span class="n">gam</span> <span class="o">*</span> <span class="n">sym_Z</span>
-
-    <span class="n">H</span> <span class="o">=</span> <span class="n">hamiltonians</span><span class="o">.</span><span class="n">SymbolicHamiltonian</span><span class="p">(</span><span class="n">sym_H</span><span class="p">)</span>
-    
-    <span class="k">return</span> <span class="n">H</span><span class="p">,</span> <span class="n">H</span><span class="o">.</span><span class="n">matrix</span>
+<span class="c1"># NOTA: Haciendo este código me ha salido un error interno de las librerías de pyscf.</span>
+<span class="c1"># Este error alega que no existe un módulo llamado openfermion.chem</span>
+<span class="c1"># Esto puede deberse a que la versión de openfermion esté en una versión no compatible.</span>
+<span class="c1"># Para solucionarlo, basta con ir al script de la función de pyscf y cambiar el comando</span>
+<span class="c1"># from openfermion.chem import *</span>
+<span class="c1">#   por</span>
+<span class="c1"># from openfermion import *</span>
 </pre></div>
 </div>
 </div>
@@ -596,86 +522,60 @@ Qibo</label><div class="sd-tab-content docutils">
 </input><label class="sd-tab-label" for="sd-tab-item-1">
 Qiskit</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="k">def</span> <span class="nf">ising_chain_ham</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">gam</span><span class="p">):</span>
-    
-    <span class="c1"># Esta función nos devuelve el Hamiltoniano en términos utilizables por los algoritmos de Qiskit</span>
-    <span class="c1"># n = number of spin positions</span>
-    <span class="c1"># gam = transverse field parameter</span>
-    
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="n">vecX</span> <span class="o">=</span> <span class="p">[</span><span class="n">I</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
-        <span class="n">vecZ</span> <span class="o">=</span> <span class="p">[</span><span class="n">I</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
-        <span class="n">vecX</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span>
-        <span class="n">vecZ</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Z</span>
-        
-        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">vecX</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">vecX</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span>
-
-        <span class="n">auxX</span> <span class="o">=</span> <span class="n">vecX</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">auxZ</span> <span class="o">=</span> <span class="n">vecZ</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        
-        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">vecX</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">]:</span>
-            <span class="n">auxX</span> <span class="o">=</span> <span class="n">auxX</span> <span class="o">^</span> <span class="n">a</span>
-        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">vecZ</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">]:</span>
-            <span class="n">auxZ</span> <span class="o">=</span> <span class="n">auxZ</span> <span class="o">^</span> <span class="n">b</span>
-            
-        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">H</span> <span class="o">=</span> <span class="p">(</span><span class="n">auxX</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">gam</span> <span class="o">*</span> <span class="n">auxZ</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">H</span> <span class="o">=</span> <span class="n">H</span> <span class="o">+</span> <span class="p">(</span><span class="n">auxX</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">gam</span> <span class="o">*</span> <span class="n">auxZ</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">H</span>
-
-
-<span class="k">def</span> <span class="nf">ising_chain_matrix</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">gam</span><span class="p">):</span>
-    
-    <span class="c1"># Esta función devuelve el Hamiltoniano como un array (lista de listas)</span>
-      
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="n">HX</span> <span class="o">=</span> <span class="p">[</span><span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">]]</span> <span class="o">*</span> <span class="n">n</span>
-        <span class="n">HZ</span> <span class="o">=</span> <span class="p">[</span><span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">]]</span> <span class="o">*</span> <span class="n">n</span>
-        <span class="n">HX</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">]</span>
-        <span class="n">HZ</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">]</span>
-        
-        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">HX</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">HX</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">PAULIS</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">]</span>
-            
-        <span class="n">aux</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">,</span> <span class="n">HZ</span><span class="p">)</span>
-        <span class="n">aux</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span> <span class="o">*</span> <span class="n">gam</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">]</span>
-        
-        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">H</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">,</span> <span class="n">HX</span><span class="p">)</span> <span class="o">+</span> <span class="n">aux</span>
-        <span class="k">else</span><span class="p">:</span>            
-            <span class="n">H</span> <span class="o">=</span> <span class="n">H</span> <span class="o">+</span> <span class="n">reduce</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">,</span> <span class="n">HX</span><span class="p">)</span> <span class="o">+</span> <span class="n">aux</span>
-        
-    <span class="k">return</span> <span class="n">H</span>
+<span class="kn">import</span> <span class="nn">qiskit_nature</span>
+<span class="kn">from</span> <span class="nn">qiskit_nature.units</span> <span class="kn">import</span> <span class="n">DistanceUnit</span>
+<span class="kn">from</span> <span class="nn">qiskit_nature.second_q.drivers</span> <span class="kn">import</span> <span class="n">PySCFDriver</span>
+<span class="kn">from</span> <span class="nn">qiskit_nature.second_q.algorithms</span> <span class="kn">import</span> <span class="n">GroundStateEigensolver</span>
+<span class="kn">from</span> <span class="nn">qiskit_nature.second_q.circuit.library</span> <span class="kn">import</span> <span class="n">UCCSD</span>
+<span class="kn">from</span> <span class="nn">qiskit_nature.second_q.mappers</span> <span class="kn">import</span> <span class="n">JordanWignerMapper</span><span class="p">,</span> <span class="n">QubitMapper</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_remove_input docutils container">
 </div>
-<p>Vamos a resolver una cadena de Ising de <span class="math notranslate nohighlight">\(N = 4\)</span> <em>spines</em>. Entonces prepararemos el Hamiltoniano y después le haremos una serie de transformaciones que nos permiten diagonalizarlo.</p>
-<p>Empezamos por escribir nuestro operador. Como tenemos <span class="math notranslate nohighlight">\(N=4\)</span> <i>spines</i>, el operador será</p>
-<div class="math notranslate nohighlight">
-\[
-\mathcal{H} = X_1X_2I_3I_4 + I_1X_2X_3I_4 + I_1I_2X_3X_4 + X_1I_2I_3X_4 + \gamma (Z_1I_2I_3I_4 + I_1Z_2I_3I_4 + I_1I_2Z_3I_4 + I_1I_2I_3Z_4)
-\]</div>
-<p>Tomemos un valor de <span class="math notranslate nohighlight">\(\gamma\)</span> pequeño, por ejemplo, <span class="math notranslate nohighlight">\(\gamma = 0.3\)</span>.</p>
+<p>Este módulo nos permite, entre otras cosas, fabricar diferentes moléculas, especificando los diferentes átomos que la componen, la base de funciones de la función de onda del electrón, la carga y la multiplicidad de la molécula.</p>
+<p>De todas las posibles moléculas que podríamos tratar, la más sencilla es la de <span class="math notranslate nohighlight">\(\text{H}_2\)</span>: el átomo de Hidrógeno es el más pequeño y simple, presenta un único enlace y solo tiene dos electrones.</p>
+<p>Aun así, al contrario que el Modelo de Ising, la molécula de Hidrógeno presenta un problema: no es resoluble analíticamente. En su lugar, el “valor teórico” de su energía fundamental es realmente el resultado de simulaciones y experimentos, en ocasiones dando resultados en forma de operaciones infinitas que hay que truncar en alguna parte.</p>
+<p>Así, por ejemplo, en <span id="id2">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id54" title="Tao Pang. Hydrogen molecule under confinement: Exact results. Physical Review A, 49(3):1709–1713, March 1994. URL: https://link.aps.org/doi/10.1103/PhysRevA.49.1709 (visited on 2023-01-12), doi:10.1103/PhysRevA.49.1709.">16</a>]</span> se presenta un resultado de <span class="math notranslate nohighlight">\(-1.1746(5) E_h\)</span> a partir de simulaciones de Monte Carlo, mientras que en <span id="id3">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id55" title="Zhen-Yu Yang and Ji-Xuan Hou. Calculating the ground state energy of hydrogen molecules and helium hydride ions using Bohr’s quantum theory. European Journal of Physics, 40(6):065405, November 2019. URL: https://iopscience.iop.org/article/10.1088/1361-6404/ab32ce (visited on 2023-01-12), doi:10.1088/1361-6404/ab32ce.">25</a>]</span> obtienen un resultado comprendido entre <span class="math notranslate nohighlight">\(-1.2241 E_h\)</span> y <span class="math notranslate nohighlight">\(-1.0999 E_h\)</span> empleando el modelo de Bohr.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-2">
 Qibo</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="c1"># Definimos el Hamiltoniano</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">gam</span> <span class="o">=</span> <span class="mf">.3</span>
+<span class="c1"># Creamos la molécula con los parámetros requeridos</span>
 
-<span class="n">op_H</span><span class="p">,</span> <span class="n">matrix</span> <span class="o">=</span> <span class="n">ising_chain_ham_qibo</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">gam</span><span class="p">)</span>
+<span class="c1"># Parámetros moleculares</span>
+<span class="n">bond_length</span> <span class="o">=</span> <span class="mf">1.40104295</span>
+<span class="n">multiplicity</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># Dependiendo del tipo de molécula, el spin queda determinado por la multiplicidad. Si lo detecta como incompatible, dará error.</span>
+<span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;sto-3g&#39;</span>
+<span class="n">charge</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Especificamos los elementos y su disposición geométrica</span>
+<span class="n">geometry</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)),</span> <span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="n">bond_length</span><span class="p">))]</span>
+
+<span class="c1"># Parámetros del cálculo. En nuestro caso especificamos solo run_scf porque nos basta con haber hecho solo Hartree-Fock.</span>
+<span class="n">run_scf</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">run_mp2</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">run_cisd</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">run_ccsd</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">run_fci</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">delete_input</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">delete_output</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Inicializamos la estructura molecular</span>
+<span class="n">molecule</span> <span class="o">=</span> <span class="n">MolecularData</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">basis</span><span class="p">,</span> <span class="n">multiplicity</span><span class="p">,</span>
+                         <span class="n">charge</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">bond_length</span><span class="p">))</span>
+
+<span class="c1"># Calculamos sus integrales</span>
+<span class="n">molecule</span> <span class="o">=</span> <span class="n">run_pyscf</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span>
+                        <span class="n">run_scf</span><span class="o">=</span><span class="n">run_scf</span><span class="p">,</span>
+                        <span class="n">run_mp2</span><span class="o">=</span><span class="n">run_mp2</span><span class="p">,</span>
+                        <span class="n">run_cisd</span><span class="o">=</span><span class="n">run_cisd</span><span class="p">,</span>
+                        <span class="n">run_ccsd</span><span class="o">=</span><span class="n">run_ccsd</span><span class="p">,</span>
+                        <span class="n">run_fci</span><span class="o">=</span><span class="n">run_fci</span><span class="p">)</span>
+
+
 </pre></div>
 </div>
 </div>
@@ -683,29 +583,88 @@ Qibo</label><div class="sd-tab-content docutils">
 </input><label class="sd-tab-label" for="sd-tab-item-3">
 Qiskit</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="c1"># Definimos el Hamiltoniano</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">gam</span> <span class="o">=</span> <span class="mf">0.3</span>
-<span class="n">op_H</span> <span class="o">=</span> <span class="n">ising_chain_ham</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">gam</span><span class="p">)</span>
-<span class="n">matrix</span> <span class="o">=</span> <span class="n">ising_chain_matrix</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">gam</span><span class="p">)</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">PySCFDriver</span><span class="p">(</span>
+    <span class="n">atom</span><span class="o">=</span><span class="s2">&quot;H 0 0 0; H 0 0 0.741&quot;</span><span class="p">,</span>
+    <span class="n">basis</span><span class="o">=</span><span class="s2">&quot;sto3g&quot;</span><span class="p">,</span>
+    <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">spin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">unit</span><span class="o">=</span><span class="n">DistanceUnit</span><span class="o">.</span><span class="n">ANGSTROM</span><span class="p">,</span>
+    <span class="c1"># El método de aproximación por defecto es Hartree-Fock: method=MethodType.RHF</span>
+<span class="p">)</span>
+
+<span class="n">es_problem</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_remove_input docutils container">
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Qibo 0.1.12.dev0|WARNING|2024-06-13 07:32:27]: Calculating the dense form of a symbolic Hamiltonian. This operation is memory inefficient.
-</pre></div>
 </div>
-</div>
-</div>
+<p>Mientras que Qiskit puede generar el Hamiltoniano de la molécula con sus propias funciones, con Qibo necesitamos fabricar una función que nos convierta el problema molecular en uno legible por un circuito cuántico.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-4">
 Qibo</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">def</span> <span class="nf">qibo_mol_H</span><span class="p">(</span><span class="n">molecule</span><span class="p">):</span>
+
+    <span class="c1"># molecule es una estructura molecular de OpenFermion</span>
+    <span class="c1"># devuelve un Hamiltoniano en términos de Qibo</span>
+
+    <span class="c1"># Obtenemos el Hamiltoniano molecular de nuestra molécula fabricada con OpenFermion</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">get_molecular_hamiltonian</span><span class="p">()</span>
+
+    <span class="c1"># Nos aseguramos de que el término constante está bien definido</span>
+    <span class="k">if</span> <span class="n">H</span><span class="o">.</span><span class="n">constant</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">H</span><span class="o">.</span><span class="n">constant</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Hacemos la transformación de Jordan Wigner</span>
+    <span class="n">JW</span> <span class="o">=</span> <span class="n">jordan_wigner</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+    <span class="n">dim</span> <span class="o">=</span> <span class="n">count_qubits</span><span class="p">(</span><span class="n">JW</span><span class="p">)</span>
+
+    <span class="c1"># Inicializamos el operador con el término constante</span>
+    <span class="n">operator</span> <span class="o">=</span> <span class="n">JW</span><span class="o">.</span><span class="n">constant</span> <span class="o">*</span> <span class="n">reduce</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">,</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">I</span><span class="p">]</span><span class="o">*</span><span class="n">dim</span><span class="p">)</span>  
+
+    <span class="c1"># Recorremos los términos del operador de Jordan-Wigner</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">JW</span><span class="o">.</span><span class="n">terms</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="p">():</span>
+            <span class="k">continue</span> <span class="c1"># Omitimos el término constante, ya que hemos inicializado con él</span>
+
+        <span class="c1"># Definimos una lista auxiliar de operadores identidad del tamaño del sistema</span>
+        <span class="n">lis</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">I</span><span class="p">]</span><span class="o">*</span><span class="n">dim</span>
+
+        <span class="c1"># Reemplazamos en nuestra lista los operadores en la posición en la que indica el término de JW</span>
+        <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">index</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">tag</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="n">lis</span><span class="p">[</span><span class="n">tag</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">X</span>
+            <span class="k">elif</span> <span class="n">tag</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="n">lis</span><span class="p">[</span><span class="n">tag</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">Y</span>
+            <span class="k">elif</span> <span class="n">tag</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Z&#39;</span><span class="p">:</span> <span class="n">lis</span><span class="p">[</span><span class="n">tag</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">Z</span>
+
+        <span class="c1"># Sumamos el término JW a nuestro operador matricial</span>
+        <span class="n">operator</span> <span class="o">+=</span> <span class="n">JW</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="n">reduce</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">,</span> <span class="n">lis</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">hamiltonians</span><span class="o">.</span><span class="n">Hamiltonian</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">operator</span><span class="p">),</span> <span class="n">dim</span><span class="p">,</span> <span class="n">operator</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
+Qiskit</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">converter</span> <span class="o">=</span> <span class="n">JordanWignerMapper</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+</div>
+<p>Y, una vez tenemos el Hamiltoniano, podemos implementar el algoritmo VQE igual que hicimos antes:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
+Qibo</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="c1"># Ahora creamos un circuito variacional de ansatz</span>
 <span class="c1"># En este caso usamos un circuito de puertas RY(theta) y CZ, haciendo los diferentes valores de theta aleatorios</span>
+
+<span class="n">op_H</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">mat</span> <span class="o">=</span> <span class="n">qibo_mol_H</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
 
 <span class="n">nqubits</span> <span class="o">=</span> <span class="n">n</span>
 <span class="n">nlayers</span>  <span class="o">=</span> <span class="mi">8</span>
@@ -723,42 +682,45 @@ Qibo</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-5">
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
 Qiskit</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="c1"># Ahora creamos un circuito variacional de ansatz</span>
-<span class="c1"># En este caso usamos un circuito de puertas RY(theta) y CZ, haciendo los diferentes valores de theta aleatorios</span>
-
-<span class="n">ansatz_circ</span> <span class="o">=</span> <span class="n">TwoLocal</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">rotation_blocks</span><span class="o">=</span><span class="s1">&#39;ry&#39;</span><span class="p">,</span> <span class="n">entanglement_blocks</span><span class="o">=</span><span class="s1">&#39;cz&#39;</span><span class="p">)</span>
+<span class="n">tl_circuit</span> <span class="o">=</span> <span class="n">TwoLocal</span><span class="p">(</span>
+    <span class="n">rotation_blocks</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="s2">&quot;rx&quot;</span><span class="p">],</span>
+    <span class="n">entanglement_blocks</span><span class="o">=</span><span class="s2">&quot;cz&quot;</span><span class="p">,</span>
+    <span class="n">entanglement</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span>
+    <span class="n">reps</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">parameter_prefix</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_remove_input docutils container">
 </div>
-<p>En este caso, en lugar de utilizar el optimizador SPSA como hicimos en la sección anterior, empleamos uno nuevo: el método de Powell <span id="id2">[<a class="reference internal" href="../../Chapter_Bibliografia_myst.html#id69" title="M. J. D. Powell. An efficient method for finding the minimum of a function of several variables without calculating derivatives. The Computer Journal, 7(2):155–162, January 1964. URL: https://doi.org/10.1093/comjnl/7.2.155 (visited on 2023-06-23), doi:10.1093/comjnl/7.2.155.">18</a>]</span>.</p>
+<p>Utilizamos, de nuevo, el algoritmo de optimización de Powell.</p>
 <div class="note admonition">
 <p class="admonition-title">Nota (Eficiencia en la optimización)</p>
 <p>El algoritmo de Powell que estamos empleando es considerablemente más eficiente que el resto de algoritmos que hemos probado para este problema específicamente. No obstante, su funcionamiento da lugar a unas gráficas de convergencia que no son particularmente ilustrativas. Si se quiere ver una gráfica en la que realmente se aprecie la convergencia del algoritmo, se puede probar a utilizar el algoritmo COBYLA. No obstante, la ejecución del código tardará un tiempo considerable (del orden de 20 minutos).</p>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-6">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
 Qibo</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="c1"># Especificamos el algorimto de optimización clásica</span>
+<span class="c1"># Optimizador</span>
 <span class="c1"># opt = &#39;COBYLA&#39;</span>
 <span class="n">opt</span> <span class="o">=</span> <span class="s1">&#39;Powell&#39;</span>
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-7">
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
 Qiskit</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="c1"># Especificamos el algorimto de optimización clásica</span>
-<span class="c1"># opt = COBYLA(maxiter = 10000)</span>
+<span class="c1"># Optimizador</span>
+<span class="c1"># opt = COBYLA(maxiter=1000)</span>
 <span class="n">opt</span> <span class="o">=</span> <span class="n">POWELL</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -766,10 +728,10 @@ Qiskit</label><div class="sd-tab-content docutils">
 </div>
 <div class="cell tag_remove_input docutils container">
 </div>
-<p>Implementamos unas funciones de callback para poder almacenar los datos de cada iteración y hacer un análisis de la convergencia.</p>
+<p>De nuevo necesitamos funciones de callback</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-8">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-10">
 Qibo</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="c1"># Esto son funciones auxiliares para guardar los datos de las iteraciones</span>
@@ -781,35 +743,40 @@ Qibo</label><div class="sd-tab-content docutils">
 <span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-    <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>    
+    <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    
     <span class="n">energy</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">vqe</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">callback</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">opt</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">compile</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
     <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">energy</span><span class="p">)</span>
+    
     <span class="c1">#intermediate_info[&#39;stddev&#39;].append(stddev)</span>
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-9">
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-11">
 Qiskit</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="c1"># Esto son funciones auxiliares para guardar los datos de las iteraciones</span>
 
-<span class="n">counts</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">intermediate_info</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s1">&#39;energy&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="c1">#&#39;stddev&#39;: []</span>
+<span class="p">}</span>
 
-<span class="k">def</span> <span class="nf">store_intermediate_result</span><span class="p">(</span><span class="n">eval_count</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">):</span>
-    <span class="n">counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eval_count</span><span class="p">)</span>
-    <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">eval_count</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">):</span>
+   <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+   <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_remove_input docutils container">
 </div>
-<p>Como anticipamos previamente, vamos a hacer uso de la función <code class="docutils literal notranslate"><span class="pre">vqe</span></code> que está ya implementada, ya que es considerablemente más eficiente que la que programamos en la sección anterior.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-10">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-12">
 Qibo</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="c1"># Parámetros del Ansatz</span>
@@ -821,30 +788,20 @@ Qibo</label><div class="sd-tab-content docutils">
 
 <span class="c1"># Y ejecutamos el algoritmo</span>
 <span class="n">best</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="n">vqe</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">initial_parameters</span><span class="p">,</span> <span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">opt</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="n">options</span><span class="p">,</span> <span class="nb">compile</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="n">values</span> <span class="o">=</span> <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-11">
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-13">
 Qiskit</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="c1"># Simulador/Ordenador cuántico</span>
-<span class="n">backend</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;statevector_simulator&#39;</span><span class="p">)</span>
+<span class="c1"># Y ejecutamos el algoritmo</span>
+<span class="n">vqe_solver</span> <span class="o">=</span> <span class="n">VQE</span><span class="p">(</span><span class="n">Estimator</span><span class="p">(),</span> <span class="n">tl_circuit</span><span class="p">,</span> <span class="n">opt</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">)</span>
 
-<span class="c1"># Entorno para la resolución</span>
-<span class="n">algorithm_globals</span><span class="o">.</span><span class="n">random_seed</span> <span class="o">=</span> <span class="mi">63</span>
-<span class="n">qi</span> <span class="o">=</span> <span class="n">QuantumInstance</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">seed_transpiler</span><span class="o">=</span><span class="mi">63</span><span class="p">,</span> <span class="n">seed_simulator</span><span class="o">=</span><span class="mi">63</span><span class="p">)</span>
+<span class="n">calc</span> <span class="o">=</span> <span class="n">GroundStateEigensolver</span><span class="p">(</span><span class="n">converter</span><span class="p">,</span> <span class="n">vqe_solver</span><span class="p">)</span>
 
-<span class="c1"># Algoritmo VQE, introduciendo el ansatz y el optimizador elegidos</span>
-<span class="n">vqe_proc</span> <span class="o">=</span> <span class="n">VQE</span><span class="p">(</span><span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">()</span> <span class="p">,</span><span class="n">ansatz</span><span class="o">=</span><span class="n">ansatz_circ</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">opt</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">store_intermediate_result</span><span class="p">)</span>
-<span class="n">vqe_proc</span><span class="o">.</span><span class="n">quantum_instance</span> <span class="o">=</span> <span class="n">qi</span>
-
-<span class="c1"># Resultados</span>
-<span class="n">sol</span> <span class="o">=</span> <span class="n">vqe_proc</span><span class="o">.</span><span class="n">compute_minimum_eigenvalue</span><span class="p">(</span><span class="n">operator</span> <span class="o">=</span> <span class="n">op_H</span><span class="p">)</span>
-<span class="c1"># print(sol, &quot;\n&quot;)</span>
-<span class="n">best</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">optimal_value</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">es_problem</span><span class="p">)</span>
+<span class="n">best</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">total_energies</span>
 </pre></div>
 </div>
 </div>
@@ -852,22 +809,22 @@ Qiskit</label><div class="sd-tab-content docutils">
 <div class="cell tag_remove_input docutils container">
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: -4.090337
-         Iterations: 4
-         Function evaluations: 2498
+         Current function value: -1.015272
+         Iterations: 5
+         Function evaluations: 3090
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Y ya vemos el valor de la solución:</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;E_G =&quot;</span><span class="p">,</span><span class="n">best</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vemos el valor al que convergemos</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;E_G =&#39;</span><span class="p">,</span><span class="n">best</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E_G = -4.090337110276804
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E_G = -1.0152715222551367
 </pre></div>
 </div>
 </div>
@@ -876,10 +833,11 @@ Qiskit</label><div class="sd-tab-content docutils">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Con la información de las iteraciones podemos dibujar la convergencia de nuestro código</span>
 
+<span class="n">sim_values</span> <span class="o">=</span> <span class="n">intermediate_info</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span>
 <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)),</span> <span class="n">values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Energy value&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sim_values</span><span class="p">)),</span> <span class="n">sim_values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Energy value&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Steps&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">fontsize</span><span class="p">)</span>
@@ -891,27 +849,11 @@ Qiskit</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/ee7876b641aa74958d430643701647dfdd09d64195a20857528c1fe67404aa46.png" src="../../../_images/ee7876b641aa74958d430643701647dfdd09d64195a20857528c1fe67404aa46.png" />
+<img alt="../../../_images/5329b418b7b2c2658dd623abf4b6365c008e6f8a95ffb3ec2873d800aab86605.png" src="../../../_images/5329b418b7b2c2658dd623abf4b6365c008e6f8a95ffb3ec2873d800aab86605.png" />
 </div>
 </div>
-<p>También comparamos con el valor que obtenemos simplemente de diagonalizar la matriz, ya que, al ser “pequeña” (<span class="math notranslate nohighlight">\(16 \times 16\)</span>), <code class="docutils literal notranslate"><span class="pre">scipy</span></code> no tiene problema en hacerlo.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eigvals</span><span class="p">,</span> <span class="n">eigvecs</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;E_G =&quot;</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">eigvals</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error relativo =&quot;</span><span class="p">,</span> <span class="nb">abs</span><span class="p">((</span><span class="n">best</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">eigvals</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="o">/</span><span class="nb">min</span><span class="p">(</span><span class="n">eigvals</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E_G = -4.092961599426855
-Error relativo = 0.06412200765378798 %
-</pre></div>
-</div>
-</div>
-</div>
+<p>Para este caso concreto es importante destacar que el problema que hemos resuelto es la diagonalización del Hamiltoniano de Hartree-Fock de la molécula.</p>
+<p>Existen otros modelos de <em>ansatz</em> (como los <em>ansätze</em> UCC) que, antes que hacer la diagonalización, operan sobre el circuito introduciendo términos y consideraciones nuevas, como correcciones relativistas o correlación electrónica, y después obtienen la energía fundamental, de forma que la resolución del problema tiene en cuenta efectos más difíciles de simular con computadores clásicos.</p>
 <hr class="docutils" />
 <p>Authors:</p>
 <p>Irais Bautista (<a class="reference external" href="http://www.cesga.es">CESGA</a>), Sergio Martínez (<a class="reference external" href="https://bifi.es/es/">BIFi-UNIZAR</a>), Jaime Scharfhausen (<a class="reference external" href="https://www.uam.es/uam/inicio">UAM</a>) y Alejandro Jaramillo (<a class="reference external" href="https://www.csuc.cat/es">CSUC</a>)</p>
@@ -932,7 +874,6 @@ Error relativo = 0.06412200765378798 %
 <center>
 <img align="left" src="https://quantumspain-project.es/wp-content/uploads/2024/02/Banner-QS_GOB_v2.png" width="1000px" />
 </center></section>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -947,7 +888,7 @@ Error relativo = 0.06412200765378798 %
         },
         kernelOptions: {
             name: "python3",
-            path: "./docs/Part_03_VQE/Chapter_01_02_Introduction"
+            path: "./docs/Part_03_VQE/Chapter_02_02_CasosSencillos"
         },
         predefinedOutput: true
     }
@@ -965,20 +906,20 @@ Error relativo = 0.06412200765378798 %
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../Chapter_01_01_Introduction_myst.html"
+       href="Section_021_Modelo-Ising_myst.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Casos Sencillos con el Algoritmo VQE</p>
+        <p class="prev-next-title">El Modelo de Ising con el algoritmo VQE</p>
       </div>
     </a>
     <a class="right-next"
-       href="Section_012_Molecula-H2_myst.html"
+       href="../Chapter_03_01_Ansatze_myst.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">La molécula de <span class="math notranslate nohighlight">\(\text{H}_2\)</span></p>
+        <p class="prev-next-title">Ansätze</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -989,25 +930,7 @@ Error relativo = 0.06412200765378798 %
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">El Modelo de Ising con el algoritmo VQE</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-modelo-de-ising">Introducción al Modelo de Ising</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-modelo-de-ising-1d">El Modelo de Ising 1D</a></li>
-</ul>
-</li>
-</ul>
-
-  </nav></div>
-
-</div></div>
+                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>
